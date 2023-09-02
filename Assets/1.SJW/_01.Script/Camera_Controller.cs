@@ -7,6 +7,7 @@ using UnityEngine;
 public class Camera_Controller : MonoBehaviour
 {
     public float speed = 10.0f;
+    public float scroll_speed = 10.0f;
     public Transform cameratar;
 
     private Camera _camera;
@@ -36,7 +37,7 @@ public class Camera_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel") * speed;
+        float scroll = Input.GetAxis("Mouse ScrollWheel") * scroll_speed;
 
         if(_camera.fieldOfView <= 20.0f && scroll <0 )
         {
@@ -64,23 +65,23 @@ public class Camera_Controller : MonoBehaviour
         if (mousePosition.x < edgeThreshold || Input.GetKey(KeyCode.A))
         {
             //moveDirection += Vector3.left;
-            targetPosition -=  transform.right *0.1f;
+            targetPosition -=  transform.right *0.1f *speed;
         }
         else if (mousePosition.x > Screen.width - edgeThreshold || Input.GetKey(KeyCode.D))
         {
             // moveDirection += Vector3.right;
-            targetPosition +=  transform.right * 0.1f;
+            targetPosition +=  transform.right * 0.1f * speed;
         }
 
         if (mousePosition.y < edgeThreshold || Input.GetKey(KeyCode.S))
         {
             //moveDirection += Vector3.back;
-            targetPosition -= transform.forward * 0.1f;
+            targetPosition -= transform.forward * 0.1f * speed;
         }
         else if (mousePosition.y > Screen.height - edgeThreshold || Input.GetKey(KeyCode.W))
         {
             //moveDirection += Vector3.forward;
-            targetPosition +=  transform.forward * 0.1f;
+            targetPosition +=  transform.forward * 0.1f * speed;
         }
 
         // 이동 방향이 설정되었으면 카메라 이동

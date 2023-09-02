@@ -42,6 +42,19 @@ public class Ui_Manager : MonoBehaviour
 
 
 
+    public void UiRefresh()
+    {
+        roundTxt.text = Data_Manager.instance.curRound + "/" + Data_Manager.instance.maxRound;
+        lifeTxt.text = Data_Manager.instance.curHp.ToString();
+
+
+        money1Txt.text = Data_Manager.instance.money1.ToString();
+        money2Txt.text = Data_Manager.instance.money2.ToString();
+        money3Txt.text = Data_Manager.instance.money3.ToString();
+
+    }
+
+
     void UIreset() // ui 초기값으로 배치
     {
         Data_Manager.instance.DataReset();
@@ -56,7 +69,6 @@ public class Ui_Manager : MonoBehaviour
 
         roundrec = roundZone.GetComponent<RectTransform>().anchoredPosition;
         moneyrec = moneyZone.GetComponent<RectTransform>().anchoredPosition;
-
     }
 
 
