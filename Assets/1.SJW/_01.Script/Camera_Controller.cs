@@ -62,23 +62,23 @@ public class Camera_Controller : MonoBehaviour
  
 
         // 마우스 커서가 화면 가장자리에 닿으면 이동 방향 설정
-        if (mousePosition.x < edgeThreshold || Input.GetKey(KeyCode.A))
+        if ((mousePosition.x < edgeThreshold || Input.GetKey(KeyCode.A))&&transform.position.x>-11)
         {
             //moveDirection += Vector3.left;
             targetPosition -=  transform.right *0.1f *speed;
         }
-        else if (mousePosition.x > Screen.width - edgeThreshold || Input.GetKey(KeyCode.D))
+        else if ((mousePosition.x > Screen.width - edgeThreshold || Input.GetKey(KeyCode.D))&&transform.position.x < 14)
         {
             // moveDirection += Vector3.right;
             targetPosition +=  transform.right * 0.1f * speed;
         }
 
-        if (mousePosition.y < edgeThreshold || Input.GetKey(KeyCode.S))
+        if ((mousePosition.y < edgeThreshold || Input.GetKey(KeyCode.S))&& transform.position.z > -22)
         {
             //moveDirection += Vector3.back;
             targetPosition -= transform.forward * 0.1f * speed;
         }
-        else if (mousePosition.y > Screen.height - edgeThreshold || Input.GetKey(KeyCode.W))
+        else if ((mousePosition.y > Screen.height - edgeThreshold || Input.GetKey(KeyCode.W))&& transform.position.z < 5)
         {
             //moveDirection += Vector3.forward;
             targetPosition +=  transform.forward * 0.1f * speed;
