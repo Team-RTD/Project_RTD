@@ -24,7 +24,6 @@ public class GuideLine : MonoBehaviour
 
     IEnumerator GoToPos(GameObject setpos)
     {
-        print("코루틴 시작");
         Vector3 dir =setpos.transform.position - transform.position;
         Vector3 loc = dir.normalized;
 
@@ -35,7 +34,6 @@ public class GuideLine : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, 2f);
             //transform.Translate(loc,Space.World);
             dir = setpos.transform.position - transform.position;
-            print(dir.magnitude);
 
 
 
