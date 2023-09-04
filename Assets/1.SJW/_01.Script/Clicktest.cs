@@ -70,6 +70,8 @@ public class Clicktest : MonoBehaviour
     }
 
 
+   
+
     public void TowerBuildBtn()
     {
         if(playerMode!=PlayerMode.TowerBuild)
