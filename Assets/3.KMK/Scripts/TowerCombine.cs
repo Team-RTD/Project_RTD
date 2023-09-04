@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//필드에 미리 생성할 오브젝트가 존재해야만 새로운 타워를 합성할 수 있다.
+//필드에 타워가 없으면 생성할 대상을 찾지 못해서 기존의 타워만 사라진다.
+//씬 어딘가 안보이는곳에 타워를 넣어 두기만 하면 잘 작동할 것이다.
 public class TowerCombine : MonoBehaviour
 {
     public Camera cam;
@@ -12,7 +15,7 @@ public class TowerCombine : MonoBehaviour
 
     public GameObject towerPrefab; // 생성할 타워의 프리팹
 
-    public string towerTag2="Tower 2";
+    public string towerTag2 = "Tower 2";
 
     public string towerTag3 = "Tower 3";
 
@@ -33,6 +36,7 @@ public class TowerCombine : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
+                //2랭크의 타워 합성 시퀸스
                 GameObject clickedObject = hit.collider.gameObject;
                 if (clickedObject.gameObject.tag == "Tower")
                 {
@@ -40,37 +44,47 @@ public class TowerCombine : MonoBehaviour
                     clickedObjects[currentIndex] = clickedObject;
 
                     currentIndex++; // 다음 인덱스로 이동
-
-                    if (currentIndex >= clickedObjects.Length)
+                                    //같은 타워를 선택했는지 확인
+                    if (clickedObjects[0] != clickedObjects[1])
                     {
-                        currentIndex = 0; // 인덱스가 배열 크기를 넘어가면 처음부터 다시 저장
+                        if (currentIndex >= clickedObjects.Length)
+                        {
+                            currentIndex = 0; // 인덱스가 배열 크기를 넘어가면 처음부터 다시 저장
+                        }
+                        if (clickedObjects[1] != null)
+                        {
+                            // 타워를 합성해서 다음 등급의 타워를 생성해야 한다.
+                            if (clickedObjects[0].tag == clickedObjects[1].tag)
+                            {
+                                // 새로운 타워 생성
+                                SpawnNewTowerRank2();
+                                print("랭크2의 타워가 생성되었습니다");
+
+                                Destroy(clickedObjects[0].gameObject);
+                                Destroy(clickedObjects[1].gameObject);
+
+                                clickedObjects[1] = null;
+                                clickedObjects[0] = null;
+
+
+                            }
+                            else
+                            {
+                                print("합성 할 수 없는 대상 입니다.");
+
+                                clickedObjects[1] = null;
+                                clickedObjects[0] = null;
+                            }
+                        }
                     }
-                    if (clickedObjects[1] != null)
+                    else
                     {
-                        // 타워를 합성해서 다음 등급의 타워를 생성해야 한다.
-                        if (clickedObjects[0].tag == clickedObjects[1].tag)
-                        {
-                            // 새로운 타워 생성
-                            SpawnNewTowerRank2();
-                            print("랭크2의 타워가 생성되었습니다");
-
-                            Destroy(clickedObjects[0].gameObject);
-                            Destroy(clickedObjects[1].gameObject);
-
-                            clickedObjects[1] = null;
-                            clickedObjects[0] = null;
-
-
-                        }
-                        else
-                        {
-                            print("합성 할 수 없는 대상 입니다.");
-
-                            clickedObjects[1] = null;
-                            clickedObjects[0] = null;
-                        }
+                        print("다른 타워를 선택해 주십시오.");
+                        clickedObjects[1] = null;
                     }
                 }
+
+                //랭크3 타워 합성 시퀸스
                 if (clickedObject.gameObject.tag == "Tower 2")
                 {
                     // 배열에 오브젝트 저장
@@ -84,27 +98,36 @@ public class TowerCombine : MonoBehaviour
                     }
                     if (clickedObjects[1] != null)
                     {
-                        // 타워를 합성해서 다음 등급의 타워를 생성해야 한다.
-                        if (clickedObjects[0].tag == clickedObjects[1].tag)
+                        //같은 타워를 선택했는지 확인
+                        if (clickedObjects[0] != clickedObjects[1])
                         {
-                            // 새로운 타워 생성
-                            SpawnNewTowerRank3();
-                            print("랭크3의 타워가 생성되었습니다");
+                            // 타워를 합성해서 다음 등급의 타워를 생성해야 한다.
+                            if (clickedObjects[0].tag == clickedObjects[1].tag)
+                            {
+                                // 새로운 타워 생성
+                                SpawnNewTowerRank3();
+                                print("랭크3의 타워가 생성되었습니다");
 
-                            Destroy(clickedObjects[0].gameObject);
-                            Destroy(clickedObjects[1].gameObject);
+                                Destroy(clickedObjects[0].gameObject);
+                                Destroy(clickedObjects[1].gameObject);
 
-                            clickedObjects[1] = null;
-                            clickedObjects[0] = null;
+                                clickedObjects[1] = null;
+                                clickedObjects[0] = null;
 
 
+                            }
+                            else
+                            {
+                                print("합성 할 수 없는 대상 입니다.");
+
+                                clickedObjects[1] = null;
+                                clickedObjects[0] = null;
+                            }
                         }
                         else
                         {
-                            print("합성 할 수 없는 대상 입니다.");
-
+                            print("다른 타워를 선택해 주십시오.");
                             clickedObjects[1] = null;
-                            clickedObjects[0] = null;
                         }
                     }
                 }
@@ -120,7 +143,7 @@ public class TowerCombine : MonoBehaviour
 
     public void SpawnNewTowerRank2()
     {
-        GameObject newTowerObject = FindObjectWithTag(towerTag2);
+        GameObject newTowerObject = FindObjectWithTag("Tower 2");
         if (newTowerObject != null)
         {
             Vector3 spawnPosition = clickedObjects[1].transform.position;
@@ -131,7 +154,7 @@ public class TowerCombine : MonoBehaviour
     }
     public void SpawnNewTowerRank3()
     {
-        GameObject newTowerObject = FindObjectWithTag(towerTag3);
+        GameObject newTowerObject = FindObjectWithTag("Tower 3");
         if (newTowerObject != null)
         {
             Vector3 spawnPosition = clickedObjects[1].transform.position;
