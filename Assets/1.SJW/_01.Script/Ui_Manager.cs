@@ -17,11 +17,6 @@ public class Ui_Manager : MonoBehaviour
     public TMP_Text money2Txt;
     public TMP_Text money3Txt;
 
-    public int maxRound =50;
-    public int curRound;
-
-    public int maxHp=25;
-    public int curHp;
 
     public GameObject towerInfo;
 
@@ -47,21 +42,33 @@ public class Ui_Manager : MonoBehaviour
 
 
 
+    public void UiRefresh()
+    {
+        roundTxt.text = Data_Manager.instance.curRound + "/" + Data_Manager.instance.maxRound;
+        lifeTxt.text = Data_Manager.instance.curHp.ToString();
+
+
+        money1Txt.text = Data_Manager.instance.money1.ToString();
+        money2Txt.text = Data_Manager.instance.money2.ToString();
+        money3Txt.text = Data_Manager.instance.money3.ToString();
+
+    }
+
+
     void UIreset() // ui 초기값으로 배치
     {
-        curRound = 1;
-        curHp = maxHp;
+        Data_Manager.instance.DataReset();
 
-        roundTxt.text = curRound + "/" + maxRound;
-        lifeTxt.text = curHp.ToString();
+        roundTxt.text = Data_Manager.instance.curRound + "/" + Data_Manager.instance.maxRound;
+        lifeTxt.text = Data_Manager.instance.curHp.ToString();
 
-        money1Txt.text = "0";
-        money2Txt.text = "0";
-        money3Txt.text = "0";
+
+        money1Txt.text = Data_Manager.instance.money1.ToString();
+        money2Txt.text = Data_Manager.instance.money2.ToString();
+        money3Txt.text = Data_Manager.instance.money3.ToString();
 
         roundrec = roundZone.GetComponent<RectTransform>().anchoredPosition;
         moneyrec = moneyZone.GetComponent<RectTransform>().anchoredPosition;
-
     }
 
 
@@ -123,5 +130,8 @@ public class Ui_Manager : MonoBehaviour
         //isMoving = false;
 
     }
+
+
+
 
 }
