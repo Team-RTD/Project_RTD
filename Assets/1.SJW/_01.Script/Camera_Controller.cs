@@ -24,6 +24,22 @@ public class Camera_Controller : MonoBehaviour
     private float targetRotation = 0f; // 목표 회전값
 
     private Vector3 targetPosition; // 목표 위치
+    private Quaternion targetQuar;
+    private Vector3 camPosition; // 카메라 리셋 위치
+    private Quaternion camQuar;
+
+
+    private int fow = 60;
+
+    public GameObject rotob;
+    public GameObject moveob;
+    Rigidbody rb;
+
+    public LayerMask mask;
+
+    Vector3 RorL;
+    Vector3 UorD;
+
 
 
     // Start is called before the first frame update
@@ -31,7 +47,13 @@ public class Camera_Controller : MonoBehaviour
     {
         _camera = Camera.main;
         _worldDefaltForward = transform.forward;
-        targetPosition = transform.position;
+
+        targetPosition = moveob.transform.position;
+        targetQuar = rotob.transform.rotation;
+        camPosition = _camera.transform.localPosition;
+        camQuar = _camera.transform.localRotation;
+
+        rb = moveob.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -43,10 +65,10 @@ public class Camera_Controller : MonoBehaviour
         {
             _camera.fieldOfView = 20.0f;
         }
-        else if(_camera.fieldOfView >= 80.0f && scroll > 0)
+        else if(_camera.fieldOfView >= 68.0f && scroll > 0)
         {
 
-            _camera.fieldOfView = 80.0f;
+            _camera.fieldOfView = 68.0f;
         }else
         {
 
@@ -62,44 +84,46 @@ public class Camera_Controller : MonoBehaviour
  
 
         // 마우스 커서가 화면 가장자리에 닿으면 이동 방향 설정
-        if ((mousePosition.x < edgeThreshold || Input.GetKey(KeyCode.A))&&transform.position.x>-11)
-        {
-            //moveDirection += Vector3.left;
-            targetPosition -=  transform.right *0.1f *speed;
+        if ((mousePosition.x < edgeThreshold || Input.GetKey(KeyCode.A)))// transform.position.x>-11)
+        {   
+            RorL = -rotob.transform.right;
         }
-        else if ((mousePosition.x > Screen.width - edgeThreshold || Input.GetKey(KeyCode.D))&&transform.position.x < 14)
+        else if ((mousePosition.x > Screen.width - edgeThreshold || Input.GetKey(KeyCode.D))) //&& transform.position.x < 14)
         {
-            // moveDirection += Vector3.right;
-            targetPosition +=  transform.right * 0.1f * speed;
+            RorL = rotob.transform.right;
+        }
+        else
+        {
+            RorL = Vector3.zero;
+        }
+ 
+
+
+        if ((mousePosition.y < edgeThreshold || Input.GetKey(KeyCode.S)))  //&& transform.position.z > -22)
+        {
+            UorD = -rotob.transform.forward;
+        }
+        else if ((mousePosition.y > Screen.height - edgeThreshold || Input.GetKey(KeyCode.W)))//&& transform.position.z < 5)
+        {
+            UorD = rotob.transform.forward;
+        }
+        else
+        {
+            UorD = Vector3.zero;
         }
 
-        if ((mousePosition.y < edgeThreshold || Input.GetKey(KeyCode.S))&& transform.position.z > -22)
-        {
-            //moveDirection += Vector3.back;
-            targetPosition -= transform.forward * 0.1f * speed;
-        }
-        else if ((mousePosition.y > Screen.height - edgeThreshold || Input.GetKey(KeyCode.W))&& transform.position.z < 5)
-        {
-            //moveDirection += Vector3.forward;
-            targetPosition +=  transform.forward * 0.1f * speed;
-        }
 
-        // 이동 방향이 설정되었으면 카메라 이동
-        //if (moveDirection != Vector3.zero)
-       // {
-            //MoveCamera(moveDirection.normalized);
-        // }
+        Vector3 pos = (RorL + UorD).normalized;
+
+        rb.velocity = pos* 20f;
 
 
-
-
-        if(Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
 
             // slerf -= Time.deltaTime*2;
             // _camera.transform.Rotate(0, slerf, 0, Space.World);
             targetRotation -= rotationSpeed * Time.deltaTime;
-            // 부드럽게 회전시키기 위해 Lerp 사용
 
         }
         else if(Input.GetKey(KeyCode.E))
@@ -108,7 +132,6 @@ public class Camera_Controller : MonoBehaviour
             //slerf += Time.deltaTime*2;
             //_camera.transform.Rotate(0, slerf, 0, Space.World);
             targetRotation += rotationSpeed * Time.deltaTime;
-            // 부드럽게 회전시키기 위해 Lerp 사용
   
         }
         else
@@ -128,18 +151,53 @@ public class Camera_Controller : MonoBehaviour
              
         }
 
-        transform.position =Vector3.Lerp(transform.position,targetPosition, 0.05f);
-        // 카메라를 이동 방향으로 이동
 
-        float currentRotation = Mathf.LerpAngle(transform.eulerAngles.y, targetRotation, Time.deltaTime *5);
-        transform.eulerAngles = new Vector3(0f, currentRotation, 0f);
+
+        //transform.position =Vector3.Lerp(transform.position,targetPosition, 0.05f);
+        // 카메라를 이동 방향으로 이동
+        transform.position = Vector3.Lerp(transform.position, moveob.transform.position, 0.05f);
+
+        float currentRotation = Mathf.LerpAngle(_camera.gameObject.transform.eulerAngles.y, targetRotation, Time.deltaTime *5);
+        _camera.gameObject.transform.eulerAngles = new Vector3(_camera.gameObject.transform.eulerAngles.x, currentRotation, 0f);
+        rotob.transform.eulerAngles = new Vector3(0, currentRotation, 0f);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CameraReset();
+        }
 
     }
 
-    void MoveCamera(Vector3 moveDirection)
+    public void CameraReset()
     {
+        rb.velocity = Vector3.zero;
 
-        transform.Translate(moveDirection * scrollSpeed * Time.deltaTime);
+        print(camQuar);
+        targetRotation = 0;
+        _camera.transform.localPosition = camPosition;
+        _camera.transform.localRotation = camQuar;
+        moveob.transform.position = targetPosition;
+        rotob.transform.rotation = targetQuar;
+        _camera.fieldOfView = fow;
+  
+    }
+
+    bool hitcol( Vector3 pos )
+    {
+        Ray ray = new Ray(moveob.transform.position,pos);
+        RaycastHit hitdata;
+
+       
+
+        if (Physics.Raycast(ray, out hitdata, 5f, mask))
+        {
+            print(hitdata.transform.gameObject.name);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 

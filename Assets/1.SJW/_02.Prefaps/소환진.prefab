@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5250913781274146883}
   - component: {fileID: 2993954729631678282}
   - component: {fileID: 5974172502113699442}
+  - component: {fileID: 631541710983410488}
   m_Layer: 0
   m_Name: "\uC18C\uD658\uC9C4"
   m_TagString: TowerZone
@@ -4794,3 +4795,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.33, y: 0.1, z: 3.33}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &631541710983410488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518187066371646854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871934b5598372142b7642894591c743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerOn: 0
+  summonZoneColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.7298395, g: 1, b: 0.5330188, a: 1}
+  - {r: 0.43867922, g: 0.9211628, b: 1, a: 0}
+  - {r: 0.6534216, g: 0.3537736, b: 1, a: 0}
+  - {r: 1, g: 0.042452812, b: 0.29439595, a: 0}
+  - {r: 1, g: 0.6154237, b: 0, a: 0}
+  - {r: 0.97311604, g: 1, b: 0, a: 0}
+  - {r: 1, g: 1, b: 1, a: 0}

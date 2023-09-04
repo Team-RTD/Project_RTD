@@ -7,8 +7,6 @@ TagManager:
   - TowerZone
   - Monster
   - Tower
-  - Tower 2
-  - Tower 3
   layers:
   - Default
   - TransparentFX
@@ -16,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Enemy
+  - wall
   - 
   - 
   - 
