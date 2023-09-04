@@ -19,7 +19,7 @@ public class Twr_0Base : MonoBehaviour
     protected TowerAttackType towerAttackType;
     public int towerMaxTarget;
     protected int towerBounceCount;
-    protected float throwSpeed;
+    protected float throwObjSpeed;
 
     public Vector3 towerPos;
     public Vector3 enemyPos;
@@ -30,6 +30,9 @@ public class Twr_0Base : MonoBehaviour
     public string[] enemyName; // TEST
 
     List<ThrowObject> throwObjects = new List<ThrowObject>();
+
+    ThrowObject[] thorwObjArray;
+
     public virtual void TowerInfo()
     {
         towerNumber = "Null";
@@ -53,14 +56,12 @@ public class Twr_0Base : MonoBehaviour
         TowerInfo();
         enemyLayer = 1 << 6; // Enemy Layer
         towerPos = gameObject.transform.position;
-
-        ThrowObject[] thorwObjArray = GetComponentsInChildren<ThrowObject>();
-        throwObjects.AddRange(thorwObjArray.ToList());
-        //foreach (ThrowObject throwObject in throwObjects)
-        //{
-        //    throwObject.DoSomething(); // TEST
-        //}
-
+                                              
+        if (towerAttackType == TowerAttackType.Thrower)
+        {
+            thorwObjArray = GetComponentsInChildren<ThrowObject>(true);
+            throwObjects.AddRange(thorwObjArray);
+        }
     }
 
     private void Start()
@@ -79,6 +80,8 @@ public class Twr_0Base : MonoBehaviour
         {
             print(enemyTargets.Count);  //TEST
         }
+
+        print(throwObjects.Count);
     }
 
     List<Enemy> enemyTargets = new List<Enemy>();
@@ -115,23 +118,23 @@ public class Twr_0Base : MonoBehaviour
                             targetsCount++;
                         }
 
-                        //StartCoroutine(AttackEnemy(_enemy));
                     }
                     break;
 
                 case TowerAttackType.Thrower:
+                    foreach (Collider collider in colliders)
+                    {
+                        foreach (ThrowObject throwObject in thorwObjArray)
+                        {
+                            throwObject.transform.position = gameObject.transform.position;
+                            throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, towerAttackDamage, throwObjSpeed);
+                        }
+                    }
+                        
                     break;
 
                 case TowerAttackType.Area:
                     break;
-            }
-
-            if (enemyTargets.Count > 0)
-            {
-                for (int i = 0; i < towerMaxTarget; i++)
-                {
-                    AttackEnemy(enemyTargets[i]);
-                }
             }
 
         }

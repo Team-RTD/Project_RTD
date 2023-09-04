@@ -15,6 +15,11 @@ public class ThrowObject : MonoBehaviour
     {
 
     }
+
+    private void OnEnable()
+    {
+        print("Enable ThrowObject");
+    }
     void Update()
     {
         gameObject.transform.position = gameObject.transform.position + (dir * objSpeed * Time.deltaTime);
