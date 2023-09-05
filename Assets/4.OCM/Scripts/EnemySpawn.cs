@@ -26,6 +26,7 @@ public class EnemySpawn : MonoBehaviour
     {
         stageNum = 1;
         createTime = 0.2f;
+        nextStage = true;
     }
 
 
@@ -33,7 +34,7 @@ public class EnemySpawn : MonoBehaviour
      void Update()
     {
         currentTime += Time.deltaTime;
-        if (nextStage == true&& currentTime > nextStageTime)
+        if (StageManager.instance.monsterCount == 0 && nextStage == true&& currentTime > nextStageTime)
         {
             nextStage = false;
             StartCoroutine(SpawnEnemy(stageNum));

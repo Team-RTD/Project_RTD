@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 806579690324219350}
   - component: {fileID: 2759324975826102680}
   m_Layer: 0
-  m_Name: EnemySpawn
+  m_Name: MonsterSpawn
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

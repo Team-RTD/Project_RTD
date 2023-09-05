@@ -7,7 +7,7 @@ public class DestroyZone : MonoBehaviour
 {
     ParticleSystem particleSystem;
     public GameObject destroyEffect;
-    public List<GameObject> destroyList= new List<GameObject>();
+    //public List<GameObject> destroyList= new List<GameObject>();
     public int destroyNum;
 
     // Start is called before the first frame update
@@ -30,6 +30,7 @@ public class DestroyZone : MonoBehaviour
     {
         if (others.gameObject.tag == "Monster")
         {
+            StageManager.instance.monsterCount--;
             Destroy(others.gameObject);
             StartCoroutine(DestroyEffect());
             Data_Manager.instance.curHp--;

@@ -37,6 +37,7 @@ void Start()
         
         hp = 100;
         enemySpeed = 1;
+        StageManager.instance.monsterCount++;
         animator = GetComponent<Animator>();
 
         Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
@@ -63,6 +64,7 @@ void Start()
         if (hp == 0)
         {
             StartCoroutine(Die());
+            StageManager.instance.monsterCount--;
         }
     }
 
