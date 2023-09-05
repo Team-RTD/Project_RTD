@@ -16,6 +16,6 @@ public class Twr_Atwr : Twr_0Base
         towerUpgradeTier = 1;
         towerMaxTarget = 4;
         towerBounceCount = 1;
-        towerAttackType = TowerAttackType.Shooter;
+        towerAttackType = TowerAttackType.Area;
     }
 }
