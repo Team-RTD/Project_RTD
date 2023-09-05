@@ -84,7 +84,7 @@ public class Twr_0Base : MonoBehaviour
             print(enemyTargets.Count);  //TEST
         }
     }
-
+    int targetsCount = 0;
     List<Enemy> enemyTargets = new List<Enemy>();
     public bool isCoolTime = false;
     public void Detecting()
@@ -100,7 +100,7 @@ public class Twr_0Base : MonoBehaviour
             switch (towerAttackType)
             {
                 case TowerAttackType.Shooter:
-                    int targetsCount = 0;
+                    
                     //for (int i = 0; i < colliders.Length;i++)
                     foreach (Collider collider in colliders)
                     {
@@ -126,11 +126,11 @@ public class Twr_0Base : MonoBehaviour
                     break;
 
                 case TowerAttackType.Area:
-                    int targetCount = 0;
+                    
                     foreach (Collider collider in colliders )
                     {                        
                         GameObject _area = area;
-                        if (targetCount >= 1)
+                        if (targetsCount >= 1)
                         {
                             print("test point1");
                             break;
@@ -144,8 +144,7 @@ public class Twr_0Base : MonoBehaviour
                             print("test point3");
                             DamageArea damageArea = _area.GetComponent<DamageArea>();
                             if (damageArea != null)
-                            {
-                                area.SetActive(true);
+                            {                                           
                                 StartCoroutine(AttackArea(damageArea, collider));
                                 area.transform.position = _enemy.transform.position;
                             }                            
@@ -168,8 +167,12 @@ public class Twr_0Base : MonoBehaviour
     IEnumerator AttackArea(DamageArea area, Collider collider)
     {
         isCoolTime = true;
+        targetsCount += 1;
         area.GetComponent<DamageArea>().OnTriggerEnter(collider);
+        area.SetActive(true);
+        print("켜졌습니다.");
         yield return new WaitForSeconds(towerAttackSpeed);
+        targetsCount = 0;
         isCoolTime = false;
     }
 
