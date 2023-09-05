@@ -29,6 +29,11 @@ public class Twr_0Base : MonoBehaviour
 
     public string[] enemyName; // TEST
 
+    public GameObject area;
+
+    Enemy _enemy;
+    GameObject enemyCollider = _enemy.GetComponent<Collider>; 
+
     List<ThrowObject> throwObjects = new List<ThrowObject>();
     public virtual void TowerInfo()
     {
@@ -118,9 +123,30 @@ public class Twr_0Base : MonoBehaviour
                     break;
 
                 case TowerAttackType.Thrower:
+                    
                     break;
 
                 case TowerAttackType.Area:
+                    int targetCount = 0;
+                    foreach (Collider collider in colliders )
+                    {
+                        GameObject _area = area;
+                        if (targetCount == 1)
+                        {
+                            break;
+                        }
+
+                        _enemy = collider.GetComponent<Enemy>();
+
+                        float areaDamage = towerAttackDamage;
+
+                        if (_enemy != null)
+                        {
+                            area.SetActive(true);
+
+                            area.transform.position = _enemy.transform.position;
+                        }
+                    }
                     break;
             }
 
@@ -130,6 +156,14 @@ public class Twr_0Base : MonoBehaviour
     {
         isCoolTime = true;
         _enemy.GetComponent<Enemy>().DamagedAction(towerAttackDamage);
+        yield return new WaitForSeconds(towerAttackSpeed);
+        isCoolTime = false;
+    }
+
+    IEnumerator AttackArea(DamageArea area)
+    {
+        isCoolTime = true;
+        area.GetComponent<DamageArea>().OnTriggerEnter(GameObject enemyCollider);
         yield return new WaitForSeconds(towerAttackSpeed);
         isCoolTime = false;
     }

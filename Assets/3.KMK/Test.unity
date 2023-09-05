@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 289515797}
   m_Layer: 6
   m_Name: Capsule (3)
-  m_TagString: Untagged
+  m_TagString: Tower_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 346947936}
   m_Layer: 6
   m_Name: Capsule (2)
-  m_TagString: Untagged
+  m_TagString: Tower_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -488,6 +488,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7632261868078351232, guid: c28fbe2b7dc28594584f72cfee3ab382, type: 3}
+      propertyPath: m_TagString
+      value: Tower_1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -507,7 +511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.02
+      value: 5.96
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       propertyPath: m_LocalPosition.y
@@ -643,7 +647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5326560358862197870, guid: ccc32d3ffa21421428e2426d9342c237, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.330063
+      value: 22.49
       objectReference: {fileID: 0}
     - target: {fileID: 5326560358862197870, guid: ccc32d3ffa21421428e2426d9342c237, type: 3}
       propertyPath: m_LocalPosition.y
@@ -716,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5326560358862197870, guid: cca3b5100f0cc724480f1b65feac5e89, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.243561
+      value: -14.42
       objectReference: {fileID: 0}
     - target: {fileID: 5326560358862197870, guid: cca3b5100f0cc724480f1b65feac5e89, type: 3}
       propertyPath: m_LocalRotation.w
@@ -765,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.330063
+      value: 20.79
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       propertyPath: m_LocalPosition.y
@@ -874,7 +878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632261868078351232, guid: c28fbe2b7dc28594584f72cfee3ab382, type: 3}
       propertyPath: m_TagString
-      value: Tower
+      value: Tower_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -896,7 +900,7 @@ GameObject:
   - component: {fileID: 867580955}
   m_Layer: 6
   m_Name: Capsule (1)
-  m_TagString: Untagged
+  m_TagString: Tower_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1032,6 +1036,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   enemyName: []
+  area: {fileID: 0}
   isCoolTime: 0
 --- !u!1001 &1204789067
 PrefabInstance:
@@ -1055,7 +1060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: db031356636588745b10d3614c9ae3be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.243561
+      value: -10.85
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: db031356636588745b10d3614c9ae3be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1156,7 +1161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632261868078351232, guid: c28fbe2b7dc28594584f72cfee3ab382, type: 3}
       propertyPath: m_TagString
-      value: Tower
+      value: Tower_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1178,7 +1183,7 @@ GameObject:
   - component: {fileID: 1339352097}
   m_Layer: 6
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Tower_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1307,7 +1312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5326560358862197870, guid: d962a8d2a907fb24788596b3723aebf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.330063
+      value: 18.02
       objectReference: {fileID: 0}
     - target: {fileID: 5326560358862197870, guid: d962a8d2a907fb24788596b3723aebf3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1523,7 +1528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1672847029
 Transform:
   m_ObjectHideFlags: 0
@@ -1532,7 +1537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672847028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.58, y: -0.5, z: -0.98}
+  m_LocalPosition: {x: -6.61, y: -0.5, z: -0.98}
   m_LocalScale: {x: 8.6828, y: 0.1, z: 8.6828}
   m_ConstrainProportionsScale: 0
   m_Children: []

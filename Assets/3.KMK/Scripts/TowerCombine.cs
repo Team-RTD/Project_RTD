@@ -15,9 +15,9 @@ public class TowerCombine : MonoBehaviour
 
     public GameObject towerPrefab; // 생성할 타워의 프리팹
 
-    public string towerTag2 = "Tower 2";
+    public string towerTag2 = "Tower_2";
 
-    public string towerTag3 = "Tower 3";
+    public string towerTag3 = "Tower_3";
 
     public void Start()
     {
@@ -38,7 +38,7 @@ public class TowerCombine : MonoBehaviour
             {
                 //2랭크의 타워 합성 시퀸스
                 GameObject clickedObject = hit.collider.gameObject;
-                if (clickedObject.gameObject.tag == "Tower")
+                if (clickedObject.gameObject.tag == "Tower_1")
                 {
                     // 배열에 오브젝트 저장
                     clickedObjects[currentIndex] = clickedObject;
@@ -85,7 +85,7 @@ public class TowerCombine : MonoBehaviour
                 }
 
                 //랭크3 타워 합성 시퀸스
-                if (clickedObject.gameObject.tag == "Tower 2")
+                if (clickedObject.gameObject.tag == "Tower_2")
                 {
                     // 배열에 오브젝트 저장
                     clickedObjects[currentIndex] = clickedObject;
@@ -131,7 +131,7 @@ public class TowerCombine : MonoBehaviour
                         }
                     }
                 }
-                if (clickedObject.gameObject.tag == "Tower 3")
+                if (clickedObject.gameObject.tag == "Tower_3")
                 {
                     print("해당 타워는 더 이상 합성 할 수 없습니다.");
                     clickedObjects[1] = null;
@@ -143,7 +143,7 @@ public class TowerCombine : MonoBehaviour
 
     public void SpawnNewTowerRank2()
     {
-        GameObject newTowerObject = FindObjectWithTag("Tower 2");
+        GameObject newTowerObject = FindObjectWithTag("Tower_2");
         if (newTowerObject != null)
         {
             Vector3 spawnPosition = clickedObjects[1].transform.position;
@@ -154,7 +154,7 @@ public class TowerCombine : MonoBehaviour
     }
     public void SpawnNewTowerRank3()
     {
-        GameObject newTowerObject = FindObjectWithTag("Tower 3");
+        GameObject newTowerObject = FindObjectWithTag("Tower_3");
         if (newTowerObject != null)
         {
             Vector3 spawnPosition = clickedObjects[1].transform.position;
