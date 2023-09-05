@@ -51,7 +51,35 @@ public class ClickSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (playerMode == PlayerMode.TowerSell)
+        {
+            //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            //hit = Physics.RaycastAll(ray, 100f);
+            //if (hit != null)
+            //{
+            //    foreach (RaycastHit hitob in hit)
+            //    {
+            //        GameObject hitObject = hitob.transform.gameObject;
+            //        if (hitObject.tag == "Tower")
+            //        {
+
+            //            GameObject tower1 = hitObject;
+
+            //            Outline charliner = tower1.GetComponent<Outline>(); //만든 타워에 외각선 추가
+            //            charliner.enabled = true;
+
+            //        }
+            //        else
+            //        {
+            //        }
+
+            //    }
+            //}
+        }
+
+
+
         if(Input.GetMouseButtonDown(0))
         {
 
@@ -79,7 +107,12 @@ public class ClickSystem : MonoBehaviour
                                         GameObject summoneffect = Instantiate(SummonEffect, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
                                         Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
                                         Sound_Manager.instance.EffectPlay(SummonSound);
-                                        //tower1.AddComponent<Outline>();
+
+                                        Outline charliner =  tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
+                                        charliner.OutlineColor = Color.red;
+                                        charliner.OutlineWidth = 2;
+                                        charliner.enabled = false;
+
                                         hitObject.SetActive(false);
                                         //hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_EmisColor");
                                         //print(zone.GetComponent<Renderer>().material);
@@ -127,8 +160,9 @@ public class ClickSystem : MonoBehaviour
         if(playerMode!=PlayerMode.TowerBuild)
         {
             playerMode = PlayerMode.TowerBuild;
+            Ui_Manager.instance.state.text = "건설 모드";
 
-            foreach(GameObject zone in towerZone)
+            foreach (GameObject zone in towerZone)
             {
                 if(!zone.GetComponent<TowerZone>().towerOn)
                 { 
@@ -144,6 +178,7 @@ public class ClickSystem : MonoBehaviour
         else
         {
             playerMode = PlayerMode.Nomal;
+            Ui_Manager.instance.state.text = "";
             foreach (GameObject zone in towerZone)
             {
                 if (!zone.GetComponent<TowerZone>().towerOn)
@@ -166,6 +201,9 @@ public class ClickSystem : MonoBehaviour
         if (playerMode != PlayerMode.TowerSell)
         {
             playerMode = PlayerMode.TowerSell;
+            Ui_Manager.instance.state.text = "판매 모드";
+
+
 
             foreach (GameObject zone in towerZone)
             {
@@ -182,6 +220,7 @@ public class ClickSystem : MonoBehaviour
         else
         {
             playerMode = PlayerMode.Nomal;
+            Ui_Manager.instance.state.text = "";
             foreach (GameObject zone in towerZone)
             {
                 if (!zone.GetComponent<TowerZone>().towerOn)

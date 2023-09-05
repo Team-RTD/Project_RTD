@@ -22,6 +22,10 @@ public class Input_Manager : MonoBehaviour
             ClickSystem.instance.TowerBuildBtn();
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ClickSystem.instance.TowerSellBtn();
+        }
+
     }
 }
