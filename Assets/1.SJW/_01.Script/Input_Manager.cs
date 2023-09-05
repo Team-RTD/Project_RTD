@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Input_Manager : MonoBehaviour
 {
-    public Clicktest test;
+    public ClickSystem test;
     public static Input_Manager instance { get; private set; }
 
 
@@ -19,7 +19,7 @@ public class Input_Manager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            test.TowerBuildBtn();
+            ClickSystem.instance.TowerBuildBtn();
         }
 
         

@@ -2,15 +2,22 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Jobs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Clicktest : MonoBehaviour
+public class ClickSystem : MonoBehaviour
 {
+
+    public static ClickSystem instance;
+
     public Camera cam;
     public GameObject test;
     private RaycastHit[] hit;
-    
+
+    public GameObject SummonEffect;
+    public AudioClip SummonSound;
+
     public enum PlayerMode
     {
         Nomal,
@@ -22,6 +29,13 @@ public class Clicktest : MonoBehaviour
     public PlayerMode playerMode = PlayerMode.Nomal;
 
     public GameObject[] towerZone;
+
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +58,7 @@ public class Clicktest : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 switch (playerMode)
-                    { case PlayerMode.TowerBuild :
+                    { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
 
                          Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                          hit = Physics.RaycastAll(ray, 100f);
@@ -61,7 +75,11 @@ public class Clicktest : MonoBehaviour
                                          Material mat = hitObject.GetComponent<Renderer>().material;
                                         t_zone.towerOn = true;
                                         mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
-                                        Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
+                                        GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
+                                        GameObject summoneffect = Instantiate(SummonEffect, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
+                                        Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
+                                        Sound_Manager.instance.EffectPlay(SummonSound);
+                                        //tower1.AddComponent<Outline>();
                                         hitObject.SetActive(false);
                                         //hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_EmisColor");
                                         //print(zone.GetComponent<Renderer>().material);
@@ -79,7 +97,7 @@ public class Clicktest : MonoBehaviour
                           }
                         break;
 
-                    case PlayerMode.TowerSell :
+                      case PlayerMode.TowerSell :
 
 
                         break;

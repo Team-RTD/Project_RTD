@@ -9,7 +9,7 @@ public class Data_Manager : MonoBehaviour
     public int maxRound = 50;
     public int curRound;
 
-    public int maxHp = 25;
+    public int maxHp = 5;
     public int curHp;
 
     public int money1 = 0;
@@ -22,10 +22,10 @@ public class Data_Manager : MonoBehaviour
     {
         curRound = 1;
 
-        maxHp = 25;
-        curHp = 25;
+        maxHp = 5;
+        curHp = 5;
 
-        money1 = 0;
+        money1 = 300;
         money2 = 0;
         money3 = 0;
     }
