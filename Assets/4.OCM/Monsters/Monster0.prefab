@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 0
-  enemyHp: 0
+  hp: 100
   Pos:
   - {fileID: 0}
   - {fileID: 0}
@@ -2968,6 +2968,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   startpos: {fileID: 0}
+  isDead: 0
+  destroyEffect: {fileID: 2360587643418490837, guid: 9257c25db0f006941a839949ab9390a2, type: 3}
 --- !u!136 &-7965494172272854035
 CapsuleCollider:
   m_ObjectHideFlags: 0

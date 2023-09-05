@@ -6,7 +6,7 @@ using UnityEngine;
 //목표1: 적을 생성하는 기능 구현
 //필요속성1: 적게임오브젝트,생성시간,다음단계로 넘어간다.
 
-public class EnemySpawn : MonoBehaviour
+public class MonsterSpawn : MonoBehaviour
 {
     //필요속성1: 적게임오브젝트,생성시간,총생성시간
     //public GameObject enemy;
@@ -48,7 +48,8 @@ public class EnemySpawn : MonoBehaviour
         
         Data_Manager.instance.curRound = stageNum;
         Ui_Manager.instance.UiRefresh();
-        for (int i = 0; i < 15; i++)
+        StageManager.instance.monsterCount=20;
+        for (int i = 0; i < 20; i++)
         {
             GameObject enemyGO = Instantiate(monsterList[stage-1]);
             enemyGO.transform.position = transform.position;
@@ -56,7 +57,7 @@ public class EnemySpawn : MonoBehaviour
             currentTime = 0f;
             yield return new WaitForSeconds(0.3f);
             currentTime = 0f;
-            monsterCount++;
+            
         }
         nextStage=true;
         stageNum++;

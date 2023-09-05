@@ -1624,10 +1624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 0
-  dir: {x: 0, y: 0, z: 0}
-  angle: 0
-  enemyHp: 0
-  duration: 1
+  hp: 100
   Pos:
   - {fileID: 0}
   - {fileID: 0}
@@ -1642,6 +1639,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   startpos: {fileID: 0}
+  isDead: 0
+  destroyEffect: {fileID: 2360587643418490837, guid: 9257c25db0f006941a839949ab9390a2, type: 3}
 --- !u!1 &1647683516774726
 GameObject:
   m_ObjectHideFlags: 0
