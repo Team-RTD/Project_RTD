@@ -4,36 +4,45 @@ using System.Xml;
 using UnityEngine;
 
 
-//목표1: 정면으로 이동하기
-//필요속성1: 이동속도,방향
+//목표1: 특정 좌표로 회전하면서 이동하기
+//필요속성1: 특정좌표,이동속도
+
 
 //목표2: Enemy체력 구현
 //필요속성2: EnemyHp
 
-//목표3: 정면으로 이동하다가 특정조건 시 왼쪽으로 돌기
+
+//목표3: 이동, 죽었을 때 애니메이션 구현
+//필요속성3: 애니메이터
+
 
 //목표4: 죽거나 끝까지 도달하면 파괴 이펙트 생성
 //필요속성4: 이펙트 파티클 시스템, 파괴 효과 게임 오브젝트
 public class MosnterMove : MonoBehaviour
 {
-    public Sprite portrait;
-    //필요속성1: 이동속도
-    public float monsterSpeed=1f;
-    //필요속성2: EnemyHp
-    public float hp=100;
+    //필요속성1: 특정좌표,이동속도
+    public float monsterSpeed=0.3f;
     public Transform[] Pos;
     int posloc = 0;
     public Transform startpos;
+
+
+    //필요속성2: EnemyHp
+    public float hp = 100;
+    //StageManager.instance.monsterHp;
+
+
+    //필요속성3: 애니메이터
     public bool isDead = false;
     Animator animator;
-    
+
+
+    public Sprite portrait;
 
     // Start is called before the first frame update
     void Start()
     {
-       
         animator = GetComponent<Animator>();
-
         Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
         Pos = new Transform[ArrowPosParent.childCount];
 
