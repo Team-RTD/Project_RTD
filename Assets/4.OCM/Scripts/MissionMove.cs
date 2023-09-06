@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
-
 
 //목표1: 특정 좌표로 회전하면서 이동하기
 //필요속성1: 특정좌표,이동속도
@@ -20,19 +18,18 @@ using UnityEngine;
 //필요속성4: 이펙트 파티클 시스템, 파괴 효과 게임 오브젝트
 
 //목표5: 데미지를 받았을 때 체력이 닳고 0이하가 되면 죽는다.
-
-public class MonsterMove : MonoBehaviour
+public class MissionMove : MonoBehaviour
 {
     //필요속성1: 특정좌표,이동속도
-    public float monsterSpeed=0.1f;
+    public float monsterSpeed = 0.1f;
     public Transform[] Pos;
     int posloc = 0;
     public Transform startpos;
-    
+
 
     //필요속성2: EnemyHp
-    public float hp ;
-    
+    public float hp;
+
 
 
     //필요속성3: 애니메이터
@@ -46,31 +43,31 @@ public class MonsterMove : MonoBehaviour
     void Start()
     {
         //목표2: Enemy체력 구현
-        if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum>1)
-        { 
-            hp = StageManager.instance.monsterMaxHp*10; 
+        if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum > 1)
+        {
+            hp = StageManager.instance.monsterMaxHp * 10;
         }
         else
         {
             hp = StageManager.instance.monsterMaxHp;
         }
-        
-            
-            animator = GetComponent<Animator>();
-            Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
-            Pos = new Transform[ArrowPosParent.childCount];
 
-            for (int i = 0; i < ArrowPosParent.childCount; i++)
-            {
-                Pos[i] = ArrowPosParent.GetChild(i);
-            }
 
-            //dir = Vector3.forward;
-            //angle = 1;
-            StartCoroutine(GoToPos(Pos[posloc]));
-            startpos = transform;
-        
-        
+        animator = GetComponent<Animator>();
+        Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
+        Pos = new Transform[ArrowPosParent.childCount];
+
+        for (int i = 0; i < ArrowPosParent.childCount; i++)
+        {
+            Pos[i] = ArrowPosParent.GetChild(i);
+        }
+
+        //dir = Vector3.forward;
+        //angle = 1;
+        StartCoroutine(GoToPos(Pos[posloc]));
+        startpos = transform;
+
+
     }
 
     // Update is called once per frame
@@ -78,7 +75,7 @@ public class MonsterMove : MonoBehaviour
     {
         DamagedAction(1);
     }
-    
+
 
     IEnumerator GoToPos(Transform setpos)
     {
@@ -89,7 +86,7 @@ public class MonsterMove : MonoBehaviour
         {
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, monsterSpeed) ;
+            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, monsterSpeed);
             //transform.Translate(loc,Space.World);
             dir = setpos.transform.position - transform.position;
             yield return null;
@@ -120,12 +117,13 @@ public class MonsterMove : MonoBehaviour
 
         if (hp <= 0)
         {
+            
             StageManager.instance.monsterCount--;
             StartCoroutine(DeadAction());
         }
     }
-    
-IEnumerator DeadAction()    
+
+    IEnumerator DeadAction()
     {
         isDead = true;
         gameObject.GetComponent<Collider>().enabled = false;

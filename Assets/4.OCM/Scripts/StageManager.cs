@@ -10,10 +10,9 @@ public class StageManager : MonoBehaviour
 {
     //필요속성1: 몬스터수
     public int monsterCount = 0;
-
-
-    public int monsterHp = 100;
+    public int monsterMaxHp = 50 ;
     public int stageNum = 1;
+
     public static StageManager instance { get; private set; }
     // Start is called before the first frame update
 
@@ -32,5 +31,12 @@ public class StageManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int SetMonsterHP(int stageNum)
+    {
+
+        monsterMaxHp = stageNum *50 ;
+        return monsterMaxHp = stageNum * 50;
     }
 }
