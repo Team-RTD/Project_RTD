@@ -4,41 +4,45 @@ using System.Xml;
 using UnityEngine;
 
 
-//목표1: 정면으로 이동하기
-//필요속성1: 이동속도,방향
+//목표1: 특정 좌표로 회전하면서 이동하기
+//필요속성1: 특정좌표,이동속도
+
 
 //목표2: Enemy체력 구현
 //필요속성2: EnemyHp
 
-//목표3: 정면으로 이동하다가 특정조건 시 왼쪽으로 돌기
+
+//목표3: 이동, 죽었을 때 애니메이션 구현
+//필요속성3: 애니메이터
+
 
 //목표4: 죽거나 끝까지 도달하면 파괴 이펙트 생성
 //필요속성4: 이펙트 파티클 시스템, 파괴 효과 게임 오브젝트
-public class EnemyMove : MonoBehaviour
+public class MonsterMove : MonoBehaviour
 {
-    //필요속성1: 이동속도
-    public float enemySpeed;
-    //필요속성2: EnemyHp
-    public float hp;
+    //필요속성1: 특정좌표,이동속도
+    public float monsterSpeed=0.3f;
     public Transform[] Pos;
     int posloc = 0;
     public Transform startpos;
+
+
+    //필요속성2: EnemyHp
+    public float hp = 100;
+    //StageManager.instance.monsterHp;
+
+
+    //필요속성3: 애니메이터
     public bool isDead = false;
     Animator animator;
 
-    
 
+    public Sprite portrait;
 
-
-
-// Start is called before the first frame update
-void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        
-        hp = 100;
-        enemySpeed = 1;
         animator = GetComponent<Animator>();
-
         Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
         Pos = new Transform[ArrowPosParent.childCount];
 
@@ -57,36 +61,16 @@ void Start()
     void FixedUpdate()
     {
         //transform.Translate(-dir * enemySpeed * Time.deltaTime, Space.Self);
-        
+
         //enemyHp--;
-
-        if (hp == 0)
-        {
-            StartCoroutine(Die());
-        }
     }
-
-
-    
-    IEnumerator Die()
-    {
-        Data_Manager.instance.money1++;
-        Ui_Manager.instance.UiRefresh();
-        animator.SetTrigger("RunToDie");
-        enemySpeed = 0;
-        
-        yield return new WaitForSeconds(2.0f);
-        Destroy(gameObject);
-    }
-
-    
-    public void OnTriggerEnter(Collider others)
-    {
-      if (others.gameObject.tag == "DestroyZone")
-      {
-            //monsterCount--;
-      }
-    }
+    //public void OnTriggerEnter(Collider others)
+    //{
+    //  if (others.gameObject.tag == "DestroyZone")
+    //  {
+           
+    //  }
+    //}
 
     IEnumerator GoToPos(Transform setpos)
     {
@@ -97,7 +81,7 @@ void Start()
         {
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, 0.5f);
+            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, monsterSpeed) ;
             //transform.Translate(loc,Space.World);
             dir = setpos.transform.position - transform.position;
             yield return null;
@@ -125,13 +109,22 @@ void Start()
 
         if (hp <= 0)
         {
-            DeadAction();
+            StartCoroutine(DeadAction());
+            StageManager.instance.monsterCount--;
         }
     }
-    public void DeadAction()
+    
+IEnumerator DeadAction()    
     {
         isDead = true;
         gameObject.GetComponent<Collider>().enabled = false;
         Debug.Log(gameObject.name + "has dead");
+
+        Data_Manager.instance.money1++;
+        Ui_Manager.instance.UiRefresh();
+        animator.SetTrigger("RunToDie");
+        monsterSpeed = 0;
+        yield return new WaitForSeconds(2.0f);
+        Destroy(gameObject);
     }
 }

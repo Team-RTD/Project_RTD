@@ -17,6 +17,7 @@ public class Ui_Manager : MonoBehaviour
     public TMP_Text money2Txt;
     public TMP_Text money3Txt;
 
+    public TMP_Text state;
 
     public GameObject towerInfo;
 
@@ -69,6 +70,8 @@ public class Ui_Manager : MonoBehaviour
 
         roundrec = roundZone.GetComponent<RectTransform>().anchoredPosition;
         moneyrec = moneyZone.GetComponent<RectTransform>().anchoredPosition;
+
+        state.text = "";
     }
 
 

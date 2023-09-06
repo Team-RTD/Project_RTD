@@ -20,7 +20,7 @@ public class Sound_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(StartVolumeUp());
     }
 
     // Update is called once per frame
@@ -49,5 +49,17 @@ public class Sound_Manager : MonoBehaviour
     }
 
     
+
+
+    IEnumerator StartVolumeUp() 
+    {
+        while (bgmPlayer.volume < 0.45f)
+        {
+            bgmPlayer.volume += 0.1f * Time.deltaTime;
+
+            yield return null;
+        }
+
+    }
 
 }
