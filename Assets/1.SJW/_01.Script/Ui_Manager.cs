@@ -29,6 +29,8 @@ public class Ui_Manager : MonoBehaviour
     private Vector2 end_pos;
     private bool drawerMoney = false;
 
+    public GameObject OptionPannel;
+
     private void Awake()
     {
         instance = this;
@@ -115,6 +117,17 @@ public class Ui_Manager : MonoBehaviour
         StartCoroutine(LerfUI(rect, start_pos, end_pos, 0.2f));
     }
 
+    public void OptionPannelOpen()
+    {
+        if(OptionPannel.activeSelf) 
+        {
+            OptionPannel.SetActive(false);
+        }
+        else
+        {
+            OptionPannel.SetActive(true);
+        }
+    }
 
     IEnumerator LerfUI(RectTransform target,Vector2 start_pos,Vector2 end_pos,float mtime)
     {
