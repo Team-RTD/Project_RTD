@@ -30,11 +30,29 @@ public class DestroyZone : MonoBehaviour
     {
         if (others.gameObject.tag == "Monster")
         {
+<<<<<<< HEAD
             Destroy(others.gameObject);
             StartCoroutine(DestroyEffect());
             Data_Manager.instance.curHp--;
             Ui_Manager.instance.UiRefresh();
 
+=======
+            //목표2: 파괴 이펙트 생성
+            GameObject deadeffect = Instantiate(destroyEffect0, others.transform.position, Quaternion.identity);   
+            Destroy(deadeffect, 2f);
+            //목표1: monster만났을 때 해당 몬스터 파괴하고 체력1 감소하고 몬스터 수 감소
+            StageManager.instance.monsterCount--;
+            Destroy(others.gameObject);
+            if (others.gameObject.name == "Monster9(Clone)" || others.gameObject.name == "Monster19(Clone)")
+            {
+                Data_Manager.instance.curHp-=25;
+            }
+            else
+            {
+                Data_Manager.instance.curHp--;
+            }
+            Ui_Manager.instance.UiRefresh();
+>>>>>>> main
         }
     }
 

@@ -16,7 +16,7 @@ public class Data_Manager : MonoBehaviour
     public int money2 = 0;
     public int money3 = 0;
 
-
+    public bool isPause = false;
 
     public void DataReset()
     {

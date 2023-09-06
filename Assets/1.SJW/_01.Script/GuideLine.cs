@@ -26,12 +26,21 @@ public class GuideLine : MonoBehaviour
     {
         Vector3 dir =setpos.transform.position - transform.position;
         Vector3 loc = dir.normalized;
-
+        float speed = 2.0f;
         while(dir.magnitude >0.1)
         {
+            if (Data_Manager.instance.isPause)
+            {
+                speed =0;
+            }
+            else
+            {
+                speed = 2.0f;
+            }
+
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, 2f);
+            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, speed);
             //transform.Translate(loc,Space.World);
             dir = setpos.transform.position - transform.position;
 
