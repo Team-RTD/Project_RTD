@@ -113,7 +113,7 @@ public class MissionMove : MonoBehaviour
 
         hp = hp - _damage;
 
-        print(gameObject.name + " has damaged " + _damage + "FinalHP" + hp);
+        
 
         if (hp <= 0)
         {

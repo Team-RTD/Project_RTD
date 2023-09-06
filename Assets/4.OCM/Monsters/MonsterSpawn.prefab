@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873129452183166240}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000011324881}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -14, y: 5, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2759324975826102680
 MonoBehaviour:
@@ -44,7 +44,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9d86b740bcb124e944c5c245342d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 5032436346419680975, guid: c6958ee2aeded0d42ae2963be6336b3c, type: 3}
   createTime: 0.5
   currentTime: 0
   nextStageTime: 5
+  monsterList:
+  - {fileID: 1997296248483302, guid: ecf70abca3fabfd489a6a77e2c87adef, type: 3}
+  - {fileID: 1233347782355984, guid: f326c2d285fe0034692e1be1963d3d99, type: 3}
+  - {fileID: 1891674185500050, guid: dddcfddcacff84d4a92e629b8504338d, type: 3}
+  - {fileID: 1611041093240470, guid: ce29547d8ded3e24895b20187a71c673, type: 3}
+  - {fileID: 1520184032351820, guid: 330c65113c5d5e54db82a4a4db14d954, type: 3}
+  - {fileID: 1870912557112684, guid: c9d3e036995f3e04a9c5d3902e9dc5d3, type: 3}
+  - {fileID: 1566049822020886, guid: ebe25c8f366054040b73a4ce477682f6, type: 3}
+  - {fileID: 1473157611212552, guid: 836360c46899da341a946b1e3b0cedd3, type: 3}
+  - {fileID: 1033247876357254, guid: 5d6b8692b6197fd42bfb02f0f06456de, type: 3}
+  - {fileID: 1248874732774416, guid: c506a5925d96c14408831aeb6b6ebe4d, type: 3}
+  - {fileID: 1024577810811178, guid: 2be1aa8fcac5409469320c79b99945ce, type: 3}
+  - {fileID: 1544180832531774, guid: 3d03a2b28ce30d54eb3fb503c9e6e725, type: 3}
+  - {fileID: 1170732337855516, guid: 15e7da0a026096c4ca5be0fb5635e1d0, type: 3}
+  - {fileID: 1691206179217438, guid: 06012e347bdea804eb9a7b40f70f5413, type: 3}
+  - {fileID: 1334977650429898, guid: 1c6d90e66757caa4a8832e66515f4c01, type: 3}
+  - {fileID: 1820919466449660, guid: c3743d826158be2458c0f946d89e5d0c, type: 3}
+  - {fileID: 1293356793197548, guid: 3a3111bfb18a1124da406cd77b99715a, type: 3}
+  - {fileID: 1652650793432430, guid: 41941e31a32eeb34c9532d1cdff9b5e8, type: 3}
+  - {fileID: 1909744818002174, guid: 866119775ab240445a804edb26d9493a, type: 3}
+  - {fileID: 1666678542618180, guid: f20ce2db250825442b752997fe0cf22c, type: 3}
+  nextStage: 0
+  monsterCount: 0
+  spawnEffect0: {fileID: 100012, guid: 856ddc11c4d1bd54885aa67f69f72cdf, type: 3}
+  missionMonster1: {fileID: 0}
+  missionMonster2: {fileID: 0}
+  missionMonster3: {fileID: 0}
+  mission1CoolTime: 0
+  mission2CoolTime: 0
+  mission3CoolTime: 0
