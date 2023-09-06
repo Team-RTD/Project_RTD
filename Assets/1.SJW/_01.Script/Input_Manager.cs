@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Input_Manager : MonoBehaviour
 {
-    public ClickSystem test;
+    public Clicktest test;
     public static Input_Manager instance { get; private set; }
 
 
@@ -19,13 +19,9 @@ public class Input_Manager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ClickSystem.instance.TowerBuildBtn();
+            test.TowerBuildBtn();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ClickSystem.instance.TowerSellBtn();
-        }
-
+        
     }
 }
