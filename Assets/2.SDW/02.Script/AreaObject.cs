@@ -4,44 +4,55 @@ using UnityEngine;
 
 public class AreaObject : MonoBehaviour
 {
-    //Vector3 dir;
-    //float damage;
-    //float duration;
-    //float damageDelay;
+    Vector3 dir;
+    float damage;
+    float duration;
+    float damageDelay;
+    LayerMask enemyLayer;
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.transform.position = dir;
+        StartCoroutine(AttackArea());
+        StartCoroutine(DurationArea());
+    }
+    public void GetAreaObjectInfo(Vector3 _dir, float _damage, float _duration, float _damageDelay,LayerMask _enemyLayer)
+    {
+        dir = _dir;
+        damage = _damage;
+        duration = _duration;
+        damageDelay = _damageDelay;
+        enemyLayer = _enemyLayer;
+        gameObject.SetActive(true);
+    }
+    IEnumerator DurationArea()
+    {
+        yield return new WaitForSeconds(duration);
+        gameObject.SetActive(false);
+    }
 
-    //private void Awake()
-    //{
-    //    enemyLayer = 1 << 6;
-    //}
-    //private void OnEnable()
-    //{
-    //    gameObject.transform.position = dir;
-    //}
-    //public void GetAreaObjectInfo(Vector3 _dir, float _damage, float _duration, float _damageDelay)
-    //{
-    //    dir = _dir;
-    //    damage = _damage;
-    //    duration = _duration;
-    //    damageDelay = _damageDelay;
-    //    gameObject.SetActive(true);
-    //}
-    //public LayerMask enemyLayer;
-    //public static int OverlapCollider(Collider collider, enemyLayer, Collider[] results);
-    //Collider[] hitColliders;
-    //ContactFilter contactFilter = new ContactFilter();
-    //contactFilter.SetLayerMask(LayerMask.GetMask("MyLayer"));
+    IEnumerator AttackArea()
+    {
+        gameObject.GetComponent<Collider>().enabled = true;
+        
+        yield return new WaitForSeconds(damageDelay);
+        gameObject.GetComponent<Collider>().enabled = false;
+        StartCoroutine(AttackArea());
+    }
 
-    //IEnumerator DurationArea()
-    //{
-    //    yield return new WaitForSeconds(duration);
-    //    gameObject.SetActive(false);
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == enemyLayer)
+        {
+            print(other.gameObject.name);
+            other.GetComponent<MonsterMove>().DamagedAction(damage);
+        }
 
-    //IEnumerator AttackArea()
-    //{
-    //    int numColliders = Physics.OverlapCollider(myCollider, contactFilter, hitColliders)
-    //    yield return new WaitForSeconds(damageDelay);
-    //    StartCoroutine(AttackArea());
-    //}
+        else
+        {
+
+        }
+    }
+
 
 }
