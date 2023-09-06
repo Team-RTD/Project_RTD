@@ -11,14 +11,11 @@ public class ThrowObject : MonoBehaviour
     public float damage;
     public float objSpeed;
     public bool isFollowing = false;
-    private void Start()
-    {
-
-    }
 
     private void OnEnable()
     {
         print("Enable ThrowObject");
+        
     }
     void Update()
     {
@@ -30,5 +27,25 @@ public class ThrowObject : MonoBehaviour
         dir = _dir;
         damage = _damage;
         objSpeed = _objSpeed;
+        gameObject.SetActive(true);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            other.gameObject.GetComponent<MonsterMove>().DamagedAction(damage);
+            gameObject.SetActive(false);
+        }
+
+        else
+        {
+            StartCoroutine(ObjectDisable());
+        }
+    }
+
+    IEnumerator ObjectDisable()
+    {
+        yield return new WaitForSeconds(10f);
+        gameObject.SetActive(false);
     }
 }

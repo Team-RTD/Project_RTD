@@ -11,11 +11,12 @@ public class Twr_Atwr : Twr_0Base
         towerPrice = 100;
         towerAttackDamage = 10;
         towerAttackSpeed = 2;
-        towerAttackRange = 3;
+        towerAttackRange = 20;
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
         towerMaxTarget = 2;
         towerBounceCount = 1;
-        towerAttackType = TowerAttackType.Thrower;
+        towerAttackType = TowerAttackType.Shooter;
+        throwObjSpeed = 1f;
     }
 }

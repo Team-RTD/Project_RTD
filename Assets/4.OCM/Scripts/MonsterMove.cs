@@ -18,7 +18,7 @@ using UnityEngine;
 
 //목표4: 죽거나 끝까지 도달하면 파괴 이펙트 생성
 //필요속성4: 이펙트 파티클 시스템, 파괴 효과 게임 오브젝트
-public class MosnterMove : MonoBehaviour
+public class MonsterMove : MonoBehaviour
 {
     //필요속성1: 특정좌표,이동속도
     public float monsterSpeed=0.3f;
