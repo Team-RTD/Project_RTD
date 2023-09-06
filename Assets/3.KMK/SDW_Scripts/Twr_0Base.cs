@@ -29,7 +29,7 @@ public class Twr_0Base : MonoBehaviour
 
     public string[] enemyName; // TEST
 
-    public GameObject area;
+    private float lastAttackTime;
 
     Enemy _enemy;
 
@@ -69,6 +69,7 @@ public class Twr_0Base : MonoBehaviour
 
     private void Start()
     {
+        lastAttackTime = Time.time; // 초기화
         Debug.Log(towerNumber); // TEST
     }
 
@@ -126,32 +127,14 @@ public class Twr_0Base : MonoBehaviour
                     break;
 
                 case TowerAttackType.Area:
-                    
-                    foreach (Collider collider in colliders )
-                    {                        
-                        GameObject _area = area;
-                        if (targetsCount >= 1)
-                        {
-                            print("test point1");
-                            break;
-                        }
-                        _enemy = collider.GetComponent<Enemy>();
-                        print("test point2");
-                        //float areaDamage = towerAttackDamage;
 
-                        if (_enemy != null)
-                        {
-                            print("test point3");
-                            DamageArea damageArea = _area.GetComponent<DamageArea>();
-                            if (damageArea != null)
-                            {                                           
-                                StartCoroutine(AttackArea(damageArea, collider));
-                                area.transform.position = _enemy.transform.position;
-                            }                            
-                        }
-                        print(colliders);
+                    // 일정 간격으로 공격 실행
+                    if (Time.time - lastAttackTime >= towerAttackSpeed)
+                    {
+                        AttackArea();
+                        lastAttackTime = Time.time; // 마지막 공격 시간 업데이트
                     }
-                    break;
+                break;      
             }
 
         }
@@ -164,16 +147,19 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = false;
     }
 
-    IEnumerator AttackArea(DamageArea area, Collider collider)
+    private void AttackArea()
     {
-        isCoolTime = true;
-        targetsCount += 1;
-        area.GetComponent<DamageArea>().OnTriggerEnter(collider);
-        area.SetActive(true);
-        print("켜졌습니다.");
-        yield return new WaitForSeconds(towerAttackSpeed);
-        targetsCount = 0;
-        isCoolTime = false;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, towerAttackRange);
+
+        foreach (Collider collider in colliders)
+        {
+            Enemy enemy = collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                // 적이라면 DamagedAction 실행
+                enemy.DamagedAction(10); // 데미지 량은 필요에 따라 설정
+            }
+        }
     }
 
     public void TowerUpgradeLevel()

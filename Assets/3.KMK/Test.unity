@@ -511,7 +511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.96
+      value: 5.01
       objectReference: {fileID: 0}
     - target: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       propertyPath: m_LocalPosition.y
@@ -562,7 +562,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7632261868078351232, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 902747570}
+      addedObject: {fileID: 902747573}
   m_SourcePrefab: {fileID: 100100000, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
 --- !u!1001 &513081912
 PrefabInstance:
@@ -1017,7 +1017,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4133422531786383443, guid: ed6222a8d2ade004bb519885bde09d16, type: 3}
   m_PrefabInstance: {fileID: 506045318}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &902747570
+--- !u!114 &902747573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1026,18 +1026,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 902747564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a06ad158cdad044aa76eb9d01af2ec3, type: 3}
+  m_Script: {fileID: 11500000, guid: c9319f73506d3c3479b322ec492a75b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerMaxTarget: 4
-  towerPos: {x: 0, y: 0, z: 0}
-  enemyPos: {x: 0, y: 0, z: 0}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  enemyName: []
-  area: {fileID: 0}
-  isCoolTime: 0
+  TowerAttackRange: 5
+  TowerAttackSpeed: 2
 --- !u!1001 &1204789067
 PrefabInstance:
   m_ObjectHideFlags: 0
