@@ -20650,10 +20650,10 @@ MonoBehaviour:
   money1Txt: {fileID: 718593083}
   money2Txt: {fileID: 856458146}
   money3Txt: {fileID: 1809452688}
-  state: {fileID: 0}
+  state: {fileID: 702353948}
   towerInfo: {fileID: 1692157365}
   btnMenu: {fileID: 320429539}
-  OptionPannel: {fileID: 0}
+  OptionPannel: {fileID: 636527711}
 --- !u!1001 &688890638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32653,8 +32653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   test: {fileID: 0}
-  towerBuildBtn: {fileID: 0}
-  towerSellBtn: {fileID: 0}
+  towerBuildBtn: {fileID: 71814205}
+  towerSellBtn: {fileID: 1241905344}
   SaveColor:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
@@ -45268,8 +45268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   test: {fileID: 1721337823}
-  SummonEffect: {fileID: 0}
-  SummonSound: {fileID: 0}
+  SummonEffect: {fileID: 1518187066371646854, guid: 1e92d8c41d7ca5746bca5a2851403bc8, type: 3}
+  SummonSound: {fileID: 8300000, guid: 8eeba3153d0e9fd44a2237e93777c3fd, type: 3}
   playerMode: 0
   towerZone:
   - {fileID: 1796635443193385}
@@ -59301,9 +59301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde2108327009fa408c9fd7435ee57c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmPlayer: {fileID: 0}
-  effectSoundPlayer: {fileID: 0}
-  narSoundPlayer: {fileID: 0}
+  bgmPlayer: {fileID: 1793083778}
+  effectSoundPlayer: {fileID: 1793083780}
+  narSoundPlayer: {fileID: 1793083779}
 --- !u!4 &1794457061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 467220, guid: e73dff4b52d607f4ca11b85eca8f146b, type: 3}
