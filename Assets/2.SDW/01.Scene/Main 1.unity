@@ -64262,6 +64262,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2329712431668982744, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329712431668982744, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329712431668982744, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329712431668982744, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590335654074058663, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649413919090490758, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296629339916815632, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5768415014981920595, guid: 2d3168c66a904b6459421f4c6ba86d79, type: 3}
       propertyPath: m_Name
       value: PlayerTower

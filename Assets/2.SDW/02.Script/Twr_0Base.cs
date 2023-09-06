@@ -9,6 +9,8 @@ public class Twr_0Base : MonoBehaviour
     // Declare -----------------------------------------------
 
     // Must Input --
+    protected TowerAttackType towerAttackType;
+
     protected string towerName;
     protected int towerPrice;
     protected float towerAttackDamage;
@@ -18,7 +20,6 @@ public class Twr_0Base : MonoBehaviour
     protected int towerUpgradeLevel;
     protected int towerUpgradeTier;
 
-    protected TowerAttackType towerAttackType;
     protected int towerMaxTarget;
     // Must Input --
 
@@ -72,6 +73,8 @@ public class Twr_0Base : MonoBehaviour
 
     public virtual void TowerInfo()
     {
+        towerAttackType = TowerAttackType.Shooter;
+
         towerName = "Null";
         towerPrice = 0;
         towerAttackDamage = 0f;
@@ -80,6 +83,8 @@ public class Twr_0Base : MonoBehaviour
 
         towerUpgradeLevel = 0;
         towerUpgradeTier = 0;
+
+        towerMaxTarget = 0;
     }
 
     public enum TowerAttackType

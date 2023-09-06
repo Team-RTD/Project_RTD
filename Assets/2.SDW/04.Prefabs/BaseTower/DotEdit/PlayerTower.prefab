@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1834003433542436555}
   - component: {fileID: 7696678565068395673}
   - component: {fileID: 4564901834060083568}
-  - component: {fileID: 2940459751594108756}
   - component: {fileID: 852306144078903555}
+  - component: {fileID: 2940459751594108756}
   m_Layer: 0
   m_Name: ThrowObj_1
   m_TagString: Untagged
@@ -107,21 +107,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2940459751594108756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2245648828963559917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1762a1d5f00cf4fa29c9002eb3cb25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  objSpeed: 0
-  isFollowing: 0
 --- !u!54 &852306144078903555
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,6 +134,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2940459751594108756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245648828963559917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1762a1d5f00cf4fa29c9002eb3cb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  objSpeed: 0
+  isFollowing: 0
 --- !u!1 &2590335654074058663
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ Transform:
   - {fileID: 2329712431668982744}
   - {fileID: 5296629339916815632}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5295586808266980300
 MeshFilter:
