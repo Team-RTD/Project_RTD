@@ -18,6 +18,9 @@ public class ClickSystem : MonoBehaviour
 
     public GameObject SummonEffect;
     public AudioClip SummonSound;
+    public GameObject[] clickedObjects;
+    private int currentIndex = 0;
+    public GameObject towerPrefab;
 
     public enum PlayerMode
     {
@@ -87,21 +90,21 @@ public class ClickSystem : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 switch (playerMode)
-                    { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
+                { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
 
-                         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                         hit = Physics.RaycastAll(ray, 100f);
-                         if (hit != null)
-                         {
-                                foreach (RaycastHit hitob in hit)
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    hit = Physics.RaycastAll(ray, 100f);
+                        if (hit != null)
+                        {
+                            foreach (RaycastHit hitob in hit)
+                            {
+                                GameObject hitObject = hitob.transform.gameObject;
+                                if (hitObject.tag == "TowerZone")
                                 {
-                                     GameObject hitObject = hitob.transform.gameObject;
-                                     if (hitObject.tag == "TowerZone")
-                                     {
-                                        TowerZone t_zone = hitObject.GetComponent<TowerZone>();
-                                        if(!t_zone.towerOn)
-                                        { 
-                                         Material mat = hitObject.GetComponent<Renderer>().material;
+                                    TowerZone t_zone = hitObject.GetComponent<TowerZone>();
+                                    if (!t_zone.towerOn)
+                                    {
+                                        Material mat = hitObject.GetComponent<Renderer>().material;
                                         t_zone.towerOn = true;
                                         mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
                                         GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
@@ -109,7 +112,7 @@ public class ClickSystem : MonoBehaviour
                                         Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
                                         Sound_Manager.instance.EffectPlay(SummonSound);
 
-                                        Outline charliner =  tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
+                                        Outline charliner = tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
                                         charliner.OutlineColor = Color.red;
                                         charliner.OutlineWidth = 2;
                                         charliner.enabled = false;
@@ -120,26 +123,29 @@ public class ClickSystem : MonoBehaviour
                                         //print(mat.enabledKeywords.ToString());
                                         //print(mat.shader.GetPropertyName(0));
                                         //print(mat.shader.GetPropertyName(1));
-                                        }
-                                     }
-                                     else
-                                     {
-                                         print("렌더러 없음");
-                                     }
-
+                                    }
                                 }
-                          }
+                                else
+                                {
+                                    print("렌더러 없음");
+                                }
+
+                            }
+                        }
                         break;
 
                       case PlayerMode.TowerSell :
 
 
-                        break;
-                     }
+                       break;
+                    //타워 CombineMode.
+                    case PlayerMode.TowerMix :
+                        
 
-               
+                        break;
+                    }
+                }
             }
-        }
 
 
 
@@ -242,6 +248,48 @@ public class ClickSystem : MonoBehaviour
 
         }
     }
+    public void TowerMixBtn()
+    {
+        if (playerMode != PlayerMode.TowerBuild)
+        {
+            playerMode = PlayerMode.TowerBuild;
+            Ui_Manager.instance.state.text = "합성 모드";
+            BtnColorReset();
+            BuildBtnDark();
+
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(true);
+                }
+                else
+                {
+                    zone.SetActive(false);
+                }
+
+            }
+        }
+         else
+        {
+            playerMode = PlayerMode.Nomal;
+            Ui_Manager.instance.state.text = "";
+            BtnColorReset();
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+
+        }
+
+    }
 
     public void BtnColorReset()
     {
@@ -278,5 +326,41 @@ public class ClickSystem : MonoBehaviour
         }
     }
 
+    //1티어 타워로 2티어 타워를 합성할 경우 실행.
+    public void SpawnNewTowerRank2()
+    {
+        GameObject newTowerObject = FindObjectWithTag("Tower_2");
+        if (newTowerObject != null)
+        {
+            Vector3 spawnPosition = clickedObjects[1].transform.position;
+            Quaternion spawnRotation = clickedObjects[1].transform.rotation;
 
+            Instantiate(newTowerObject, spawnPosition, spawnRotation);
+        }
+    }
+    //2티어 타워로 3티어 타워를 합성할 경우 실행.
+    public void SpawnNewTowerRank3()
+    {
+        GameObject newTowerObject = FindObjectWithTag("Tower_3");
+        if (newTowerObject != null)
+        {
+            Vector3 spawnPosition = clickedObjects[1].transform.position;
+            Quaternion spawnRotation = clickedObjects[1].transform.rotation;
+
+            Instantiate(newTowerObject, spawnPosition, spawnRotation);
+        }
+    }
+    //Do not change--------------
+    // 특정 태그를 가지는 오브젝트 찾기
+    GameObject FindObjectWithTag(string tag)
+    {
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+        if (taggedObjects.Length > 0)
+        {
+            int randomIndex = Random.Range(0, taggedObjects.Length);
+            return taggedObjects[randomIndex];
+        }
+        return null;
+    }
+    //--------------------------
 }
