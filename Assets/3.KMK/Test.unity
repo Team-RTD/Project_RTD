@@ -299,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289515796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2824354, y: 1.91, z: -3.62}
+  m_LocalPosition: {x: -11.197565, y: 1.91, z: -3.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -421,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346947935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2824354, y: 1.91, z: -2.16}
+  m_LocalPosition: {x: -11.197565, y: 1.91, z: -2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1000,7 +1000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867580954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.97, y: 1.91, z: -3.62}
+  m_LocalPosition: {x: -12.51, y: 1.91, z: -3.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1276,7 +1276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339352096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.97, y: 1.91, z: -2.16}
+  m_LocalPosition: {x: -12.51, y: 1.91, z: -2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1712,11 +1712,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779480245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 388a599636f79ef4686e624761c68d65, type: 3}
+  m_Script: {fileID: 11500000, guid: c29ce6b6db4786f4b93dbf2694bd37e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1779480247}
-  clickedObjects: []
+  clickedObjects:
+  - {fileID: 0}
+  - {fileID: 0}
   towerPrefab: {fileID: 0}
-  towerTag2: Tower 2
-  towerTag3: Tower 3
+  towerTag2: Tower_2
+  towerTag3: Tower_3
