@@ -5,6 +5,7 @@ using Unity.Jobs;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ClickSystem : MonoBehaviour
 {
@@ -161,6 +162,8 @@ public class ClickSystem : MonoBehaviour
         {
             playerMode = PlayerMode.TowerBuild;
             Ui_Manager.instance.state.text = "건설 모드";
+            BtnColorReset();
+            BuildBtnDark();
 
             foreach (GameObject zone in towerZone)
             {
@@ -178,7 +181,10 @@ public class ClickSystem : MonoBehaviour
         else
         {
             playerMode = PlayerMode.Nomal;
+            BtnColorReset();
             Ui_Manager.instance.state.text = "";
+            Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
+
             foreach (GameObject zone in towerZone)
             {
                 if (!zone.GetComponent<TowerZone>().towerOn)
@@ -202,8 +208,8 @@ public class ClickSystem : MonoBehaviour
         {
             playerMode = PlayerMode.TowerSell;
             Ui_Manager.instance.state.text = "판매 모드";
-
-
+            BtnColorReset();
+            SellBtnDark();
 
             foreach (GameObject zone in towerZone)
             {
@@ -221,6 +227,7 @@ public class ClickSystem : MonoBehaviour
         {
             playerMode = PlayerMode.Nomal;
             Ui_Manager.instance.state.text = "";
+            BtnColorReset();
             foreach (GameObject zone in towerZone)
             {
                 if (!zone.GetComponent<TowerZone>().towerOn)
@@ -234,7 +241,42 @@ public class ClickSystem : MonoBehaviour
             }
 
         }
+    }
 
+    public void BtnColorReset()
+    {
+        Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
+        for(int i = 0; i < imgs.Length; i++) 
+        {
+            imgs[i].color = Input_Manager.instance.SaveColor[i];
+        }
+          
+        
+
+        imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
+        for (int i = 0; i < imgs.Length; i++)
+        {
+            imgs[i].color = Input_Manager.instance.SaveColor[i];
+        }
 
     }
+
+    public void BuildBtnDark()
+    {
+        Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
+        foreach (Image img in imgs)
+        {
+            img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
+        }
+    }
+    public void SellBtnDark()
+    {
+        Image[] imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
+        foreach (Image img in imgs)
+        {
+            img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
+        }
+    }
+
+
 }
