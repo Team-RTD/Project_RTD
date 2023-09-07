@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class ClickSystem : MonoBehaviour
 {
 
-    public static ClickSystem instance;
+    public static ClickSystem instance { get; private set; }
 
     public Camera cam;
     public GameObject test;
@@ -55,28 +55,27 @@ public class ClickSystem : MonoBehaviour
 
         if (playerMode == PlayerMode.TowerSell)
         {
-            //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            //hit = Physics.RaycastAll(ray, 100f);
-            //if (hit != null)
-            //{
-            //    foreach (RaycastHit hitob in hit)
-            //    {
-            //        GameObject hitObject = hitob.transform.gameObject;
-            //        if (hitObject.tag == "Tower")
-            //        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            hit = Physics.RaycastAll(ray, 100f);
+            if (hit != null)
+            {
+                foreach (RaycastHit hitob in hit)
+                {
+                    GameObject hitObject = hitob.transform.gameObject;
+                    if (hitObject.tag == "Tower")
+                    {
 
-            //            GameObject tower1 = hitObject;
+                        GameObject tower1 = hitObject;
+                        TEST TST = tower1.GetComponent<TEST>();
+                        TST.OutLineColorChange();
 
-            //            Outline charliner = tower1.GetComponent<Outline>(); //만든 타워에 외각선 추가
-            //            charliner.enabled = true;
+                    }
+                    else
+                    {
+                    }
 
-            //        }
-            //        else
-            //        {
-            //        }
-
-            //    }
-            //}
+                }
+            }
         }
 
 
@@ -105,6 +104,7 @@ public class ClickSystem : MonoBehaviour
                                         t_zone.towerOn = true;
                                         mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
                                         GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
+                                        t_zone.Tower = tower1; //타워존에 타워 오브젝트 할당
                                         GameObject summoneffect = Instantiate(SummonEffect, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
                                         Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
                                         Sound_Manager.instance.EffectPlay(SummonSound);

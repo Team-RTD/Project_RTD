@@ -7,6 +7,7 @@ TagManager:
   - TowerZone
   - Monster
   - Tower
+  - DestroyZone
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Enemy
   - 
-  - 
+  - Collider
   - 
   - 
   - 
