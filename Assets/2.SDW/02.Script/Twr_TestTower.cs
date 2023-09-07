@@ -11,7 +11,7 @@ public class Twr_TestTower : Twr_0Base
 
         towerName = "Test_A";
         towerPrice = 100;
-        towerAttackDamage = 30f;
+        towerAttackDamage = 200f;
         towerAttackSpeed = 1f;
         towerAttackRange = 10f;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Twr_0Base : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class Twr_0Base : MonoBehaviour
     // * if you create Area Tower [(GameObject : Area Object) Count == towerMaxTarget]
     protected float areaDuration;
     protected float areaAttDelay;
+    protected bool areaToTarget = true;
     // Area Input --
 
 
@@ -147,6 +149,7 @@ public class Twr_0Base : MonoBehaviour
                         if (_enemy != null)
                         {
                             enemyTargets.Add(_enemy);
+                            gameObject.transform.LookAt(collider.transform.position); //0907
                             StartCoroutine(AttackEnemy(_enemy));
                         }
                         break;
@@ -161,6 +164,7 @@ public class Twr_0Base : MonoBehaviour
                         if (_enemy != null)
                         {
                             enemyTargets.Add(_enemy);
+                            gameObject.transform.LookAt(collider.transform.position); //0907
                             StartCoroutine(ThrowerEnemy(thorwObjArray[targetsCount], collider));
                             targetsCount++;
                         }
@@ -189,12 +193,12 @@ public class Twr_0Base : MonoBehaviour
     IEnumerator AttackEnemy(MonsterMove _enemy)
     {
         isCoolTime = true;
+
         animator.SetTrigger("IdleToAttack"); //0907
         GameObject particleInstance = Instantiate(shooterParticle, _enemy.transform.position, Quaternion.identity); //0907
         ParticleSystem particleSystem = particleInstance.GetComponent<ParticleSystem>(); //0907
-
-        float x = particleSystem.main.duration;
-        Destroy(particleInstance, x);
+        float x = particleSystem.main.duration;//0907
+        Destroy(particleInstance, x); //0907
 
         targetsCount = targetsCount + 1;
         _enemy.GetComponent<MonsterMove>().DamagedAction(towerAttackDamage);
@@ -207,6 +211,7 @@ public class Twr_0Base : MonoBehaviour
     {
         isCoolTime = true;
         throwObject.transform.position = gameObject.transform.position;
+        throwObject.transform.LookAt(collider.transform); //0907
         throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, towerAttackDamage, throwObjSpeed);
         yield return new WaitForSeconds(towerAttackSpeed);
         isCoolTime = false;
@@ -215,7 +220,11 @@ public class Twr_0Base : MonoBehaviour
     IEnumerator AreaEnemy(AreaObject areaObject, Collider collider)
     {
         isCoolTime = true;
-        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, towerAttackDamage, areaDuration, areaAttDelay, collider.gameObject.layer);
+
+        animator.SetTrigger("IdleToAttack"); //0907
+
+        gameObject.transform.LookAt(collider.transform.position);
+        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, towerAttackDamage, areaDuration, areaAttDelay, collider.gameObject.layer);
         yield return new WaitForSeconds(towerAttackSpeed);
         isCoolTime = false;
     }
