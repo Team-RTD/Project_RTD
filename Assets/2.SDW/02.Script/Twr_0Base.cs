@@ -24,7 +24,7 @@ public class Twr_0Base : MonoBehaviour
     protected int towerMaxTarget;
     // Must Input --
 
-    public int towerRank = 1;
+    public int towerRank;
     GameObject tower;
 
     // Throw Input --
@@ -210,9 +210,13 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = false;
     }
 
+    public float damage;
+
     public void TowerUpgradeLevel()
     {
-        UpGrade_Manager.instance.UpGradeTower(this.GetComponent<Twr_TestTower>());
+        damage =towerAttackDamage + (towerAttackDamage * upgradePercent * 0.1f);
+
+        //UpGrade_Manager.instance.UpGradeTower(this.GetComponent<Twr_TestTower>());
     }
 
     public void TowerTierLevel()

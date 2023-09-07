@@ -24,9 +24,8 @@ public class Twr_TestTower : Twr_0Base
 
         areaDuration = 2.1f;
         areaAttDelay = 0.6f;
-
-        upgradePercent = 0;        
-        towerRank= 1;
+        
+        towerRank=1;
 
 
     }

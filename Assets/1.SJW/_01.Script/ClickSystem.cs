@@ -157,7 +157,7 @@ public class ClickSystem : MonoBehaviour
                                         GameObject hitObject = hitob.transform.gameObject;
 
                                         // 타워 정보 스크립트 가져오기
-                                        Twr_TestTower towerInfo = hitObject.GetComponent<Twr_TestTower>();
+                                        Twr_0Base towerInfo = hitObject.GetComponent<Twr_0Base>();
                                         
                                         if (towerInfo != null)
                                         {
@@ -178,10 +178,9 @@ public class ClickSystem : MonoBehaviour
                                                 if (clickedObjects[0] != clickedObjects[1])
                                                 {
                                                     // 타워 랭크 비교
-                                                    if (clickedObjects[0].GetComponent<Twr_TestTower>().towerRank == clickedObjects[1].GetComponent<Twr_TestTower>().towerRank)
+                                                    if (clickedObjects[0].GetComponent<Twr_0Base>().towerRank == clickedObjects[1].GetComponent<Twr_0Base>().towerRank)
                                                     {
                                                         // 새로운 타워 생성
-                                                        SpawnNewTower(clickedObjects[0].GetComponent<Twr_TestTower>().towerRank + 1);
                                                         print("랭크2 또는 랭크3의 타워가 생성되었습니다");
 
                                                         Destroy(clickedObjects[0]);
@@ -189,6 +188,9 @@ public class ClickSystem : MonoBehaviour
 
                                                         clickedObjects[0] = null;
                                                         clickedObjects[1] = null;
+
+                                                        SpawnNewTower(clickedObjects[0].GetComponent<Twr_0Base>().towerRank + 1);
+
                                                     }
                                                     else
                                                     {
