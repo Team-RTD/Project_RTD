@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.Jobs;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,9 +19,10 @@ public class ClickSystem : MonoBehaviour
 
     public GameObject SummonEffect;
     public AudioClip SummonSound;
-    public GameObject[] clickedObjects;
+    public GameObject[] hitObjects;
     private int currentIndex = 0;
     public GameObject towerPrefab;
+    public GameObject[] clickedObjects;
 
     public enum PlayerMode
     {
@@ -50,6 +52,7 @@ public class ClickSystem : MonoBehaviour
         {
             zone.SetActive(false);
         }
+        clickedObjects = new GameObject[2];
     }
 
     // Update is called once per frame
@@ -84,16 +87,17 @@ public class ClickSystem : MonoBehaviour
 
 
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
 
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 switch (playerMode)
-                { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
+                {
+                    case PlayerMode.TowerBuild://타워건설모드에서 클릭 시
 
-                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                    hit = Physics.RaycastAll(ray, 100f);
+                        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                        hit = Physics.RaycastAll(ray, 100f);
                         if (hit != null)
                         {
                             foreach (RaycastHit hitob in hit)
@@ -134,37 +138,109 @@ public class ClickSystem : MonoBehaviour
                         }
                         break;
 
-                      case PlayerMode.TowerSell :
+                    case PlayerMode.TowerSell:
 
-
-                       break;
-                    //타워 CombineMode.
-                    case PlayerMode.TowerMix :
-                        
 
                         break;
-                    }
+                    //타워 CombineMode.
+                    case PlayerMode.TowerMix:
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            if (!EventSystem.current.IsPointerOverGameObject())
+                            {
+                                Ray _ray = cam.ScreenPointToRay(Input.mousePosition);
+                                hit = Physics.RaycastAll(_ray, 100f);
+                                if (hit != null)
+                                {                                     
+                                    foreach (RaycastHit hitob in hit)
+                                    {                                        
+                                        GameObject hitObject = hitob.transform.gameObject;
+
+                                        // 타워 정보 스크립트 가져오기
+                                        Twr_TestTower towerInfo = hitObject.GetComponent<Twr_TestTower>();
+                                        
+                                        if (towerInfo != null)
+                                        {
+                                            // 랭크 정보 가져오기
+                                            int towerRank = towerInfo.towerRank;
+
+                                            // 배열에 오브젝트 저장
+                                            clickedObjects[currentIndex] = hitObject;
+                                            currentIndex++;
+
+                                            if (currentIndex >= clickedObjects.Length)
+                                            {
+                                                currentIndex = 0;
+                                            }
+
+                                            if (clickedObjects[1] != null)
+                                            {
+                                                if (clickedObjects[0] != clickedObjects[1])
+                                                {
+                                                    // 타워 랭크 비교
+                                                    if (clickedObjects[0].GetComponent<Twr_TestTower>().towerRank == clickedObjects[1].GetComponent<Twr_TestTower>().towerRank)
+                                                    {
+                                                        // 새로운 타워 생성
+                                                        SpawnNewTower(clickedObjects[0].GetComponent<Twr_TestTower>().towerRank + 1);
+                                                        print("랭크2 또는 랭크3의 타워가 생성되었습니다");
+
+                                                        Destroy(clickedObjects[0]);
+                                                        Destroy(clickedObjects[1]);
+
+                                                        clickedObjects[0] = null;
+                                                        clickedObjects[1] = null;
+                                                    }
+                                                    else
+                                                    {
+                                                        // 타워 합성 실패
+                                                        print("합성 할 수 없는 대상 입니다.");
+
+                                                        clickedObjects[0] = null;
+                                                        clickedObjects[1] = null;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    // 동일 타워 2번 선택
+                                                    print("다른 타워를 선택해 주십시오.");
+                                                    clickedObjects[1] = null;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            print("타워 정보 스크립트가 존재하지 않습니다.");
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        break;
+
                 }
+
             }
 
 
 
 
 
-        if(playerMode == PlayerMode.TowerSell)
-        {
+            if (playerMode == PlayerMode.TowerSell)
+            {
 
+
+            }
 
         }
-
     }
 
 
-   
+
 
     public void TowerBuildBtn()
     {
-        if(playerMode!=PlayerMode.TowerBuild)
+        if (playerMode != PlayerMode.TowerBuild)
         {
             playerMode = PlayerMode.TowerBuild;
             Ui_Manager.instance.state.text = "건설 모드";
@@ -173,15 +249,15 @@ public class ClickSystem : MonoBehaviour
 
             foreach (GameObject zone in towerZone)
             {
-                if(!zone.GetComponent<TowerZone>().towerOn)
-                { 
-                    zone.SetActive(true); 
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(true);
                 }
                 else
                 {
                     zone.SetActive(false);
                 }
-                
+
             }
         }
         else
@@ -195,7 +271,7 @@ public class ClickSystem : MonoBehaviour
             {
                 if (!zone.GetComponent<TowerZone>().towerOn)
                 {
-                    zone.SetActive(false); 
+                    zone.SetActive(false);
                 }
                 else
                 {
@@ -204,11 +280,11 @@ public class ClickSystem : MonoBehaviour
             }
 
         }
-        
+
     }
 
 
-    public void TowerSellBtn() 
+    public void TowerSellBtn()
     {
         if (playerMode != PlayerMode.TowerSell)
         {
@@ -250,12 +326,12 @@ public class ClickSystem : MonoBehaviour
     }
     public void TowerMixBtn()
     {
-        if (playerMode != PlayerMode.TowerBuild)
+        if (playerMode != PlayerMode.TowerMix)
         {
-            playerMode = PlayerMode.TowerBuild;
+            playerMode = PlayerMode.TowerMix;
             Ui_Manager.instance.state.text = "합성 모드";
             BtnColorReset();
-            BuildBtnDark();
+            MixBtnDark();
 
             foreach (GameObject zone in towerZone)
             {
@@ -270,7 +346,7 @@ public class ClickSystem : MonoBehaviour
 
             }
         }
-         else
+        else
         {
             playerMode = PlayerMode.Nomal;
             Ui_Manager.instance.state.text = "";
@@ -294,14 +370,18 @@ public class ClickSystem : MonoBehaviour
     public void BtnColorReset()
     {
         Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
-        for(int i = 0; i < imgs.Length; i++) 
+        for (int i = 0; i < imgs.Length; i++)
         {
             imgs[i].color = Input_Manager.instance.SaveColor[i];
         }
-          
-        
 
         imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
+        for (int i = 0; i < imgs.Length; i++)
+        {
+            imgs[i].color = Input_Manager.instance.SaveColor[i];
+        }
+
+        imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
         for (int i = 0; i < imgs.Length; i++)
         {
             imgs[i].color = Input_Manager.instance.SaveColor[i];
@@ -326,41 +406,39 @@ public class ClickSystem : MonoBehaviour
         }
     }
 
-    //1티어 타워로 2티어 타워를 합성할 경우 실행.
-    public void SpawnNewTowerRank2()
+    public void MixBtnDark()
     {
-        GameObject newTowerObject = FindObjectWithTag("Tower_2");
-        if (newTowerObject != null)
+        Image[] imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
+        foreach (Image img in imgs)
         {
-            Vector3 spawnPosition = clickedObjects[1].transform.position;
-            Quaternion spawnRotation = clickedObjects[1].transform.rotation;
+            img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
+        }
+    }
 
-            Instantiate(newTowerObject, spawnPosition, spawnRotation);
-        }
-    }
-    //2티어 타워로 3티어 타워를 합성할 경우 실행.
-    public void SpawnNewTowerRank3()
+    public Twr_TestTower component; // 원하는 컴포넌트 타입으로 대체해야 합니다.        
+    public int newTowerRank;
+    public GameObject newTower;
+    void SpawnNewTower(int newRank)
     {
-        GameObject newTowerObject = FindObjectWithTag("Tower_3");
-        if (newTowerObject != null)
+        if (newTower != null)
         {
-            Vector3 spawnPosition = clickedObjects[1].transform.position;
-            Quaternion spawnRotation = clickedObjects[1].transform.rotation;
+            // 원하는 컴포넌트를 가진 모든 오브젝트 찾기
+            Twr_TestTower[] components = FindObjectsOfType<Twr_TestTower>();
 
-            Instantiate(newTowerObject, spawnPosition, spawnRotation);
+            List<Twr_TestTower> findObjects = new List<Twr_TestTower>();
+
+            foreach ( Twr_TestTower component in components)
+            {
+                if(component.towerRank == newRank)
+                {
+                    findObjects.Add( component );
+                }
+            }
+
+            int randomIndex = Random.Range(0, findObjects.Count );
+
+            Twr_TestTower selectedComponent = findObjects[randomIndex];
+            Instantiate(newTower, clickedObjects[1].transform.position, clickedObjects[0].transform.rotation);
         }
     }
-    //Do not change--------------
-    // 특정 태그를 가지는 오브젝트 찾기
-    GameObject FindObjectWithTag(string tag)
-    {
-        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
-        if (taggedObjects.Length > 0)
-        {
-            int randomIndex = Random.Range(0, taggedObjects.Length);
-            return taggedObjects[randomIndex];
-        }
-        return null;
-    }
-    //--------------------------
 }

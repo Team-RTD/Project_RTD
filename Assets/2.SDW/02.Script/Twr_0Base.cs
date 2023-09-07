@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,7 +24,8 @@ public class Twr_0Base : MonoBehaviour
     protected int towerMaxTarget;
     // Must Input --
 
-
+    public int towerRank = 1;
+    GameObject tower;
 
     // Throw Input --
     // * if you create Throw Tower [(GameObject : Throw Object) Count == towerMaxTarget]
@@ -41,7 +43,7 @@ public class Twr_0Base : MonoBehaviour
 
 
     // Optional
-    public float upgradePercent = 10f;
+    public float upgradePercent = 0;
 
 
     // Declare -----------------------------------------------
@@ -210,7 +212,7 @@ public class Twr_0Base : MonoBehaviour
 
     public void TowerUpgradeLevel()
     {
-        towerAttackDamage = towerAttackDamage + ((towerAttackDamage / 100) * upgradePercent);
+        UpGrade_Manager.instance.UpGradeTower(this.GetComponent<Twr_TestTower>());
     }
 
     public void TowerTierLevel()

@@ -10,6 +10,7 @@ public class Input_Manager : MonoBehaviour
 
     public GameObject towerBuildBtn;
     public GameObject towerSellBtn;
+    public GameObject towerMixBtn;
     public Color[] SaveColor = new Color[2];
 
     private void Awake()
@@ -34,6 +35,11 @@ public class Input_Manager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             ClickSystem.instance.TowerBuildBtn();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ClickSystem.instance.TowerMixBtn();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
