@@ -76,7 +76,7 @@ public class MonsterMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        DamagedAction(1);
+        
     }
     
 
@@ -85,13 +85,14 @@ public class MonsterMove : MonoBehaviour
         Vector3 dir = setpos.transform.position - transform.position;
         Vector3 loc = dir.normalized;
 
+        Vector3 nextPoint = setpos.transform.position - new Vector3(0, 0.4f, 0);
         while (dir.magnitude > 0.1)
         {
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, monsterSpeed) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, monsterSpeed) ;
             //transform.Translate(loc,Space.World);
-            dir = setpos.transform.position - transform.position;
+            dir = nextPoint - transform.position;
             yield return null;
         }
         posloc++;
