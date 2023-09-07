@@ -71286,18 +71286,6 @@ PrefabInstance:
       value: MonsterSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
-      propertyPath: missionMonster1
-      value: 
-      objectReference: {fileID: 5032436346419680975, guid: c6958ee2aeded0d42ae2963be6336b3c, type: 3}
-    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
-      propertyPath: missionMonster2
-      value: 
-      objectReference: {fileID: 5032436346419680975, guid: c6958ee2aeded0d42ae2963be6336b3c, type: 3}
-    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
-      propertyPath: missionMonster3
-      value: 
-      objectReference: {fileID: 5032436346419680975, guid: c6958ee2aeded0d42ae2963be6336b3c, type: 3}
-    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
       propertyPath: monsterList.Array.size
       value: 20
       objectReference: {fileID: 0}

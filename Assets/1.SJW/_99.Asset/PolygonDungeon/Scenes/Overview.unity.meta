@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/4.OCM/Particle/EffectExamples/Blood.meta
-guid: 98c80d86fd528c54f81a41908c838096
-folderAsset: yes
-timeCreated: 1473933320
-========
+<<<<<<<< HEAD:Assets/1.SJW/_99.Asset/PolygonDungeon/Scenes/Overview.unity.meta
 guid: af9a4cb92e9f73243b46e64789af715a
 timeCreated: 1508814337
->>>>>>>> main:Assets/1.SJW/_99.Asset/PolygonDungeon/Scenes/Overview.unity.meta
+========
+guid: 40cc170ff9ecb8f47befdd0086183895
+folderAsset: yes
+timeCreated: 1545003905
+>>>>>>>> changmyungOh:Assets/1.SJW/_99.Asset/PolygonDungeon/Materials/Alternatives.meta
 licenseType: Store
 DefaultImporter:
   userData: 

@@ -17,6 +17,7 @@ public class Ui_Manager : MonoBehaviour
     public TMP_Text money2Txt;
     public TMP_Text money3Txt;
 
+    public TMP_Text state;
 
     public GameObject towerInfo;
 
@@ -27,6 +28,8 @@ public class Ui_Manager : MonoBehaviour
     private Vector2 moneyrec;
     private Vector2 end_pos;
     private bool drawerMoney = false;
+
+    public GameObject OptionPannel;
 
     private void Awake()
     {
@@ -69,6 +72,8 @@ public class Ui_Manager : MonoBehaviour
 
         roundrec = roundZone.GetComponent<RectTransform>().anchoredPosition;
         moneyrec = moneyZone.GetComponent<RectTransform>().anchoredPosition;
+
+        state.text = "";
     }
 
 
@@ -112,6 +117,17 @@ public class Ui_Manager : MonoBehaviour
         StartCoroutine(LerfUI(rect, start_pos, end_pos, 0.2f));
     }
 
+    public void OptionPannelOpen()
+    {
+        if(OptionPannel.activeSelf) 
+        {
+            OptionPannel.SetActive(false);
+        }
+        else
+        {
+            OptionPannel.SetActive(true);
+        }
+    }
 
     IEnumerator LerfUI(RectTransform target,Vector2 start_pos,Vector2 end_pos,float mtime)
     {

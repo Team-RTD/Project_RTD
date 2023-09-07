@@ -69,7 +69,7 @@ public class MonsterMove : MonoBehaviour
             //angle = 1;
             StartCoroutine(GoToPos(Pos[posloc]));
             startpos = transform;
-            
+        
         
     }
 
@@ -85,17 +85,14 @@ public class MonsterMove : MonoBehaviour
         Vector3 dir = setpos.transform.position - transform.position;
         Vector3 loc = dir.normalized;
 
-        Vector3 nextSpot = setpos.transform.position - new Vector3(0, 0.4f, 0);
-
-
+        Vector3 nextPoint = setpos.transform.position - new Vector3(0, 0.4f, 0);
         while (dir.magnitude > 0.1)
         {
             transform.LookAt(setpos.transform);
-
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, nextSpot, monsterSpeed) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, monsterSpeed) ;
             //transform.Translate(loc,Space.World);
-            dir = nextSpot - transform.position;
+            dir = nextPoint - transform.position;
             yield return null;
         }
         posloc++;
@@ -139,7 +136,7 @@ IEnumerator DeadAction()
         yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
         //목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
-        Data_Manager.instance.money1+=10;
+        Data_Manager.instance.money1++;
         Ui_Manager.instance.UiRefresh();
 
     }

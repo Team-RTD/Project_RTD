@@ -9,6 +9,8 @@ public class AreaObject : MonoBehaviour
     float duration;
     float damageDelay;
     LayerMask enemyLayer;
+
+    private bool isActive = false;
     private void OnEnable()
     {
         gameObject.GetComponent<Collider>().enabled = false;
@@ -23,11 +25,13 @@ public class AreaObject : MonoBehaviour
         duration = _duration;
         damageDelay = _damageDelay;
         enemyLayer = _enemyLayer;
+        isActive = true;
         gameObject.SetActive(true);
     }
     IEnumerator DurationArea()
     {
         yield return new WaitForSeconds(duration);
+        isActive = false;
         gameObject.SetActive(false);
     }
 
@@ -42,7 +46,7 @@ public class AreaObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == enemyLayer)
+        if (other.gameObject.layer == enemyLayer && isActive == true)
         {
             other.GetComponent<MonsterMove>().DamagedAction(damage);
         }

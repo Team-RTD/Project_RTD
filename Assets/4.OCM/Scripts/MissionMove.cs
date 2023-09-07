@@ -114,6 +114,7 @@ public class MissionMove : MonoBehaviour
         hp = hp - _damage;
 
 
+
         if (hp <= 0)
         {
             
@@ -132,7 +133,7 @@ public class MissionMove : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
         //목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
-        Data_Manager.instance.money1+=100;
+        Data_Manager.instance.money1++;
         Ui_Manager.instance.UiRefresh();
 
     }
