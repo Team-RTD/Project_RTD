@@ -43,6 +43,7 @@ public class Twr_0Base : MonoBehaviour
     // Optional
     public float upgradePercent = 10f;
 
+    public GameObject shooterParticle; //0907
 
     // Declare -----------------------------------------------
 
@@ -52,6 +53,7 @@ public class Twr_0Base : MonoBehaviour
 
 
     // DO NOT EDIT THIS LIST *************************************************
+    private Animator animator; //0907
     private Vector3 towerPos;
     private bool isCoolTime = false;
     private int targetsCount = 0;
@@ -110,6 +112,9 @@ public class Twr_0Base : MonoBehaviour
             areaObjArray = GetComponentsInChildren<AreaObject>(true);
             areaObjects.AddRange(areaObjArray);
         }
+
+        animator = GetComponentInChildren<Animator>(); //0907
+
     }
 
     private void Update()
@@ -184,6 +189,13 @@ public class Twr_0Base : MonoBehaviour
     IEnumerator AttackEnemy(MonsterMove _enemy)
     {
         isCoolTime = true;
+        animator.SetTrigger("IdleToAttack"); //0907
+        GameObject particleInstance = Instantiate(shooterParticle, _enemy.transform.position, Quaternion.identity); //0907
+        ParticleSystem particleSystem = particleInstance.GetComponent<ParticleSystem>(); //0907
+
+        float x = particleSystem.main.duration;
+        Destroy(particleInstance, x);
+
         targetsCount = targetsCount + 1;
         _enemy.GetComponent<MonsterMove>().DamagedAction(towerAttackDamage);
         yield return new WaitForSeconds(towerAttackSpeed);

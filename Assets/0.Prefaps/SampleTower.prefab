@@ -479,7 +479,7 @@ Animator:
   m_GameObject: {fileID: 753017902902065077}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 038320a534bd8b444b43734860d1a211, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a8e0285e39a8074ea3e605e75ed47e9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3253,6 +3253,7 @@ GameObject:
   - component: {fileID: 7633097661852943659}
   - component: {fileID: 3001064199341836902}
   - component: {fileID: 7566449137188919399}
+  - component: {fileID: 7958264280904424573}
   m_Layer: 0
   m_Name: SampleTower
   m_TagString: Untagged
@@ -3274,7 +3275,7 @@ Transform:
   m_Children:
   - {fileID: 2970164385659100054}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3001064199341836902
 CapsuleCollider:
@@ -3311,6 +3312,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6929552bb9bf08a408c0d687c84d3abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7958264280904424573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250344466263104177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd31297677c32f47ba60262ca4fbd45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradePercent: 10
+  shooterParticle: {fileID: 1352952055292810, guid: 2b7edea1b5126a0488d5790ed0ba2038, type: 3}
 --- !u!1 &6265182735207160270
 GameObject:
   m_ObjectHideFlags: 0

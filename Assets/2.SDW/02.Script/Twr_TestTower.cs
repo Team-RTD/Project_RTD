@@ -7,21 +7,18 @@ public class Twr_TestTower : Twr_0Base
     
     public override void TowerInfo()
     {
-        towerName = "A_Tower";
+        towerAttackType = TowerAttackType.Shooter;
+
+        towerName = "Test_A";
         towerPrice = 100;
-        towerAttackDamage = 10;
-        towerAttackSpeed = 2;
-        towerAttackRange = 20;
+        towerAttackDamage = 30f;
+        towerAttackSpeed = 1f;
+        towerAttackRange = 10f;
 
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
 
-        towerAttackType = TowerAttackType.Area;
-        towerMaxTarget = 2;
-        
-        throwObjSpeed = 1f;
+        towerMaxTarget = 1;
 
-        areaDuration = 2.1f;
-        areaAttDelay = 0.6f;
     }
 }
