@@ -187,7 +187,7 @@ public class Twr_0Base : MonoBehaviour
     {
         isCoolTime = true;
         targetsCount = targetsCount + 1;
-        _enemy.GetComponent<MonsterMove>().DamagedAction(towerAttackDamage);
+        _enemy.GetComponent<MonsterMove>().DamagedAction(damage);
         yield return new WaitForSeconds(towerAttackSpeed);
         targetsCount = 0;
         isCoolTime = false;
