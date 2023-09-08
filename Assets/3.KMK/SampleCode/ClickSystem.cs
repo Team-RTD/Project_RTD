@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+/*using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -392,11 +392,11 @@ public class ClickSystem : MonoBehaviour
             imgs[i].color = Input_Manager.instance.SaveColor[i];
         }
 
-        /*imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
+        *//*imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
         for (int i = 0; i < imgs.Length; i++)
         {
             imgs[i].color = Input_Manager.instance.SaveColor[i];
-        }*/
+        }*//*
 
     }
 
@@ -453,3 +453,4 @@ public class ClickSystem : MonoBehaviour
         }
     }
 }
+*/

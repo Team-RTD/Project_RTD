@@ -479,7 +479,7 @@ Animator:
   m_GameObject: {fileID: 753017902902065077}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 038320a534bd8b444b43734860d1a211, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ca36a7af29054c42a25b2354ff5b738, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3275,7 +3275,7 @@ Transform:
   m_Children:
   - {fileID: 2970164385659100054}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3001064199341836902
 CapsuleCollider:
@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerRank: 2
-  upgradePercent: 10
+  shooterParticle: {fileID: 1352952055292810, guid: 79db410fe9c514b478ec3374b2bad982, type: 3}
 --- !u!1 &6265182735207160270
 GameObject:
   m_ObjectHideFlags: 0
