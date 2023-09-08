@@ -23,6 +23,12 @@ public class Ui_Manager : MonoBehaviour
 
     public GameObject btnMenu;
 
+    public GameObject InfoZone;
+    public Image tower_portrait;
+    public TMP_Text tower_Name;
+    public TMP_Text tower_Info;
+    public TMP_Text tower_rank;
+
     private bool drawerRound = false;
     private Vector2 roundrec;
     private Vector2 moneyrec;
