@@ -24,7 +24,7 @@ using UnityEngine;
 public class MonsterMove : MonoBehaviour
 {
     //필요속성1: 특정좌표,이동속도
-    public float monsterSpeed=0.1f;
+    public float monsterSpeed;
     public Transform[] Pos;
     int posloc = 0;
     public Transform startpos;
@@ -44,6 +44,7 @@ public class MonsterMove : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        monsterSpeed = 15.0f;
     }
     void Start()
     {
@@ -99,7 +100,7 @@ public class MonsterMove : MonoBehaviour
 
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed*Time.deltaTime) ;
             //transform.Translate(loc,Space.World);
             dir = nextPoint - transform.position;
             yield return null;
