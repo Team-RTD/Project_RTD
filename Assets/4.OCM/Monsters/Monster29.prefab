@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: -526896423548396214}
   - component: {fileID: 8164368504575879278}
   m_Layer: 6
-  m_Name: Monster9
+  m_Name: Monster29
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eca073709aaa5b49a40b090e247b9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterSpeed: 0.3
+  monsterSpeed: 0.1
   Pos:
   - {fileID: 0}
   - {fileID: 0}
@@ -784,7 +784,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: caf01dd5152f3934d8079e6160aa3b1e, type: 2}
+  - {fileID: 2100000, guid: 05299fb9322d17b4ca9bbd59f6c2f3f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

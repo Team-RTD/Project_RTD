@@ -43,10 +43,13 @@ public class MonsterSpawn : MonoBehaviour
     public GameObject missionMonster2;
     public GameObject missionMonster3;
 
-    public int mission1CoolTime;
-    public int mission2CoolTime;
-    public int mission3CoolTime;
+    public int missionCoolTime1;
+    public int missionCoolTime2;
+    public int missionCoolTime3;
 
+    public bool missionTrigger1;
+    public bool missionTrigger2;
+    public bool missionTrigger3;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +57,9 @@ public class MonsterSpawn : MonoBehaviour
         StageManager.instance.stageNum = 1;
         createTime = 0.2f;
         nextStage = true;
+        missionTrigger1 = true;
+        missionTrigger2 = true;
+        missionTrigger3 = true;
     }
 
 
@@ -85,6 +91,7 @@ public class MonsterSpawn : MonoBehaviour
         {
             StartCoroutine(PersonalMission3());
         }
+        
 
     }
 
@@ -147,6 +154,7 @@ public class MonsterSpawn : MonoBehaviour
         enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+        missionTrigger1 = false;
         yield return null;
     }
 
@@ -157,6 +165,7 @@ public class MonsterSpawn : MonoBehaviour
         enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+        missionTrigger2 = false;    
         yield return null;
     }
 
@@ -167,6 +176,7 @@ public class MonsterSpawn : MonoBehaviour
         enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+        missionTrigger3 = false;    
         yield return null;
     }
 }

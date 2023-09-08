@@ -24,7 +24,7 @@ using UnityEngine;
 public class MonsterMove : MonoBehaviour
 {
     //필요속성1: 특정좌표,이동속도
-    public float monsterSpeed=0.1f;
+    public float monsterSpeed;
     public Transform[] Pos;
     int posloc = 0;
     public Transform startpos;
@@ -41,8 +41,11 @@ public class MonsterMove : MonoBehaviour
 
 
     public Sprite portrait;
-
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        monsterSpeed = 15.0f;
+    }
     void Start()
     {
         //목표2: Enemy체력 구현
@@ -55,20 +58,18 @@ public class MonsterMove : MonoBehaviour
             hp = StageManager.instance.monsterMaxHp;
         }
         
-            
-            animator = GetComponent<Animator>();
-            Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
-            Pos = new Transform[ArrowPosParent.childCount];
+        Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
+        Pos = new Transform[ArrowPosParent.childCount];
 
-            for (int i = 0; i < ArrowPosParent.childCount; i++)
-            {
-                Pos[i] = ArrowPosParent.GetChild(i);
-            }
+        for (int i = 0; i < ArrowPosParent.childCount; i++)
+        {
+            Pos[i] = ArrowPosParent.GetChild(i);
+        }
 
-            //dir = Vector3.forward;
-            //angle = 1;
-            StartCoroutine(GoToPos(Pos[posloc]));
-            startpos = transform;
+        //dir = Vector3.forward;
+        //angle = 1;
+        StartCoroutine(GoToPos(Pos[posloc]));
+        startpos = transform;
         
         
     }
@@ -99,7 +100,7 @@ public class MonsterMove : MonoBehaviour
 
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed*Time.deltaTime) ;
             //transform.Translate(loc,Space.World);
             dir = nextPoint - transform.position;
             yield return null;
@@ -130,6 +131,7 @@ public class MonsterMove : MonoBehaviour
 
         if (hp <= 0)
         {
+            Data_Manager.instance.money1++;
             StageManager.instance.monsterCount--;
             StartCoroutine(DeadAction());
         }
@@ -145,7 +147,6 @@ IEnumerator DeadAction()
         yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
         //목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
-        Data_Manager.instance.money1++;
         Ui_Manager.instance.UiRefresh();
 
     }
