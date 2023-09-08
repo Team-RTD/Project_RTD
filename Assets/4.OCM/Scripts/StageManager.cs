@@ -35,7 +35,6 @@ public class StageManager : MonoBehaviour
 
     public int SetMonsterHP(int stageNum)
     {
-
         monsterMaxHp = stageNum *50 ;
         return monsterMaxHp = stageNum * 50;
     }
