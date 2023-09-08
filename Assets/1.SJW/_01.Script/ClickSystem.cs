@@ -55,27 +55,7 @@ public class ClickSystem : MonoBehaviour
 
         if (playerMode == PlayerMode.TowerSell)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            hit = Physics.RaycastAll(ray, 100f);
-            if (hit != null)
-            {
-                foreach (RaycastHit hitob in hit)
-                {
-                    GameObject hitObject = hitob.transform.gameObject;
-                    if (hitObject.tag == "Tower")
-                    {
-
-                        GameObject tower1 = hitObject;
-                        TEST TST = tower1.GetComponent<TEST>();
-                        TST.OutLineColorChange();
-
-                    }
-                    else
-                    {
-                    }
-
-                }
-            }
+          
         }
 
 

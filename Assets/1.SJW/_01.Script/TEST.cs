@@ -18,7 +18,27 @@ public class TEST : MonoBehaviour
         line.enabled = true;
     }
 
-    
+    private void OnMouseUp()
+    {
+        switch (ClickSystem.instance.playerMode)
+        {
+            case ClickSystem.PlayerMode.Nomal:
+                
+
+                break;
+            case ClickSystem.PlayerMode.TowerSell:
+                
+
+                break;
+            case ClickSystem.PlayerMode.TowerBuild:
+                
+
+                break;
+        }
+
+    }
+
+
 
     private void OnMouseExit()
     {
