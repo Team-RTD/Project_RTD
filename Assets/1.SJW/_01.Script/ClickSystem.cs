@@ -83,8 +83,13 @@ public class ClickSystem : MonoBehaviour
                                          Material mat = hitObject.GetComponent<Renderer>().material;
                                         t_zone.towerOn = true;
                                         mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
-                                        GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
+
+                                        int random = Random.Range(0,Tower_Manager.instance.Towers.Length);
+
+                                        // GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
+                                        GameObject tower1 = Instantiate(Tower_Manager.instance.Towers[random], hitObject.transform.position, Quaternion.Euler(Vector3.zero));
                                         t_zone.Tower = tower1; //타워존에 타워 오브젝트 할당
+                                        tower1.GetComponent<Twr_0Base>().TowerZone = t_zone.gameObject;
                                         GameObject summoneffect = Instantiate(SummonEffect, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
                                         Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
                                         Sound_Manager.instance.EffectPlay(SummonSound);

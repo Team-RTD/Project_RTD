@@ -3324,6 +3324,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd31297677c32f47ba60262ca4fbd45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 21300000, guid: d314bcef757b6734d81210fa84f48dd4, type: 3}
+  TowerZone: {fileID: 0}
+  towerAttackType: 0
+  towerName: 
+  towerPrice: 0
+  towerAttackDamage: 0
+  towerAttackSpeed: 0
+  towerAttackRange: 0
+  towerUpgradeLevel: 0
+  towerUpgradeTier: 0
+  towerMaxTarget: 0
   upgradePercent: 10
   shooterParticle: {fileID: 1352952055292810, guid: 2b7edea1b5126a0488d5790ed0ba2038, type: 3}
 --- !u!1 &6265182735207160270
