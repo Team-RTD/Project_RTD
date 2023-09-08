@@ -83,14 +83,23 @@ public class MonsterMove : MonoBehaviour
     IEnumerator GoToPos(Transform setpos)
     {
         Vector3 dir = setpos.transform.position - transform.position;
-        Vector3 loc = dir.normalized;
-
+        //Vector3 loc = dir.normalized;
+        float speed = 2.0f;
         Vector3 nextPoint = setpos.transform.position - new Vector3(0, 0.4f, 0);
-        while (dir.magnitude > 0.1)
+        while (dir.magnitude > 1f)
         {
+            if (Data_Manager.instance.isPause)
+            {
+                speed = 0;
+            }
+            else
+            {
+                speed = monsterSpeed;
+            }
+
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, nextPoint, monsterSpeed) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed) ;
             //transform.Translate(loc,Space.World);
             dir = nextPoint - transform.position;
             yield return null;

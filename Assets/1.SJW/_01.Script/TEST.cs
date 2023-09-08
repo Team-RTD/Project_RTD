@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TEST : MonoBehaviour
 {
@@ -12,17 +14,44 @@ public class TEST : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        print("마우스 감지!");
+        Outline line = GetComponent<Outline>();
+        line.enabled = true;
     }
 
+    
 
     private void OnMouseExit()
     {
-        print(" 마우스 나감!");
+        Outline line = GetComponent<Outline>();
+        line.enabled = false;
     }
     // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
+        if(GetComponent<Outline>().enabled)
+        { OutLineColorChange(); }
         
     }
+
+    public void OutLineColorChange()
+    {
+        Outline line = GetComponent<Outline>();
+        switch (ClickSystem.instance.playerMode)
+        {
+            case ClickSystem.PlayerMode.Nomal:
+                line.OutlineColor = Color.green;
+
+                break;
+            case ClickSystem.PlayerMode.TowerSell:
+                line.OutlineColor = Color.red;
+
+                break;
+            case ClickSystem.PlayerMode.TowerBuild:
+                line.OutlineColor = Color.clear;
+
+                break;
+        }
+    }
+
 }

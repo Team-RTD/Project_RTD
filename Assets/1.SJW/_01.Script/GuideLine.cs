@@ -27,7 +27,7 @@ public class GuideLine : MonoBehaviour
         Vector3 dir =setpos.transform.position - transform.position;
         Vector3 loc = dir.normalized;
         float speed = 2.0f;
-        while(dir.magnitude >0.1)
+        while (dir.magnitude > 1f)
         {
             if (Data_Manager.instance.isPause)
             {
