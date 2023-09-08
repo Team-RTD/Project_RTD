@@ -11,18 +11,20 @@ public class Twr_0Base : MonoBehaviour
     // Declare -----------------------------------------------
 
     // Must Input --
-    protected TowerAttackType towerAttackType;
+    public Sprite portrait;
+    public GameObject TowerZone;
 
-    protected string towerName;
-    protected int towerPrice;
-    protected float towerAttackDamage;
-    protected float towerAttackSpeed;
-    protected float towerAttackRange;
+    public TowerAttackType towerAttackType;
+    public string towerName;
+    public int towerPrice;
+    public float towerAttackDamage;
+    public float towerAttackSpeed;
+    public float towerAttackRange;
 
-    protected int towerUpgradeLevel;
-    protected int towerUpgradeTier;
+    public int towerUpgradeLevel;
+    public int towerUpgradeTier;
 
-    protected int towerMaxTarget;
+    public int towerMaxTarget;
     // Must Input --
 
     protected float damage;
