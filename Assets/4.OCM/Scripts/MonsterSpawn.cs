@@ -107,7 +107,7 @@ public class MonsterSpawn : MonoBehaviour
         if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum>1)
         {
             StageManager.instance.monsterCount = 1;
-            GameObject enemyGO = Instantiate(monsterList[stage - 1]);
+            GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
             enemyGO.transform.position = transform.position;
             enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
 
@@ -123,7 +123,7 @@ public class MonsterSpawn : MonoBehaviour
             for (int i = 0; i < 20; i++)
             {
 
-                GameObject enemyGO = Instantiate(monsterList[stage - 1]);
+                GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
                 enemyGO.transform.position = transform.position;
                 enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
 
