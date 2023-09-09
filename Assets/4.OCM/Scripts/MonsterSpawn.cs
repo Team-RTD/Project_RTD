@@ -108,8 +108,7 @@ public class MonsterSpawn : MonoBehaviour
         {
             StageManager.instance.monsterCount = 1;
             GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
-            enemyGO.transform.position = transform.position;
-            enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+
 
             //목표3: 몬스터 소환 시 이펙트 생성
             GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
@@ -123,9 +122,8 @@ public class MonsterSpawn : MonoBehaviour
             for (int i = 0; i < 20; i++)
             {
 
-                GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
-                enemyGO.transform.position = transform.position;
-                enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+                GameObject enemyGO = Instantiate(monsterList[stage - 1],transform.position, Quaternion.Euler(0, 180, 0));
+
 
                 //목표3: 몬스터 소환 시 이펙트 생성
                 GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
