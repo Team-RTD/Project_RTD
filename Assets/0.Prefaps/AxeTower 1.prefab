@@ -53,13 +53,13 @@ MonoBehaviour:
   towerAttackType: 0
   towerName: 
   towerPrice: 0
-  towerAttackDamage: 0
+  towerAttackDamage: 100
   towerAttackSpeed: 0
   towerAttackRange: 0
   towerUpgradeLevel: 0
   towerUpgradeTier: 0
   towerMaxTarget: 0
-  upgradePercent: 10
+  towerRank: 0
   shooterParticle: {fileID: 4728198263476761539}
 --- !u!114 &7877776163437943917
 MonoBehaviour:

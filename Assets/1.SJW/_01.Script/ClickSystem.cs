@@ -186,6 +186,47 @@ public class ClickSystem : MonoBehaviour
         
     }
 
+    public void TowerMixBtn()
+    {
+        if (playerMode != PlayerMode.TowerMix)
+        {
+            playerMode = PlayerMode.TowerMix;
+            Ui_Manager.instance.state.text = "합성 모드";
+            BtnColorReset();
+            MixBtnDark();
+
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            playerMode = PlayerMode.Nomal;
+            Ui_Manager.instance.state.text = "";
+            BtnColorReset();
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+
+        }
+    }
+
 
     public void TowerSellBtn() 
     {
@@ -244,6 +285,14 @@ public class ClickSystem : MonoBehaviour
             imgs[i].color = Input_Manager.instance.SaveColor[i];
         }
 
+        //---------------------------------------
+        imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
+        for (int i = 0; i < imgs.Length; i++)
+        {
+            imgs[i].color = Input_Manager.instance.SaveColor[i];
+        }
+        //---------------------------------------
+
     }
 
     public void BuildBtnDark()
@@ -262,6 +311,15 @@ public class ClickSystem : MonoBehaviour
             img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
         }
     }
-
+    //---------------------------------------
+    public void MixBtnDark()
+    {
+        Image[] imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
+        foreach (Image img in imgs)
+        {
+            img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
+        }
+    }
+    //---------------------------------------
 
 }
