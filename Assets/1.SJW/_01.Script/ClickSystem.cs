@@ -66,25 +66,26 @@ public class ClickSystem : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 switch (playerMode)
-                    { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
+                {
+                    case PlayerMode.TowerBuild://타워건설모드에서 클릭 시
 
-                         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                         hit = Physics.RaycastAll(ray, 100f);
-                         if (hit != null)
-                         {
-                                foreach (RaycastHit hitob in hit)
+                        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                        hit = Physics.RaycastAll(ray, 100f);
+                        if (hit != null)
+                        {
+                            foreach (RaycastHit hitob in hit)
+                            {
+                                GameObject hitObject = hitob.transform.gameObject;
+                                if (hitObject.tag == "TowerZone")
                                 {
-                                     GameObject hitObject = hitob.transform.gameObject;
-                                     if (hitObject.tag == "TowerZone")
-                                     {
-                                        TowerZone t_zone = hitObject.GetComponent<TowerZone>();
-                                        if(!t_zone.towerOn)
-                                        { 
-                                         Material mat = hitObject.GetComponent<Renderer>().material;
+                                    TowerZone t_zone = hitObject.GetComponent<TowerZone>();
+                                    if (!t_zone.towerOn)
+                                    {
+                                        Material mat = hitObject.GetComponent<Renderer>().material;
                                         t_zone.towerOn = true;
                                         mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
 
-                                        int random = Random.Range(0,Tower_Manager.instance.Towers.Length);
+                                        int random = Random.Range(0, Tower_Manager.instance.Towers.Length);
 
                                         // GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
                                         GameObject tower1 = Instantiate(Tower_Manager.instance.Towers[random], hitObject.transform.position, Quaternion.Euler(Vector3.zero));
@@ -94,7 +95,7 @@ public class ClickSystem : MonoBehaviour
                                         Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
                                         Sound_Manager.instance.EffectPlay(SummonSound);
 
-                                        Outline charliner =  tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
+                                        Outline charliner = tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
                                         charliner.OutlineColor = Color.red;
                                         charliner.OutlineWidth = 2;
                                         charliner.enabled = false;
@@ -105,22 +106,27 @@ public class ClickSystem : MonoBehaviour
                                         //print(mat.enabledKeywords.ToString());
                                         //print(mat.shader.GetPropertyName(0));
                                         //print(mat.shader.GetPropertyName(1));
-                                        }
-                                     }
-                                     else
-                                     {
-                                         print("렌더러 없음");
-                                     }
-
+                                    }
                                 }
-                          }
+                                else
+                                {
+                                    print("렌더러 없음");
+                                }
+
+                            }
+                        }
                         break;
 
-                      case PlayerMode.TowerSell :
+                    case PlayerMode.TowerSell:
 
 
                         break;
-                     }
+
+                    case PlayerMode.TowerMix:
+
+
+                        break;
+                }
 
                
             }
