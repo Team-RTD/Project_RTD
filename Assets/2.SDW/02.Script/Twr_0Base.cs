@@ -14,6 +14,7 @@ public class Twr_0Base : MonoBehaviour
     public GameObject TowerZone;
 
     public TowerAttackType towerAttackType;
+    public TowerType towerType;
     public string towerName;
     public int towerPrice;
     public float towerAttackDamage;
@@ -26,8 +27,7 @@ public class Twr_0Base : MonoBehaviour
     public int towerMaxTarget;
     // Must Input --
 
-
-
+ 
     // Throw Input --
     // * if you create Throw Tower [(GameObject : Throw Object) Count == towerMaxTarget]
     protected float throwObjSpeed;
@@ -45,7 +45,11 @@ public class Twr_0Base : MonoBehaviour
 
 
     // Optional
-    public float upgradePercent = 10f;
+    protected float damage;
+    protected float upgradePercent = 10f;
+    public int towerRank;
+
+
 
     public GameObject shooterParticle; //0907
 
@@ -98,6 +102,13 @@ public class Twr_0Base : MonoBehaviour
         Shooter,
         Thrower,
         Area
+    }
+
+    public enum TowerType
+    {
+        Warrior,
+        Mage,
+        Archer
     }
     private void Awake()
     {
@@ -203,7 +214,7 @@ public class Twr_0Base : MonoBehaviour
         Destroy(particleInstance, x); //0907
 
         targetsCount = targetsCount + 1;
-        _enemy.GetComponent<MonsterMove>().DamagedAction(towerAttackDamage);
+        _enemy.GetComponent<MonsterMove>().DamagedAction(damage);
         yield return new WaitForSeconds(towerAttackSpeed);
         targetsCount = 0;
         isCoolTime = false;
@@ -214,7 +225,7 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = true;
         throwObject.transform.position = gameObject.transform.position;
         throwObject.transform.LookAt(collider.transform); //0907
-        throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, towerAttackDamage, throwObjSpeed);
+        throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, damage, throwObjSpeed);
         yield return new WaitForSeconds(towerAttackSpeed);
         isCoolTime = false;
     }
@@ -226,7 +237,7 @@ public class Twr_0Base : MonoBehaviour
         animator.SetTrigger("IdleToAttack"); //0907
 
         gameObject.transform.LookAt(collider.transform.position);
-        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, towerAttackDamage, areaDuration, areaAttDelay, collider.gameObject.layer);
+        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
         yield return new WaitForSeconds(towerAttackSpeed);
         isCoolTime = false;
     }

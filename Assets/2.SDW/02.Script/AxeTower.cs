@@ -7,8 +7,9 @@ public class AxeTower : Twr_0Base
     public override void TowerInfo()
     {
         towerAttackType = TowerAttackType.Area;
+        towerType = TowerType.Warrior;
 
-        towerName = "AxeTower";
+        towerName = "±¤Àü»ç";
         towerPrice = 100;
         towerAttackDamage = 80f;
         towerAttackSpeed = 3f;

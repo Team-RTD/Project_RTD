@@ -17,6 +17,8 @@ public class Ui_Manager : MonoBehaviour
     public TMP_Text money2Txt;
     public TMP_Text money3Txt;
 
+    public TMP_Text upgrade_plus;
+
     public TMP_Text state;
 
     public GameObject towerInfo;
@@ -36,6 +38,7 @@ public class Ui_Manager : MonoBehaviour
     private bool drawerMoney = false;
 
     public GameObject OptionPannel;
+    GameObject lastinfoOb;
 
     private void Awake()
     {
@@ -61,6 +64,11 @@ public class Ui_Manager : MonoBehaviour
         money2Txt.text = Data_Manager.instance.money2.ToString();
         money3Txt.text = Data_Manager.instance.money3.ToString();
 
+        if(UpGrade_Manager.instance.upgrade_rank != 0)
+        upgrade_plus.text = "+"+ UpGrade_Manager.instance.upgrade_rank;
+
+        if(lastinfoOb != null)
+        InfoPannelRefresh(lastinfoOb);
     }
 
 
@@ -80,6 +88,8 @@ public class Ui_Manager : MonoBehaviour
         moneyrec = moneyZone.GetComponent<RectTransform>().anchoredPosition;
 
         state.text = "";
+        upgrade_plus.text = "";
+        tower_portrait.color = Color.clear;
     }
 
 
@@ -155,5 +165,49 @@ public class Ui_Manager : MonoBehaviour
 
 
 
+    public void InfoPannelRefresh(GameObject infoOb)
+    {
+        lastinfoOb = infoOb;
+        Twr_0Base towerinfo = infoOb.gameObject.GetComponent<Twr_0Base>();
+        TowerZone t_zone = towerinfo.TowerZone.GetComponent<TowerZone>();
+        string _towerType="";
+        string _towerAttackType="";
+
+        switch(towerinfo.towerType)
+        {
+            case Twr_0Base.TowerType.Archer:
+                _towerType = "궁수";
+                break;
+            case Twr_0Base.TowerType.Mage:
+                _towerType = "마법사";
+                break;
+            case Twr_0Base.TowerType.Warrior:
+                _towerType = "전사";
+                break;
+        }
+
+        switch (towerinfo.towerAttackType)
+        {
+            case Twr_0Base.TowerAttackType.Area:
+                _towerAttackType = "범위형";
+                break;
+            case Twr_0Base.TowerAttackType.Shooter:
+                _towerAttackType = "즉발형";
+                break;
+            case Twr_0Base.TowerAttackType.Thrower:
+                _towerAttackType = "전사형";
+                break;
+        }
+        tower_portrait.sprite = towerinfo.portrait;
+        tower_portrait.color = Color.white;
+        tower_Name.text = towerinfo.towerName;
+        tower_rank.text = "★" + towerinfo.towerUpgradeTier;
+        tower_Info.text = "타입 : " + _towerType + "/"+_towerAttackType+
+          "\n공격력 : " + towerinfo.towerAttackDamage +"(+"+UpGrade_Manager.instance.upgradePercent + "%)"+
+          "\n공격속도 : " + towerinfo.towerAttackSpeed +
+          "\n사정거리 : " + towerinfo.towerAttackRange;
+
+    
+    }
 
 }
