@@ -24,5 +24,7 @@ public class AxeTower : Twr_0Base
         areaAttDelay = 1f;
         areaToTarget = false;
 
+        damage = towerAttackDamage + towerAttackDamage * UpGrade_Manager.Instance.upgradePercent * 0.01f; ;
+
     }
 }

@@ -27,7 +27,7 @@ public class Twr_0Base : MonoBehaviour
     public int towerMaxTarget;
     // Must Input --
 
- 
+
     // Throw Input --
     // * if you create Throw Tower [(GameObject : Throw Object) Count == towerMaxTarget]
     protected float throwObjSpeed;

@@ -22,7 +22,7 @@ public class Twr_TestTower : Twr_0Base
         towerMaxTarget = 1;
 
         //업그래이드 단계에 따른 공격력 계산식-----------------
-        damage = towerAttackDamage + towerAttackDamage * UpGrade_Manager.Instance.upgradePercent * 0.01f;
+        damage = towerAttackDamage + towerAttackDamage * UpGrade_Manager.Instance.upgradePercent * 0.01f; ;
         //-----------------------------------------------
 
     }

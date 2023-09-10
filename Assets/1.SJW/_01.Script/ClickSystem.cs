@@ -95,7 +95,7 @@ public class ClickSystem : MonoBehaviour
                                         Sound_Manager.instance.EffectPlay(SummonSound);
 
                                         //업그래이드 매니저 호출-------------------
-                                        UpGrade_Manager.Instance.AddTowerToList(tower1);
+                                        //UpGrade_Manager.Instance.AddTowerToList(tower1);
                                         //-------------------
 
 
@@ -198,6 +198,47 @@ public class ClickSystem : MonoBehaviour
         {
             playerMode = PlayerMode.TowerSell;
             Ui_Manager.instance.state.text = "판매 모드";
+            BtnColorReset();
+            SellBtnDark();
+
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            playerMode = PlayerMode.Nomal;
+            Ui_Manager.instance.state.text = "";
+            BtnColorReset();
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+
+        }
+    }
+
+    public void TowerMixBtn()
+    {
+        if (playerMode != PlayerMode.TowerMix)
+        {
+            playerMode = PlayerMode.TowerMix;
+            Ui_Manager.instance.state.text = "합성 모드";
             BtnColorReset();
             SellBtnDark();
 
