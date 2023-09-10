@@ -27,16 +27,8 @@ public class TEST : MonoBehaviour
         {
 
             case ClickSystem.PlayerMode.Nomal:
-                 towerinfo = gameObject.GetComponent<Twr_0Base>();
-                 t_zone = towerinfo.TowerZone.GetComponent<TowerZone>();
+                Ui_Manager.instance.InfoPannelRefresh(gameObject);
 
-                 Ui_Manager.instance.tower_portrait.sprite = towerinfo.portrait;
-                 Ui_Manager.instance.tower_Name.text = towerinfo.towerName;
-                 Ui_Manager.instance.tower_rank.text = "★"+towerinfo.towerUpgradeTier;
-                Ui_Manager.instance.tower_Info.text = "타입 : " + towerinfo.towerName +
-                   "\n공격력 : " + towerinfo.towerAttackDamage +
-                   "\n공격속도 : " + towerinfo.towerAttackSpeed +
-                   "\n사정거리 : " + towerinfo.towerAttackRange;
                 break;
             case ClickSystem.PlayerMode.TowerSell: //타워 판매 구현
                  towerinfo = gameObject.GetComponent<Twr_0Base>();

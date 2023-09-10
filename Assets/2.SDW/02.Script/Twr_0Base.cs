@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -15,6 +14,7 @@ public class Twr_0Base : MonoBehaviour
     public GameObject TowerZone;
 
     public TowerAttackType towerAttackType;
+    public TowerType towerType;
     public string towerName;
     public int towerPrice;
     public float towerAttackDamage;
@@ -27,11 +27,7 @@ public class Twr_0Base : MonoBehaviour
     public int towerMaxTarget;
     // Must Input --
 
-    protected float damage;
-    protected float upgradePercent;
-    public int towerRank;
-    GameObject tower;
-
+ 
     // Throw Input --
     // * if you create Throw Tower [(GameObject : Throw Object) Count == towerMaxTarget]
     protected float throwObjSpeed;
@@ -49,6 +45,12 @@ public class Twr_0Base : MonoBehaviour
 
 
     // Optional
+    protected float damage;
+    protected float upgradePercent = 10f;
+    public int towerRank;
+
+
+
     public GameObject shooterParticle; //0907
 
     // Declare -----------------------------------------------
@@ -85,8 +87,8 @@ public class Twr_0Base : MonoBehaviour
 
         towerName = "Null";
         towerPrice = 0;
-        //towerAttackDamage = 100f;
-        towerAttackSpeed = 2f;
+        towerAttackDamage = 0f;
+        towerAttackSpeed = 0f;
         towerAttackRange = 0f;
 
         towerUpgradeLevel = 0;
@@ -100,8 +102,14 @@ public class Twr_0Base : MonoBehaviour
         Shooter,
         Thrower,
         Area
-    }    
+    }
 
+    public enum TowerType
+    {
+        Warrior,
+        Mage,
+        Archer
+    }
     private void Awake()
     {
         TowerInfo();
@@ -124,15 +132,8 @@ public class Twr_0Base : MonoBehaviour
 
     }
 
-    public void Start()
-    {
-        UpGrade_Manager.Instance.Awake();
-    }
-
     private void Update()
     {
-
-        UpGrade_Manager upgradePercent;
         if (isCoolTime == false)
         {
             Detecting();
@@ -157,6 +158,7 @@ public class Twr_0Base : MonoBehaviour
                 switch (towerAttackType)
                 {
                     case TowerAttackType.Shooter:
+
                         if (_enemy != null)
                         {
                             enemyTargets.Add(_enemy);
@@ -238,8 +240,12 @@ public class Twr_0Base : MonoBehaviour
         areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
         yield return new WaitForSeconds(towerAttackSpeed);
         isCoolTime = false;
-    }    
-    
+    }
+
+    public void TowerUpgradeLevel()
+    {
+        towerAttackDamage = towerAttackDamage + ((towerAttackDamage / 100) * upgradePercent);
+    }
 
     public void TowerTierLevel()
     {
