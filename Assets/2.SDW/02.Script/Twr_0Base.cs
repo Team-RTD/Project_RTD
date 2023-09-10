@@ -13,8 +13,25 @@ public class Twr_0Base : MonoBehaviour
     protected float towerAttackSpeed;
     protected float towerAttackRange;
 
+<<<<<<< Updated upstream
     protected int towerUpgradeLevel;
     protected int towerUpgradeTier;
+=======
+    // Must Input --
+    public Sprite portrait;
+    public GameObject TowerZone;
+
+    public TowerAttackType towerAttackType;
+    public TowerBrood towerBrood;
+    public string towerName;
+    public int towerPrice;
+    public float towerAttackDamage;
+    public float towerAttackSpeed;
+    public float towerAttackRange;
+
+    public int towerUpgradeLevel;
+    public int towerUpgradeTier;
+>>>>>>> Stashed changes
 
     protected TowerAttackType towerAttackType;
     public int towerMaxTarget;
@@ -34,6 +51,15 @@ public class Twr_0Base : MonoBehaviour
 
     ThrowObject[] thorwObjArray;
     AreaObject[] areaObjArray;
+<<<<<<< Updated upstream
+=======
+
+    public GameObject thorwObjInstance; // 0910
+    // DO NOT EDIT THIS LIST *************************************************
+
+
+
+>>>>>>> Stashed changes
 
     public GameObject area;
 
@@ -55,7 +81,15 @@ public class Twr_0Base : MonoBehaviour
     {
         Shooter,
         Thrower,
-        Area
+        Area,
+        InstanceThorwer
+    }
+
+    public enum TowerBrood
+    {
+        Warrior,
+        Bowman,
+        Wizard
     }
     private void Awake()
     {
@@ -164,6 +198,7 @@ public class Twr_0Base : MonoBehaviour
                         //    Debug.LogError("Tower Max Target != AreaObject Count");
                         //}
 
+<<<<<<< Updated upstream
                         //if (_enemy != null)
                         //{
                         //    enemyTargets.Add(_enemy);
@@ -199,6 +234,25 @@ public class Twr_0Base : MonoBehaviour
                         //    }
                         //    print(colliders);
 
+=======
+                        if (_enemy != null)
+                        {
+                            enemyTargets.Add(_enemy);
+                            StartCoroutine(AreaEnemy(areaObjArray[targetsCount], collider));
+                            targetsCount++;
+                        }
+                            break;
+
+                    case TowerAttackType.InstanceThorwer:
+
+                        if (_enemy != null)
+                        {
+                            enemyTargets.Add(_enemy);
+                            gameObject.transform.LookAt(collider.transform.position);
+                            StartCoroutine(InstanceThrowObjectDelay(collider));
+                            targetsCount++;
+                        }
+>>>>>>> Stashed changes
                         break;
                 }
                
@@ -242,6 +296,17 @@ public class Twr_0Base : MonoBehaviour
     //    yield return new WaitForSeconds(towerAttackSpeed);
     //    isCoolTime = false;
     //}
+
+    IEnumerator InstanceThrowObjectDelay(Collider collider)
+    {
+        isCoolTime = true;
+        animator.SetTrigger("IdleToAttack");
+        GameObject _throwObjInstance = Instantiate(thorwObjInstance);
+        _throwObjInstance.GetComponent<ThrowObjectInstans>().GetThrowObjectInfo(collider.transform.position, throwObjSpeed, towerAttackDamage);
+        _throwObjInstance.transform.position = gameObject.transform.position;
+        yield return new WaitForSeconds(towerAttackSpeed);
+        isCoolTime = false;
+    }
 
     public void TowerUpgradeLevel()
     {
