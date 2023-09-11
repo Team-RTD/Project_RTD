@@ -27,6 +27,7 @@ public class TEST : MonoBehaviour
         {
 
             case ClickSystem.PlayerMode.Nomal:
+                Ui_Manager.instance.InfoPannelActive = true;
                 Ui_Manager.instance.InfoPannelRefresh(gameObject);
 
                 break;

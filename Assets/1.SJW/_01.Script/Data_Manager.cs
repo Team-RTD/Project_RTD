@@ -16,6 +16,8 @@ public class Data_Manager : MonoBehaviour
     public int money2 = 0;
     public int money3 = 0;
 
+    public int killcount=0;
+
     public bool isPause = false;
 
     public void DataReset()
@@ -25,7 +27,7 @@ public class Data_Manager : MonoBehaviour
         maxHp = 5;
         curHp = 5;
 
-        money1 = 300;
+        money1 = 500;
         money2 = 0;
         money3 = 0;
     }
