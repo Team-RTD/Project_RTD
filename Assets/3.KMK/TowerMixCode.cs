@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class TowerMixCode : MonoBehaviour
@@ -31,12 +33,19 @@ public class TowerMixCode : MonoBehaviour
             {
                 GameObject targetObject = hit.collider.gameObject;
                 Component targetComponent = targetObject.GetComponent<Component>();
+                
+                //---------------고칠 부분
+                Type intRank = targetComponent.GetType();
+                FieldInfo rank= intRank.GetField("towerRank");
 
+                int towerRank= (int)rank.GetValue(targetComponent);
+                Debug.Log(towerRank);
+                //---------------
                 if (targetObject != null)
                 {
-                    Debug.Log(targetComponent+"이거다.");
                     clickedTower = hit.collider.gameObject;
-                    int towerRank = (int)targetComponent.GetType().GetField("towerRank").GetValue(targetComponent);
+                    Debug.Log(clickedTower);
+                    Debug.Log(towerRank+"여기다.");
 
                     if (towerRank < 6 && towerRank >= 1)
                     {
