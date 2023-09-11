@@ -17,11 +17,13 @@ public class Ui_Manager : MonoBehaviour
     public TMP_Text money2Txt;
     public TMP_Text money3Txt;
 
+    public TMP_Text killScore;
+
     public TMP_Text upgrade_plus;
 
     public TMP_Text state;
 
-    public GameObject towerInfo;
+    public GameObject towerInfoPannel;
 
     public GameObject btnMenu;
 
@@ -39,6 +41,9 @@ public class Ui_Manager : MonoBehaviour
 
     public GameObject OptionPannel;
     GameObject lastinfoOb;
+
+    [HideInInspector]
+    public bool InfoPannelActive= false;
 
     private void Awake()
     {
@@ -66,8 +71,8 @@ public class Ui_Manager : MonoBehaviour
 
         if(UpGrade_Manager.instance.upgrade_rank != 0)
         upgrade_plus.text = "+"+ UpGrade_Manager.instance.upgrade_rank;
-
-        if(lastinfoOb != null)
+        killScore.text = "킬 스코어 : " + Data_Manager.instance.killcount;
+        if (lastinfoOb != null)
         InfoPannelRefresh(lastinfoOb);
     }
 
@@ -89,6 +94,7 @@ public class Ui_Manager : MonoBehaviour
 
         state.text = "";
         upgrade_plus.text = "";
+        killScore.text = "킬 스코어 : " + Data_Manager.instance.killcount;
         tower_portrait.color = Color.clear;
     }
 
@@ -167,6 +173,8 @@ public class Ui_Manager : MonoBehaviour
 
     public void InfoPannelRefresh(GameObject infoOb)
     {
+        towerInfoPannel.SetActive(InfoPannelActive);
+
         lastinfoOb = infoOb;
         Twr_0Base towerinfo = infoOb.gameObject.GetComponent<Twr_0Base>();
         TowerZone t_zone = towerinfo.TowerZone.GetComponent<TowerZone>();
@@ -195,7 +203,7 @@ public class Ui_Manager : MonoBehaviour
                 _towerAttackType = "즉발형";
                 break;
             case Twr_0Base.TowerAttackType.Thrower:
-                _towerAttackType = "전사형";
+                _towerAttackType = "투척형";
                 break;
         }
         tower_portrait.sprite = towerinfo.portrait;
