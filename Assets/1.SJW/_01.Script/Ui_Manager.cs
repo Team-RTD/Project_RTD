@@ -209,11 +209,11 @@ public class Ui_Manager : MonoBehaviour
         tower_portrait.sprite = towerinfo.portrait;
         tower_portrait.color = Color.white;
         tower_Name.text = towerinfo.towerName;
-        tower_rank.text = "★" + towerinfo.towerUpgradeTier;
+        tower_rank.text = "★" + towerinfo.towerRank+1;
         tower_Info.text = "타입 : " + _towerType + "/"+_towerAttackType+
-          "\n공격력 : " + towerinfo.towerAttackDamage +"(+"+UpGrade_Manager.instance.upgradePercent + "%)"+
-          "\n공격속도 : " + towerinfo.towerAttackSpeed +
-          "\n사정거리 : " + towerinfo.towerAttackRange;
+          "\n공격력 : " + towerinfo.towerAttackDamage[towerinfo.towerRank] +"(+"+UpGrade_Manager.instance.upgradePercent + "%)"+
+          "\n공격속도 : " + towerinfo.towerAttackSpeed[towerinfo.towerRank] +
+          "\n사정거리 : " + towerinfo.towerAttackRange[towerinfo.towerRank];
 
     
     }
