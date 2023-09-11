@@ -96,6 +96,7 @@ public class ClickSystem : MonoBehaviour
                                         Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
                                         Sound_Manager.instance.EffectPlay(SummonSound);
 
+                                        Tower_Manager.instance.Tower1.Add(tower1);
                                         //업그래이드 매니저 호출-------------------
                                         //UpGrade_Manager.Instance.AddTowerToList(tower1);
                                         //-------------------
