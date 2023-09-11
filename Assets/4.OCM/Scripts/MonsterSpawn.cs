@@ -43,9 +43,9 @@ public class MonsterSpawn : MonoBehaviour
     public GameObject missionMonster2;
     public GameObject missionMonster3;
 
-    public int missionCoolTime1;
-    public int missionCoolTime2;
-    public int missionCoolTime3;
+    public float missionCoolTime1;
+    public float missionCoolTime2;
+    public float missionCoolTime3;
 
     public bool missionTrigger1;
     public bool missionTrigger2;
@@ -60,6 +60,10 @@ public class MonsterSpawn : MonoBehaviour
         missionTrigger1 = true;
         missionTrigger2 = true;
         missionTrigger3 = true;
+        missionCoolTime1 = 0.0f;
+        missionCoolTime2 = 0.0f;
+        missionCoolTime3 = 0.0f;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -74,7 +78,25 @@ public class MonsterSpawn : MonoBehaviour
         
 
         //목표2: 특정시간이 지나고, 몬스터가 다 생성된 다음이고, 몬스터가 다 죽은다음에 다음스테이지로 넘어간다.
+        missionCoolTime1 += Time.deltaTime;
+        missionCoolTime2 += Time.deltaTime;
+        missionCoolTime3 += Time.deltaTime;
         currentTime += Time.deltaTime;
+        if (missionCoolTime1 > 20.0f)
+        {
+            missionTrigger1 = true;
+        }
+
+        if (missionCoolTime2 > 20.0f)
+        {
+            missionTrigger2 = true;
+        }
+
+        if (missionCoolTime3 > 20.0f)
+        {
+            missionTrigger3 = true;
+        }
+        
         if (StageManager.instance.monsterCount == 0 && nextStage == true&& currentTime > nextStageTime)
         {
             nextStage = false;
@@ -82,17 +104,17 @@ public class MonsterSpawn : MonoBehaviour
             currentTime = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z)&& missionTrigger1 == true)
         {
             StartCoroutine(PersonalMission1());
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && missionTrigger2 == true)
         {
             StartCoroutine(PersonalMission2());
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && missionTrigger3 == true)
         {
             StartCoroutine(PersonalMission3());
         }
@@ -158,6 +180,7 @@ public class MonsterSpawn : MonoBehaviour
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
         missionTrigger1 = false;
+        missionCoolTime1 = 0f;
         yield return null;
     }
 
@@ -168,7 +191,8 @@ public class MonsterSpawn : MonoBehaviour
         enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
-        missionTrigger2 = false;    
+        missionTrigger2 = false;
+        missionCoolTime2 = 0f;
         yield return null;
     }
 
@@ -179,7 +203,8 @@ public class MonsterSpawn : MonoBehaviour
         enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
-        missionTrigger3 = false;    
+        missionTrigger3 = false;
+        missionCoolTime3 = 0f;
         yield return null;
     }
 }
