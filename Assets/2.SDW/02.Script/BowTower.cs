@@ -7,8 +7,8 @@ public class BowTower : Twr_0Base
 {
     public override void TowerInfo()
     {
-        towerAttackType = TowerAttackType.InstanceThorwer;
-        towerBrood = TowerBrood.Bowman;
+        towerAttackType = TowerAttackType.Thrower;
+        towerType = TowerType.Archer;
 
         towerName = "BowTower";
         towerPrice = 100;
