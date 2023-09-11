@@ -51,8 +51,8 @@ public class MonsterSpawn : MonoBehaviour
     public bool missionTrigger2;
     public bool missionTrigger3;
 
-    // Start is called before the first frame update
-    void Start()
+
+     void Awake()
     {
         StageManager.instance.stageNum = 1;
         createTime = 0.2f;
@@ -60,6 +60,11 @@ public class MonsterSpawn : MonoBehaviour
         missionTrigger1 = true;
         missionTrigger2 = true;
         missionTrigger3 = true;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
 
