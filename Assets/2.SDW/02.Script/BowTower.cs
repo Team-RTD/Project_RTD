@@ -12,14 +12,14 @@ public class BowTower : Twr_0Base
 
         towerName = "BowTower";
         towerPrice = 100;
-        towerAttackDamage = 50f;
-        towerAttackSpeed = 1.5f;
-        towerAttackRange = 10f;
+        float[] towerAttackDamage = { 50f, 100f, 200f, 400f, 800f, 800f };
+        float[] towerAttackSpeed = { 2f, 2f, 1.7f, 1.3f, 1f, 0.5f };
+        float[] towerAttackRange = { 10f, 10f, 10f, 10f, 10f, 10f };
 
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
 
-        towerMaxTarget = 1;
+        float[] towerMaxTarget = { 1, 1, 1, 1, 1, 2 };
 
         throwObjSpeed = 4f;
 

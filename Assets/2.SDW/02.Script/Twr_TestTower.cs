@@ -12,14 +12,14 @@ public class Twr_TestTower : Twr_0Base
 
         towerName = "폭발술사";
         towerPrice = 100;
-        towerAttackDamage = 200f;
-        towerAttackSpeed = 1f;
-        towerAttackRange = 10f;
+        float[] towerAttackDamage = { 30f, 40f, 80f, 100f, 150f, 200f };
+        float[] towerAttackSpeed = { 1f, 1f, 1f, 1f, 1f, 1f };
+        float[] towerAttackRange = { 10f, 10f, 10f, 10f, 10f, 25f };
 
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
 
-        towerMaxTarget = 1;
+        float[] towerMaxTarget = { 1, 2, 3, 4, 5, 8 };
 
         //업그래이드 단계에 따른 공격력 계산식-----------------
         damage = towerAttackDamage + towerAttackDamage * UpGrade_Manager.Instance.upgradePercent * 0.01f;

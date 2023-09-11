@@ -17,14 +17,14 @@ public class Twr_0Base : MonoBehaviour
     public TowerType towerType;
     public string towerName;
     public int towerPrice;
-    public float towerAttackDamage;
-    public float towerAttackSpeed;
-    public float towerAttackRange;
+
+    public float[] towerAttackDamage = new float[6];
+    public float[] towerAttackSpeed = new float[6];
+    public float[] towerAttackRange = new float[6];
+    public int[] towerMaxTarget = new int[6];
 
     public int towerUpgradeLevel;
     public int towerUpgradeTier;
-
-    public int towerMaxTarget;
     // Must Input --
 
 
@@ -87,14 +87,11 @@ public class Twr_0Base : MonoBehaviour
 
         towerName = "Null";
         towerPrice = 0;
-        towerAttackDamage = 0f;
-        towerAttackSpeed = 0f;
-        towerAttackRange = 0f;
 
         towerUpgradeLevel = 0;
         towerUpgradeTier = 0;
 
-        towerMaxTarget = 0;
+        towerRank = 0;
     }
 
     public enum TowerAttackType
@@ -143,7 +140,7 @@ public class Twr_0Base : MonoBehaviour
 
     public void Detecting()
     {
-        Collider[] colliders = Physics.OverlapSphere(towerPos, towerAttackRange, enemyLayer);
+        Collider[] colliders = Physics.OverlapSphere(towerPos, towerAttackRange[towerRank], enemyLayer);
         enemyTargets.Clear();
 
         if (colliders.Length != 0)
@@ -151,7 +148,7 @@ public class Twr_0Base : MonoBehaviour
 
             foreach (Collider collider in colliders)
             {
-                if (targetsCount >= towerMaxTarget) { break; }
+                if (targetsCount >= towerMaxTarget[towerRank]) { break; }
 
                 MonsterMove _enemy = collider.GetComponent<MonsterMove>();
 
@@ -169,9 +166,9 @@ public class Twr_0Base : MonoBehaviour
 
                     case TowerAttackType.Thrower:
 
-                        if (towerMaxTarget != throwObjects.Count)
+                        if (towerMaxTarget[towerRank] > throwObjects.Count)
                         {
-                            Debug.LogError("Tower Max Target != ThrowObject Count");
+                            Debug.LogError("Tower Max Target > ThrowObject Count");
                         }
 
                         if (_enemy != null)
@@ -186,9 +183,9 @@ public class Twr_0Base : MonoBehaviour
 
                     case TowerAttackType.Area:
 
-                        if (towerMaxTarget != areaObjects.Count)
+                        if (towerMaxTarget[towerRank] > areaObjects.Count)
                         {
-                            Debug.LogError("Tower Max Target != AreaObject Count");
+                            Debug.LogError("Tower Max Target > AreaObject Count");
                         }
 
                         if (_enemy != null)
@@ -215,7 +212,7 @@ public class Twr_0Base : MonoBehaviour
 
         targetsCount = targetsCount + 1;
         _enemy.GetComponent<MonsterMove>().DamagedAction(damage);
-        yield return new WaitForSeconds(towerAttackSpeed);
+        yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         targetsCount = 0;
         isCoolTime = false;
     }
@@ -226,7 +223,7 @@ public class Twr_0Base : MonoBehaviour
         throwObject.transform.position = gameObject.transform.position;
         throwObject.transform.LookAt(collider.transform); //0907
         throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, damage, throwObjSpeed);
-        yield return new WaitForSeconds(towerAttackSpeed);
+        yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
     }
 
@@ -238,17 +235,7 @@ public class Twr_0Base : MonoBehaviour
 
         gameObject.transform.LookAt(collider.transform.position);
         areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
-        yield return new WaitForSeconds(towerAttackSpeed);
+        yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
-    }
-
-    public void TowerUpgradeLevel()
-    {
-        towerAttackDamage = towerAttackDamage + ((towerAttackDamage / 100) * upgradePercent);
-    }
-
-    public void TowerTierLevel()
-    {
-
     }
 }

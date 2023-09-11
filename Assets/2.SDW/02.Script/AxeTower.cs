@@ -11,14 +11,14 @@ public class AxeTower : Twr_0Base
 
         towerName = "±¤Àü»ç";
         towerPrice = 100;
-        towerAttackDamage = 80f;
-        towerAttackSpeed = 3f;
-        towerAttackRange = 3f;
+        float[] towerAttackDamage = { 100f, 200f, 400f, 600f, 800f, 1600f };
+        float[] towerAttackSpeed = { 4f,4f,4f,4f,4f,1.5f};
+        float[] towerAttackRange = { 3f, 3f, 3f, 3f, 3f, 3f };
 
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
 
-        towerMaxTarget = 1;
+        float[] towerMaxTarget = { 1, 1, 1, 2, 3, 3 };
 
         areaDuration = 0.6f;
         areaAttDelay = 1f;
