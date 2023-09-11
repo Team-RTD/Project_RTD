@@ -26,37 +26,70 @@ public class MonsterMove : MonoBehaviour
     //필요속성1: 특정좌표,이동속도
     public float monsterSpeed;
     public Transform[] Pos;
-    int posloc = 0;
+    int posloc;
     public Transform startpos;
     
 
     //필요속성2: EnemyHp
     public float hp ;
-    
+    public int monsterStageNum;
 
 
     //필요속성3: 애니메이터
     public bool isDead = false;
     Animator animator;
 
+    public MonsterType monsterType = MonsterType.normal ;
+
+    public enum MonsterType
+    {
+        normal,
+        mission
+    }
+
+    public void SetEnum()
+    {
+        monsterType = MonsterType.mission ;
+    }
+    public void HpSett()
+    {
+        if (monsterType == MonsterType.normal)
+        {
+            if (StageManager.instance.stageNum % 10 == 0)
+            {
+                hp = StageManager.instance.monsterMaxHp * 10;
+            }
+            else
+            {
+                hp = StageManager.instance.monsterMaxHp;
+            }
+        }
+        else 
+        {
+            if (StageManager.instance.missionNum == 1)
+                hp = StageManager.instance.missionMonster1Hp;
+            else if (StageManager.instance.missionNum == 2)
+                hp = StageManager.instance.missionMonster2Hp;
+            else
+                hp = StageManager.instance.missionMonster3Hp;
+        }
+        
+    }
 
     public Sprite portrait;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         monsterSpeed = 15.0f;
+        posloc = 0;
+        startpos = transform;
+        isDead = false;
+        monsterStageNum = StageManager.instance.stageNum;
     }
     void Start()
     {
-        //목표2: Enemy체력 구현
-        if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum>1)
-        { 
-            hp = StageManager.instance.monsterMaxHp*10; 
-        }
-        else
-        {
-            hp = StageManager.instance.monsterMaxHp;
-        }
+        HpSett();
+
         
         Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
         Pos = new Transform[ArrowPosParent.childCount];
@@ -131,10 +164,32 @@ public class MonsterMove : MonoBehaviour
 
         if (hp <= 0)
         {
-            Data_Manager.instance.money1++;
+            if (monsterType == MonsterType.normal)
+            {
+                if (StageManager.instance.stageNum % 10 == 0)
+                {
+                    Data_Manager.instance.money3++;
+                    Data_Manager.instance.curHp++;
+                }
+                else
+                {
+                    Data_Manager.instance.money1 += 5;
+                }
+            }
+            else
+            {
+                if (StageManager.instance.missionNum == 1)
+                    Data_Manager.instance.money1 += 100;
+                else if (StageManager.instance.missionNum == 2)
+                    Data_Manager.instance.money1 += 200;
+                else
+                    Data_Manager.instance.money1 += 300;
+            }
+            Ui_Manager.instance.UiRefresh();
             StageManager.instance.monsterCount--;
             StartCoroutine(DeadAction());
         }
+        
     }
     
 IEnumerator DeadAction()    
@@ -146,8 +201,8 @@ IEnumerator DeadAction()
         monsterSpeed = 0;
         yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
-        //목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
-        Ui_Manager.instance.UiRefresh();
+        ////목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
+        //Ui_Manager.instance.UiRefresh();
 
     }
 }

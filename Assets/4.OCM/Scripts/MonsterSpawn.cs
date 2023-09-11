@@ -51,6 +51,7 @@ public class MonsterSpawn : MonoBehaviour
     public bool missionTrigger2;
     public bool missionTrigger3;
 
+    public int missionNum;
 
      void Awake()
     {
@@ -100,6 +101,11 @@ public class MonsterSpawn : MonoBehaviour
         if (StageManager.instance.monsterCount == 0 && nextStage == true&& currentTime > nextStageTime)
         {
             nextStage = false;
+            if (StageManager.instance.stageNum > 1)
+            {
+                Data_Manager.instance.money1 += 200;
+            }
+            
             StartCoroutine(SpawnEnemy(StageManager.instance.stageNum));
             currentTime = 0;
         }
@@ -107,16 +113,19 @@ public class MonsterSpawn : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z)&& missionTrigger1 == true)
         {
             StartCoroutine(PersonalMission1());
+            StageManager.instance.missionNum = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.X) && missionTrigger2 == true)
         {
             StartCoroutine(PersonalMission2());
+            StageManager.instance.missionNum = 2;
         }
 
         if (Input.GetKeyDown(KeyCode.C) && missionTrigger3 == true)
         {
             StartCoroutine(PersonalMission3());
+            StageManager.instance.missionNum = 3;
         }
         
 
@@ -174,11 +183,16 @@ public class MonsterSpawn : MonoBehaviour
 
     IEnumerator PersonalMission1()
     {
-        GameObject enemyGO = Instantiate(missionMonster1);
-        enemyGO.transform.position = transform.position;
-        enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //StageManager.instance.missionNum = 1;
+        GameObject enemyGO = Instantiate(missionMonster1, transform.position, Quaternion.Euler(0, 180, 0));
+        enemyGO.GetComponent<MonsterMove>().SetEnum();
+
+
+
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+
+
         missionTrigger1 = false;
         missionCoolTime1 = 0f;
         yield return null;
@@ -186,11 +200,14 @@ public class MonsterSpawn : MonoBehaviour
 
     IEnumerator PersonalMission2()
     {
-        GameObject enemyGO = Instantiate(missionMonster2);
-        enemyGO.transform.position = transform.position;
-        enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //StageManager.instance.missionNum = 2;
+        GameObject enemyGO = Instantiate(missionMonster2, transform.position, Quaternion.Euler(0, 180, 0));
+        enemyGO.GetComponent<MonsterMove>().SetEnum();
+
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+
+
         missionTrigger2 = false;
         missionCoolTime2 = 0f;
         yield return null;
@@ -198,11 +215,15 @@ public class MonsterSpawn : MonoBehaviour
 
     IEnumerator PersonalMission3()
     {
-        GameObject enemyGO = Instantiate(missionMonster3);
-        enemyGO.transform.position = transform.position;
-        enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //StageManager.instance.missionNum = 3;
+        GameObject enemyGO = Instantiate(missionMonster3, transform.position, Quaternion.Euler(0, 180, 0));
+        enemyGO.GetComponent<MonsterMove>().SetEnum();
+
+
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+
+
         missionTrigger3 = false;
         missionCoolTime3 = 0f;
         yield return null;
