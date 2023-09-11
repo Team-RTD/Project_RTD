@@ -2040,7 +2040,7 @@ Transform:
   m_Children:
   - {fileID: 149688679845941223}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1436519819352068479
 MonoBehaviour:
@@ -2057,18 +2057,18 @@ MonoBehaviour:
   portrait: {fileID: 0}
   TowerZone: {fileID: 0}
   towerAttackType: 0
-  towerBrood: 0
+  towerType: 0
   towerName: 
   towerPrice: 0
-  towerAttackDamage: 0
-  towerAttackSpeed: 0
-  towerAttackRange: 0
+  towerAttackDamage: []
+  towerAttackSpeed: []
+  towerAttackRange: []
+  towerMaxTarget: 
   towerUpgradeLevel: 0
   towerUpgradeTier: 0
-  towerMaxTarget: 0
-  upgradePercent: 10
+  towerRank: 0
   shooterParticle: {fileID: 0}
-  thorwObjInstance: {fileID: 4865309214770636011, guid: 7072f78d5433f11419d01faa01e6b37d, type: 3}
+  thorwObjInstance: {fileID: 6319556623561888377, guid: fa5aa09b3101c4b4f977545aa0e28396, type: 3}
 --- !u!1 &5498343318042961372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,7 +3655,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9123962447476108663}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cdbfc6c2aec83a41823be033c18ed4c, type: 3}
   m_Name: 

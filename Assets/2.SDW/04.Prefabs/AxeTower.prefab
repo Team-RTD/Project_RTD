@@ -54,12 +54,12 @@ MonoBehaviour:
   towerType: 0
   towerName: 
   towerPrice: 0
-  towerAttackDamage: 0
-  towerAttackSpeed: 0
-  towerAttackRange: 0
+  towerAttackDamage: []
+  towerAttackSpeed: []
+  towerAttackRange: []
+  towerMaxTarget: 
   towerUpgradeLevel: 0
   towerUpgradeTier: 0
-  towerMaxTarget: 0
   towerRank: 0
   shooterParticle: {fileID: 4728198263476761539}
 --- !u!1 &1338587691946109154
@@ -82,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2774845481144397846
 Transform:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7958974054476414150
 Transform:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &899430595019645094
 Transform:
   m_ObjectHideFlags: 0

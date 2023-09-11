@@ -3307,7 +3307,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6250344466263104177}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6929552bb9bf08a408c0d687c84d3abe, type: 3}
   m_Name: 
@@ -3327,15 +3327,34 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: d314bcef757b6734d81210fa84f48dd4, type: 3}
   TowerZone: {fileID: 0}
   towerAttackType: 0
+  towerType: 0
   towerName: 
   towerPrice: 0
-  towerAttackDamage: 0
-  towerAttackSpeed: 0
-  towerAttackRange: 0
+  towerAttackDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  towerAttackSpeed:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  towerAttackRange:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  towerMaxTarget: 000000000000000000000000000000000000000000000000
   towerUpgradeLevel: 0
   towerUpgradeTier: 0
-  towerMaxTarget: 0
-  upgradePercent: 10
+  towerRank: 0
   shooterParticle: {fileID: 1352952055292810, guid: 2b7edea1b5126a0488d5790ed0ba2038, type: 3}
 --- !u!1 &6265182735207160270
 GameObject:

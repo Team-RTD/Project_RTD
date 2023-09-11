@@ -12,7 +12,6 @@ public class ThrowObjectInstans : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, destroyTime);
-        gameObject.transform.LookAt(dir);
     }
 
     public void GetThrowObjectInfo(Vector3 _dir, float _objSpeed,float _damage)
@@ -20,7 +19,7 @@ public class ThrowObjectInstans : MonoBehaviour
         dir = _dir;
         objSpeed = _objSpeed;
         damage = _damage;
-        gameObject.transform.LookAt(_dir);
+        gameObject.transform.LookAt(dir);
     }
     void Update()
     {
