@@ -23613,12 +23613,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 781127073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a853d3ca62596144883278aa436fe79, type: 3}
+  m_Script: {fileID: 11500000, guid: f786b7cc581349e479f3d2afca475357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradePercent: 0
   upgrade_rank: 0
-  TowerType1: []
+  warriorUpgrade: 0
+  mageUpgrade: 0
+  archerUpgrade: 0
+  upgradeType: 0
 --- !u!1001 &781950175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32726,6 +32729,7 @@ MonoBehaviour:
   test: {fileID: 0}
   towerBuildBtn: {fileID: 71814205}
   towerSellBtn: {fileID: 1241905344}
+  towerMixBtn: {fileID: 0}
   SaveColor:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
@@ -68882,7 +68886,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 781127075}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UpGrade_Manager, Assembly-CSharp
         m_MethodName: Upgrade
         m_Mode: 1

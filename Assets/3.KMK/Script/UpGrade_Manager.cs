@@ -25,17 +25,6 @@ public class UpGrade_Manager : MonoBehaviour
 
     public UpgradeType upgradeType = UpgradeType.W;
 
-    public static UpGrade_Manager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
 
     public void Awake()
     {
@@ -52,10 +41,7 @@ public class UpGrade_Manager : MonoBehaviour
         Debug.Log("Upgrade!");        
         upgrade_rank++;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
+ 
 
                 switch (upgradeType)
                 {
@@ -74,9 +60,7 @@ public class UpGrade_Manager : MonoBehaviour
 
                         break;
                 }
-            }
-        }
-        
+
 
 
         Ui_Manager.instance.UiRefresh();

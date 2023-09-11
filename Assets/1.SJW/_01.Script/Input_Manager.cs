@@ -39,7 +39,7 @@ public class Input_Manager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ClickSystem.instance.TowerMixBtn();
+            //ClickSystem.instance.TowerMixBtn();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))

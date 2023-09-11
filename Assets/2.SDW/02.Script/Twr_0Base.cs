@@ -233,6 +233,7 @@ public class Twr_0Base : MonoBehaviour
         Destroy(particleInstance, x); //0907
 
         targetsCount = targetsCount + 1;
+        DamageSetting();
         _enemy.GetComponent<MonsterMove>().DamagedAction(damage);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         targetsCount = 0;
@@ -244,6 +245,7 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = true;
         throwObject.transform.position = gameObject.transform.position;
         throwObject.transform.LookAt(collider.transform); //0907
+        DamageSetting();
         throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, damage, throwObjSpeed);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
@@ -256,6 +258,7 @@ public class Twr_0Base : MonoBehaviour
         animator.SetTrigger("IdleToAttack"); //0907
 
         gameObject.transform.LookAt(collider.transform.position);
+        DamageSetting();
         areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
@@ -270,5 +273,26 @@ public class Twr_0Base : MonoBehaviour
         _throwObjInstance.transform.position = gameObject.transform.position;
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
+    }
+
+
+    public void DamageSetting()
+    {
+
+        switch (towerType)
+        {
+            case TowerType.Warrior:
+                damage = towerAttackDamage[towerRank] + towerAttackDamage[towerRank] * 0.01f * UpGrade_Manager.instance.warriorUpgrade;
+                break;
+
+            case TowerType.Mage:
+                damage = towerAttackDamage[towerRank] + towerAttackDamage[towerRank] * 0.01f * UpGrade_Manager.instance.mageUpgrade;
+                break;
+
+            case TowerType.Archer:
+                damage = towerAttackDamage[towerRank] + towerAttackDamage[towerRank] * 0.01f * UpGrade_Manager.instance.archerUpgrade;
+                break;
+        }
+
     }
 }
