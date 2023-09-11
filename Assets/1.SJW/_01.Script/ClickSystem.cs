@@ -77,40 +77,7 @@ public class ClickSystem : MonoBehaviour
                                      GameObject hitObject = hitob.transform.gameObject;
                                      if (hitObject.tag == "TowerZone")
                                      {
-                                        TowerZone t_zone = hitObject.GetComponent<TowerZone>();
-                                        if(!t_zone.towerOn)
-                                        { 
-                                         Material mat = hitObject.GetComponent<Renderer>().material;
-                                        t_zone.towerOn = true;
-                                        mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
-
-                                        int random = Random.Range(0,Tower_Manager.instance.Towers.Length);
-
-                                        // GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
-                                        GameObject tower1 = Instantiate(Tower_Manager.instance.Towers[random], hitObject.transform.position, Quaternion.Euler(Vector3.zero));
-                                        t_zone.Tower = tower1; //타워존에 타워 오브젝트 할당
-                                        tower1.GetComponent<Twr_0Base>().TowerZone = t_zone.gameObject;
-                                        GameObject summoneffect = Instantiate(SummonEffect, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
-                                        Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
-                                        Sound_Manager.instance.EffectPlay(SummonSound);
-
-                                        //업그래이드 매니저 호출-------------------
-                                        UpGrade_Manager.Instance.AddTowerToList(tower1);
-                                        //-------------------
-
-
-                                        Outline charliner =  tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
-                                        charliner.OutlineColor = Color.red;
-                                        charliner.OutlineWidth = 2;
-                                        charliner.enabled = false;
-
-                                        hitObject.SetActive(false);
-                                        //hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_EmisColor");
-                                        //print(zone.GetComponent<Renderer>().material);
-                                        //print(mat.enabledKeywords.ToString());
-                                        //print(mat.shader.GetPropertyName(0));
-                                        //print(mat.shader.GetPropertyName(1));
-                                        }
+                                     Tower_Manager.instance.TowerInstance(hitObject, 1);
                                      }
                                      else
                                      {

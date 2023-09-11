@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44463408, g: 0.4941516, b: 0.5734051, a: 1}
+  m_IndirectSpecularColor: {r: 0.44463423, g: 0.49415213, b: 0.57340556, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -43405,6 +43405,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906b52ac182b0d14ab982c0b0371c5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SummonEffect: {fileID: 1159970587636746, guid: 73efe25d5197ab640a215fe23041a77a, type: 3}
+  SummonSound: {fileID: 8300000, guid: 8eeba3153d0e9fd44a2237e93777c3fd, type: 3}
+  Tower1: []
+  Tower2: []
+  Tower3: []
+  Tower4: []
+  Tower5: []
+  Tower6: []
   Towers:
   - {fileID: 6250344466263104177, guid: f04eb290426215c478ec529f5c3aa714, type: 3}
   - {fileID: 832919442165101662, guid: a1b4b01f66470d34984e9e634f6a4ff0, type: 3}

@@ -31,17 +31,7 @@ public class TEST : MonoBehaviour
 
                 break;
             case ClickSystem.PlayerMode.TowerSell: //타워 판매 구현
-                 towerinfo = gameObject.GetComponent<Twr_0Base>();
-                 t_zone = towerinfo.TowerZone.GetComponent<TowerZone>();
-                Material mat = t_zone.gameObject.GetComponent<Renderer>().material;
-                t_zone.towerOn = false;
-                mat.SetColor("_EmisColor", t_zone.summonZoneColor[0]);
-                Destroy(t_zone.Tower);
-                t_zone.gameObject.SetActive(false);
-
-                Data_Manager.instance.money1 += 75;
-                Ui_Manager.instance.UiRefresh();
-
+                Tower_Manager.instance.TowerSell(gameObject,true);
                 break;
             case ClickSystem.PlayerMode.TowerBuild:
                 
