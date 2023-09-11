@@ -6,7 +6,6 @@ public class TowerMixCode : MonoBehaviour
 {
     private Camera cam;
     private List<GameObject> foundObjects = new List<GameObject>();
-    private MixTowerManager mixTowerManager;
     public int towerRank;
 
     public void Start()
@@ -94,35 +93,39 @@ public class TowerMixCode : MonoBehaviour
 
         if (towerRank == 1)
         {
-            List<GameObject> rank2tower = mixTowerManager.rank2Tower;
-
-            int randomeIndex = Random.Range(0, rank2tower.Count);
-            GameObject instantiateTower = rank2tower[randomeIndex];
-
-            Vector3 spwan = foundObjects[1].transform.position;
-            GameObject newTower = Instantiate(instantiateTower, spwan, Quaternion.identity);
-
-            Destroy(foundObjects[0]);
+            //tower1.towerRrank;
             Destroy(foundObjects[1]);
 
             foundObjects.Clear();
         }
+
         else if (towerRank == 2)
         {
-            List<GameObject> rank3tower = mixTowerManager.rank3Tower;
-
-            int randomeIndex = Random.Range(0, rank3tower.Count);
-            GameObject instantiateTower = rank3tower[randomeIndex];
-
-            Vector3 spwan = foundObjects[1].transform.position;
-            GameObject newTower = Instantiate(instantiateTower, spwan, Quaternion.identity);
-
-            Destroy(foundObjects[0]);
             Destroy(foundObjects[1]);
 
             foundObjects.Clear();
         }
 
+        else if (towerRank == 3)
+        {
+            Destroy(foundObjects[1]);
+
+            foundObjects.Clear();
+        }
+
+        else if (towerRank == 4)
+        {
+            Destroy(foundObjects[1]);
+
+            foundObjects.Clear();
+        }
+
+        else if (towerRank == 5)
+        {
+            Destroy(foundObjects[1]);
+
+            foundObjects.Clear();
+        }
     }
 }
 

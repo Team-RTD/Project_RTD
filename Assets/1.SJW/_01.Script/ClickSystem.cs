@@ -32,7 +32,6 @@ public class ClickSystem : MonoBehaviour
     public GameObject[] towerZone;
 
     private List<GameObject> foundObjects = new List<GameObject>();
-    private MixTowerManager mixTowerManager;
     public int towerRank;
 
     private void Awake()
@@ -131,71 +130,7 @@ public class ClickSystem : MonoBehaviour
 
                     case PlayerMode.TowerMix:
 
-                        RaycastHit hit1;
-                        Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
-
-                        if (Physics.Raycast(ray1, out hit1))
-                        {
-
-                            GameObject towerObject = hit1.collider.gameObject;
-
-                            Component[] clickedObject = towerObject.GetComponents<Component>();
-
-                            foreach (Component component in clickedObject)
-                            {
-                                if (component.GetType().GetField("towerRank") != null)
-                                {
-                                    //가져온 랭크를 int 값으로 변환하는 코드, 나중에 타워를 생성할 때 참고함.
-                                    int towerRank = (int)component.GetType().GetField("towerRank").GetValue(component);
-
-                                    //타워의 등급을 최대 3단계라고 봤을때 3단계의 타워는 합성이 불가능하게 설정.
-                                    if (towerRank != 3)
-                                    {
-                                        //이미 클릭한 오브젝트가 있을 경우.
-                                        if (foundObjects != null)
-                                        {
-                                            if (foundObjects.Count < 2)
-                                            {
-                                                //클릭한 데이터가 이미 저장되어 있는 정보가 아니라면 이행.
-                                                if (!foundObjects.Contains(towerObject))
-                                                {
-                                                    foundObjects.Add(towerObject);
-                                                }
-                                                else
-                                                {
-                                                    print("다른 타워를 선택해야 합니다");
-                                                    foundObjects.Clear();
-                                                }
-                                            }
-                                            // 이미 선택된 오브젝트가 있을 경우, 두 오브젝트를 비교하여 조건에 맞는지 확인합니다.
-                                            if (foundObjects[0] == foundObjects[1])
-                                            {
-                                                //타워 합성 실시
-                                                TowerMixFountion();
-                                                foundObjects.Clear();
-                                            }
-                                            else
-                                            {
-                                                print("같은 종류의 타워만 합성이 가능합니다.");
-                                                foundObjects.Clear();
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        print("해당 타워는 합성이 불가능 합니다.");
-                                        clickedObject = new Component[0];
-
-                                    }
-
-                                    break;
-                                }
-                            }
-
-
-                        }
-
-
+                        
                         break;
                 }
             }
@@ -401,30 +336,12 @@ public class ClickSystem : MonoBehaviour
 
         if (towerRank == 1)
         {
-            List<GameObject> rank2tower = mixTowerManager.rank2Tower;
-
-            int randomeIndex = Random.Range(0, rank2tower.Count);
-            GameObject instantiateTower = rank2tower[randomeIndex];
-
-            Vector3 spwan = foundObjects[1].transform.position;
-            GameObject newTower = Instantiate(instantiateTower, spwan, Quaternion.identity);
-
-            Destroy(foundObjects[0]);
             Destroy(foundObjects[1]);
 
             foundObjects.Clear();
         }
         else if (towerRank == 2)
         {
-            List<GameObject> rank3tower = mixTowerManager.rank3Tower;
-
-            int randomeIndex = Random.Range(0, rank3tower.Count);
-            GameObject instantiateTower = rank3tower[randomeIndex];
-
-            Vector3 spwan = foundObjects[1].transform.position;
-            GameObject newTower = Instantiate(instantiateTower, spwan, Quaternion.identity);
-
-            Destroy(foundObjects[0]);
             Destroy(foundObjects[1]);
 
             foundObjects.Clear();
