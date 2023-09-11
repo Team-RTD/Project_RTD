@@ -31,8 +31,7 @@ public class ClickSystem : MonoBehaviour
 
     public GameObject[] towerZone;
 
-    private List<GameObject> foundObjects = new List<GameObject>();
-    public int towerRank;
+
 
     private void Awake()
     {
@@ -61,81 +60,44 @@ public class ClickSystem : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
 
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 switch (playerMode)
-                {
-                    case PlayerMode.TowerBuild://타워건설모드에서 클릭 시
+                    { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
 
-                        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                        hit = Physics.RaycastAll(ray, 100f);
-                        if (hit != null)
-                        {
-                            foreach (RaycastHit hitob in hit)
-                            {
-                                GameObject hitObject = hitob.transform.gameObject;
-                                if (hitObject.tag == "TowerZone")
+                         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                         hit = Physics.RaycastAll(ray, 100f);
+                         if (hit != null)
+                         {
+                                foreach (RaycastHit hitob in hit)
                                 {
-                                    TowerZone t_zone = hitObject.GetComponent<TowerZone>();
-                                    if (!t_zone.towerOn)
-                                    {
-                                        Material mat = hitObject.GetComponent<Renderer>().material;
-                                        t_zone.towerOn = true;
-                                        mat.SetColor("_EmisColor", t_zone.summonZoneColor[1]);
+                                     GameObject hitObject = hitob.transform.gameObject;
+                                     if (hitObject.tag == "TowerZone")
+                                     {
+                                     Tower_Manager.instance.TowerInstance(hitObject, 1);
+                                     }
+                                     else
+                                     {
+                                         print("렌더러 없음");
+                                     }
 
-                                        int random = Random.Range(0, Tower_Manager.instance.Towers.Length);
-
-                                        // GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
-                                        GameObject tower1 = Instantiate(Tower_Manager.instance.Towers[random], hitObject.transform.position, Quaternion.Euler(Vector3.zero));
-                                        t_zone.Tower = tower1; //타워존에 타워 오브젝트 할당
-                                        tower1.GetComponent<Twr_0Base>().TowerZone = t_zone.gameObject;
-                                        GameObject summoneffect = Instantiate(SummonEffect, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
-                                        Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
-                                        Sound_Manager.instance.EffectPlay(SummonSound);
-
-                                        Tower_Manager.instance.Tower1.Add(tower1);
-                                        //업그래이드 매니저 호출-------------------
-                                        //UpGrade_Manager.Instance.AddTowerToList(tower1);
-                                        //-------------------
-
-
-                                        Outline charliner = tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
-                                        charliner.OutlineColor = Color.red;
-                                        charliner.OutlineWidth = 2;
-                                        charliner.enabled = false;
-
-                                        hitObject.SetActive(false);
-                                        //hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_EmisColor");
-                                        //print(zone.GetComponent<Renderer>().material);
-                                        //print(mat.enabledKeywords.ToString());
-                                        //print(mat.shader.GetPropertyName(0));
-                                        //print(mat.shader.GetPropertyName(1));
-                                    }
                                 }
-                                else
-                                {
-                                    print("렌더러 없음");
-                                }
-
-                            }
-                        }
+                          }
                         break;
 
-                    case PlayerMode.TowerSell:
+                      case PlayerMode.TowerSell :
 
 
                         break;
+                     }
 
-                    case PlayerMode.TowerMix:
-
-                        
-                        break;
-                }
+               
             }
         }
+
 
 
 
@@ -238,47 +200,6 @@ public class ClickSystem : MonoBehaviour
         }
     }
 
-    public void TowerMixBtn()
-    {
-        if (playerMode != PlayerMode.TowerMix)
-        {
-            playerMode = PlayerMode.TowerMix;
-            Ui_Manager.instance.state.text = "합성 모드";
-            BtnColorReset();
-            MixBtnDark();
-
-            foreach (GameObject zone in towerZone)
-            {
-                if (!zone.GetComponent<TowerZone>().towerOn)
-                {
-                    zone.SetActive(false);
-                }
-                else
-                {
-                    zone.SetActive(true);
-                }
-            }
-        }
-        else
-        {
-            playerMode = PlayerMode.Nomal;
-            Ui_Manager.instance.state.text = "";
-            BtnColorReset();
-            foreach (GameObject zone in towerZone)
-            {
-                if (!zone.GetComponent<TowerZone>().towerOn)
-                {
-                    zone.SetActive(false);
-                }
-                else
-                {
-                    zone.SetActive(true);
-                }
-            }
-
-        }
-    }
-
     public void BtnColorReset()
     {
         Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
@@ -290,12 +211,6 @@ public class ClickSystem : MonoBehaviour
         
 
         imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
-        for (int i = 0; i < imgs.Length; i++)
-        {
-            imgs[i].color = Input_Manager.instance.SaveColor[i];
-        }
-
-        imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
         for (int i = 0; i < imgs.Length; i++)
         {
             imgs[i].color = Input_Manager.instance.SaveColor[i];
@@ -320,33 +235,5 @@ public class ClickSystem : MonoBehaviour
         }
     }
 
-    public void MixBtnDark()
-    {
-        Image[] imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
-        foreach (Image img in imgs)
-        {
-            img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
-        }
-    }
 
-    public void TowerMixFountion()
-    {
-        // 타워 합성 로직 구현
-        GameObject tower1 = foundObjects[0];
-        GameObject tower2 = foundObjects[1];
-
-        if (towerRank == 1)
-        {
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-        else if (towerRank == 2)
-        {
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-
-    }
 }
