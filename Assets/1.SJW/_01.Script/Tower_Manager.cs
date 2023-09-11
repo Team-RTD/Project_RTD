@@ -75,10 +75,7 @@ public class Tower_Manager : MonoBehaviour
                     case 6:
                     Tower6.Add(tower1);
                     break;
-            }
-            //업그래이드 매니저 호출-------------------
-            UpGrade_Manager.Instance.AddTowerToList(tower1);
-            //-------------------
+            }           
 
 
             Outline charliner = tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가

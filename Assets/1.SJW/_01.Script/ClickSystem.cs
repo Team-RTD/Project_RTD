@@ -200,6 +200,47 @@ public class ClickSystem : MonoBehaviour
         }
     }
 
+    public void TowerMixBtn()
+    {
+        if (playerMode != PlayerMode.TowerMix)
+        {
+            playerMode = PlayerMode.TowerMix;
+            Ui_Manager.instance.state.text = "판매 모드";
+            BtnColorReset();
+            MixBtnDark();
+
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            playerMode = PlayerMode.Nomal;
+            Ui_Manager.instance.state.text = "";
+            BtnColorReset();
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+
+        }
+    }
+
     public void BtnColorReset()
     {
         Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
@@ -227,6 +268,14 @@ public class ClickSystem : MonoBehaviour
         }
     }
     public void SellBtnDark()
+    {
+        Image[] imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
+        foreach (Image img in imgs)
+        {
+            img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);
+        }
+    }
+    public void MixBtnDark()
     {
         Image[] imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
         foreach (Image img in imgs)

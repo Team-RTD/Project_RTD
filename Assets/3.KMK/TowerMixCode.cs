@@ -5,11 +5,14 @@ using UnityEngine;
 public class TowerMixCode : MonoBehaviour
 {
     private Camera cam;
-    private List<GameObject> foundObjects = new List<GameObject>();
     public int towerRank;
+    public string componentName;
+    public GameObject towerzone;
+    public GameObject clickedTower;
 
     public void Start()
     {
+        Tower_Manager tower_Manager = Tower_Manager.instance;
         cam = Camera.main;
     }
 
@@ -20,114 +23,50 @@ public class TowerMixCode : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject towerObject = hit.collider.gameObject;
+                Component targetComponent = hit.collider.GetComponent(componentName);
 
-                //레이에 닿은 모든 오브젝트를 저장한다
-                Component[] clickedObject = towerObject.GetComponents<Component>();
-
-                //저장된 오브젝트 중 랭크를 가진 타워만을 찾는다.
-                foreach (Component component in clickedObject)
+                if (targetComponent != null)
                 {
-                    if (component.GetType().GetField("towerRank") != null)
-                    {
-                        //가져온 랭크를 int 값으로 변환하는 코드, 나중에 타워를 생성할 때 참고함.
-                        int towerRank = (int)component.GetType().GetField("towerRank").GetValue(component);
+                    clickedTower = hit.collider.gameObject;
+                    int towerRank = (int)targetComponent.GetType().GetField("towerRank").GetValue(targetComponent);
 
-                        //타워의 등급을 최대 3단계라고 봤을때 3단계의 타워는 합성이 불가능하게 설정.
-                        if (towerRank != 3)
+                    string componentName = targetComponent.name;
+                    Debug.Log(targetComponent.name);
+
+                    GameObject towerzone = (GameObject)targetComponent.GetType().GetField("TowerZone").GetValue(targetComponent);
+                    //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
+
+                    string listName = "Tower" + towerRank;
+                    List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
+
+                    foreach (GameObject towerObject in towerList)
+                    {
+                        if (towerObject != clickedTower && targetComponent.name == towerObject.name)
                         {
-                            //이미 클릭한 오브젝트가 있을 경우.
-                            if (foundObjects != null)
-                            {
-                                if (foundObjects.Count < 2)
-                                {
-                                    //클릭한 데이터가 이미 저장되어 있는 정보가 아니라면 이행.
-                                    if (!foundObjects.Contains(towerObject))
-                                    {
-                                        foundObjects.Add(towerObject);
-                                    }
-                                    else
-                                    {
-                                        print("다른 타워를 선택해야 합니다");
-                                        foundObjects.Clear();
-                                    }
-                                }
-                                // 이미 선택된 오브젝트가 있을 경우, 두 오브젝트를 비교하여 동일한지 확인합니다.
-                                if (foundObjects[0] == towerObject)
-                                {
-                                    //타워 합성 실시
-                                    TowerMix();
-                                    foundObjects.Clear();
-                                }
-                                else
-                                {
-                                    print("같은 종류의 타워만 합성이 가능합니다.");
-                                    foundObjects.Clear();
-                                }
-                            }
+                            Tower_Manager.instance.TowerSell(towerObject, false);
+                            Tower_Manager.instance.TowerSell(clickedTower, false);
+
+                            Tower_Manager.instance.TowerInstance(towerzone, towerRank + 1);
                         }
                         else
                         {
-                            print("해당 타워는 합성이 불가능 합니다.");
-                            clickedObject = new Component[0];
-
+                            print("합성이 가능한 타워가 없습니다.");
                         }
-
-                        break;
                     }
                 }
             }
+            //누른 오브젝트의 컴포넌트에서 랭크에 대한 정보를 찾는다
+            //매니저가 가지고 있는 리스트에서 같은 랭크의 리스트를 찾고, 본인을 제외한 같은 이름을 가지는 오브젝트를 찾는다.
+            //첮번째로 선택한 오브젝트의 타워존 정보를 기억한다.
+            //Find함수를 쓰면 찾은 오브젝트중 처음 발견한 오브젝트를 저장한다.
+            //판매함수로 오브젝트를 제거한다.
+            //오브젝트 생성함수로 받은 타워존 정보를 입력해서 다음 랭크의 타워를 생성한다.
         }
-    }
-
-    public void TowerMix()
-    {
-        // 타워 합성 로직 구현
-        GameObject tower1 = foundObjects[0];
-        GameObject tower2 = foundObjects[1];
-
-        if (towerRank == 1)
-        {
-            //tower1.towerRrank;
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-
-        else if (towerRank == 2)
-        {
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-
-        else if (towerRank == 3)
-        {
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-
-        else if (towerRank == 4)
-        {
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-
-        else if (towerRank == 5)
-        {
-            Destroy(foundObjects[1]);
-
-            foundObjects.Clear();
-        }
-    }
+    }    
 }
-
-
-
