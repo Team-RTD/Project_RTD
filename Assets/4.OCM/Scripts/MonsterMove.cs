@@ -12,24 +12,27 @@ using UnityEngine;
 //필요속성2: EnemyHp
 
 
-//목표3: 이동, 죽었을 때 애니메이션 구현
+//목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
 //필요속성3: 애니메이터
 
 
-//목표4: 죽거나 끝까지 도달하면 파괴 이펙트 생성
+//목표4:  끝까지 도달하면 파괴 이펙트 생성
 //필요속성4: 이펙트 파티클 시스템, 파괴 효과 게임 오브젝트
+
+//목표5: 데미지를 받았을 때 체력이 닳고 0이하가 되면 죽는다.
+
 public class MonsterMove : MonoBehaviour
 {
     //필요속성1: 특정좌표,이동속도
-    public float monsterSpeed=0.3f;
+    public float monsterSpeed;
     public Transform[] Pos;
     int posloc = 0;
     public Transform startpos;
-
+    
 
     //필요속성2: EnemyHp
-    public float hp = 100;
-    //StageManager.instance.monsterHp;
+    public float hp ;
+    
 
 
     //필요속성3: 애니메이터
@@ -38,11 +41,23 @@ public class MonsterMove : MonoBehaviour
 
 
     public Sprite portrait;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
+        monsterSpeed = 15.0f;
+    }
+    void Start()
+    {
+        //목표2: Enemy체력 구현
+        if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum>1)
+        { 
+            hp = StageManager.instance.monsterMaxHp*10; 
+        }
+        else
+        {
+            hp = StageManager.instance.monsterMaxHp;
+        }
+        
         Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
         Pos = new Transform[ArrowPosParent.childCount];
 
@@ -55,35 +70,39 @@ public class MonsterMove : MonoBehaviour
         //angle = 1;
         StartCoroutine(GoToPos(Pos[posloc]));
         startpos = transform;
+        
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //transform.Translate(-dir * enemySpeed * Time.deltaTime, Space.Self);
-
-        //enemyHp--;
+        
     }
-    //public void OnTriggerEnter(Collider others)
-    //{
-    //  if (others.gameObject.tag == "DestroyZone")
-    //  {
-           
-    //  }
-    //}
+    
 
     IEnumerator GoToPos(Transform setpos)
     {
         Vector3 dir = setpos.transform.position - transform.position;
-        Vector3 loc = dir.normalized;
-
-        while (dir.magnitude > 0.1)
+        //Vector3 loc = dir.normalized;
+        float speed = 2.0f;
+        Vector3 nextPoint = setpos.transform.position - new Vector3(0, 0.4f, 0);
+        while (dir.magnitude > 1f)
         {
+            if (Data_Manager.instance.isPause)
+            {
+                speed = 0;
+            }
+            else
+            {
+                speed = monsterSpeed;
+            }
+
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, monsterSpeed) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed*Time.deltaTime) ;
             //transform.Translate(loc,Space.World);
-            dir = setpos.transform.position - transform.position;
+            dir = nextPoint - transform.position;
             yield return null;
         }
         posloc++;
@@ -99,6 +118,9 @@ public class MonsterMove : MonoBehaviour
 
     }
 
+
+
+    //목표5: 데미지를 받았을 때 체력이 닳고 0이하가 되면 죽는다.
     public void DamagedAction(float _damage)
     {
         if (isDead == true) { return; }
@@ -109,8 +131,9 @@ public class MonsterMove : MonoBehaviour
 
         if (hp <= 0)
         {
-            StartCoroutine(DeadAction());
+            Data_Manager.instance.money1++;
             StageManager.instance.monsterCount--;
+            StartCoroutine(DeadAction());
         }
     }
     
@@ -119,12 +142,12 @@ IEnumerator DeadAction()
         isDead = true;
         gameObject.GetComponent<Collider>().enabled = false;
         Debug.Log(gameObject.name + "has dead");
-
-        Data_Manager.instance.money1++;
-        Ui_Manager.instance.UiRefresh();
         animator.SetTrigger("RunToDie");
         monsterSpeed = 0;
         yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
+        //목표3: 이동, 죽었을 때 애니메이션 구현 및 자원 증가
+        Ui_Manager.instance.UiRefresh();
+
     }
 }

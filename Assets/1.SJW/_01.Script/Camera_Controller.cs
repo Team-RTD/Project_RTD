@@ -59,6 +59,12 @@ public class Camera_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Data_Manager.instance.isPause)
+        {
+            return;
+        }
+
+
         float scroll = Input.GetAxis("Mouse ScrollWheel") * scroll_speed;
 
         if(_camera.fieldOfView <= 20.0f && scroll <0 )
