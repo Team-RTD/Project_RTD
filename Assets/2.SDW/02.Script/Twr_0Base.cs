@@ -12,6 +12,7 @@ public class Twr_0Base : MonoBehaviour
     // Must Input --
     public Sprite portrait;
     public GameObject TowerZone;
+    public AudioClip fireSound;
 
     public TowerAttackType towerAttackType;
     public TowerType towerType;
@@ -153,7 +154,9 @@ public class Twr_0Base : MonoBehaviour
 
         if (colliders.Length != 0)
         {
-
+           if( fireSound != null)
+            { Sound_Manager.instance.EffectPlay(fireSound); }
+         
             foreach (Collider collider in colliders)
             {
                 if (targetsCount >= towerMaxTarget[towerRank]) { break; }
