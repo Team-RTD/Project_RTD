@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1884981990032620127}
   - component: {fileID: 6433676292114876849}
   - component: {fileID: 487046652005021589}
-  - component: {fileID: -1665025551448975856}
+  - component: {fileID: 2421141795280954755}
   m_Layer: 0
   m_Name: r2 2
   m_TagString: Untagged
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1665025551448975856
+--- !u!114 &2421141795280954755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5603672555448024027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6144182e4bbf64841a69b4600a6c4445, type: 3}
+  m_Script: {fileID: 11500000, guid: fce6667db9f6d0b43a57952a13575e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerRank: 2
+  portrait: {fileID: 0}
+  TowerZone: {fileID: 0}
+  towerAttackType: 0
+  towerType: 0
+  towerName: 
+  towerPrice: 0
+  towerAttackDamage: 0
+  towerAttackSpeed: 0
+  towerAttackRange: 0
+  towerUpgradeLevel: 0
+  towerUpgradeTier: 0
+  towerMaxTarget: 0
+  towerRank: 0
+  upGrade_Manager: {fileID: 0}
+  shooterParticle: {fileID: 1588895830433058, guid: 0e251e27a24efaa47bfa3dd112bdab22, type: 3}

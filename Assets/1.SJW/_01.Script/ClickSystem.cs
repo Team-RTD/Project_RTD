@@ -99,7 +99,7 @@ public class ClickSystem : MonoBehaviour
 
                         break;
 
-                    case PlayerMode.TowerMix:
+                    /*case PlayerMode.TowerMix:
 
                         Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -139,7 +139,7 @@ public class ClickSystem : MonoBehaviour
                                         print("합성이 가능한 타워가 없습니다.");
                                     }
 
-                                    /*foreach (GameObject towerObject in towerList)
+                                    *//*foreach (GameObject towerObject in towerList)
                                     {
                                         if (towerObject != clickedTower && targetComponent.name == towerObject.name)
                                         {
@@ -152,7 +152,7 @@ public class ClickSystem : MonoBehaviour
                                         {
                                             print("합성이 가능한 타워가 없습니다.");
                                         }
-                                    }*/
+                                    }*//*
                                 }
                                 else
                                 {
@@ -161,7 +161,7 @@ public class ClickSystem : MonoBehaviour
                             }
                         }
 
-                        break;
+                        break;*/
 
 
 
@@ -276,7 +276,7 @@ public class ClickSystem : MonoBehaviour
         if (playerMode != PlayerMode.TowerMix)
         {
             playerMode = PlayerMode.TowerMix;
-            Ui_Manager.instance.state.text = "판매 모드";
+            Ui_Manager.instance.state.text = "합성 모드";
             BtnColorReset();
             MixBtnDark();
 
@@ -328,6 +328,12 @@ public class ClickSystem : MonoBehaviour
             imgs[i].color = Input_Manager.instance.SaveColor[i];
         }
 
+        imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
+        for (int i = 0; i < imgs.Length; i++)
+        {
+            imgs[i].color = Input_Manager.instance.SaveColor[i];
+        }
+
     }
 
     public void BuildBtnDark()
@@ -348,7 +354,7 @@ public class ClickSystem : MonoBehaviour
     }
     public void MixBtnDark()
     {
-        Image[] imgs = Input_Manager.instance.towerSellBtn.GetComponentsInChildren<Image>();
+        Image[] imgs = Input_Manager.instance.towerMixBtn.GetComponentsInChildren<Image>();
         foreach (Image img in imgs)
         {
             img.color -= new Color(0.5f, 0.5f, 0.5f, 0f);

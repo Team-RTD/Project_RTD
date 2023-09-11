@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerMixCode : MonoBehaviour
 {
-    private Camera cam;
+    public Camera cam;
     public int towerRank;
     public string componentName;
     public GameObject towerzone;
@@ -23,16 +23,18 @@ public class TowerMixCode : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                Component targetComponent = hit.collider.GetComponent(componentName);
+                GameObject targetObject = hit.collider.gameObject;
+                Component targetComponent = targetObject.GetComponent<Component>();
 
-                if (targetComponent != null)
+                if (targetObject != null)
                 {
+                    Debug.Log(targetComponent+"¿Ã∞≈¥Ÿ.");
                     clickedTower = hit.collider.gameObject;
                     int towerRank = (int)targetComponent.GetType().GetField("towerRank").GetValue(targetComponent);
 
@@ -48,7 +50,6 @@ public class TowerMixCode : MonoBehaviour
                         List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
 
                         GameObject towerObject = towerList.Find(GameObject => GameObject != clickedTower && targetComponent.name == GameObject.name);
-
                         if (towerObject != null)
                         {
                             Tower_Manager.instance.TowerSell(towerObject, false);
