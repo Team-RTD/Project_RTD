@@ -16,6 +16,11 @@ public class ClickSystem : MonoBehaviour
     public GameObject test;
     private RaycastHit[] hit;
 
+    private int towerRank;
+    private string componentName;
+    private GameObject towerzone;
+    private GameObject clickedTower;
+
     public GameObject SummonEffect;
     public AudioClip SummonSound;
 
@@ -66,35 +71,101 @@ public class ClickSystem : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 switch (playerMode)
-                    { case PlayerMode.TowerBuild ://타워건설모드에서 클릭 시
+                {
+                    case PlayerMode.TowerBuild://타워건설모드에서 클릭 시
 
-                         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                         hit = Physics.RaycastAll(ray, 100f);
-                         if (hit != null)
-                         {
-                                foreach (RaycastHit hitob in hit)
+                        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                        hit = Physics.RaycastAll(ray, 100f);
+                        if (hit != null)
+                        {
+                            foreach (RaycastHit hitob in hit)
+                            {
+                                GameObject hitObject = hitob.transform.gameObject;
+                                if (hitObject.tag == "TowerZone")
                                 {
-                                     GameObject hitObject = hitob.transform.gameObject;
-                                     if (hitObject.tag == "TowerZone")
-                                     {
-                                     Tower_Manager.instance.TowerInstance(hitObject, 1);
-                                     }
-                                     else
-                                     {
-                                         print("렌더러 없음");
-                                     }
-
+                                    Tower_Manager.instance.TowerInstance(hitObject, 1);
                                 }
-                          }
+                                else
+                                {
+                                    print("렌더러 없음");
+                                }
+
+                            }
+                        }
                         break;
 
-                      case PlayerMode.TowerSell :
+                    case PlayerMode.TowerSell:
 
 
                         break;
-                     }
 
-               
+                    case PlayerMode.TowerMix:
+
+                        Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
+
+                        RaycastHit hit1;
+
+                        if (Physics.Raycast(ray1, out hit1))
+                        {
+                            Component targetComponent = hit1.collider.GetComponent(componentName);
+
+                            if (targetComponent != null)
+                            {
+                                clickedTower = hit1.collider.gameObject;
+                                int towerRank = (int)targetComponent.GetType().GetField("towerRank").GetValue(targetComponent);
+
+                                if (towerRank < 6 && towerRank >= 1)
+                                {
+                                    string componentName = targetComponent.name;
+                                    Debug.Log(targetComponent.name);
+
+                                    GameObject towerzone = (GameObject)targetComponent.GetType().GetField("TowerZone").GetValue(targetComponent);
+                                    //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
+
+                                    string listName = "Tower" + towerRank;
+                                    List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
+
+                                    GameObject towerObject = towerList.Find(GameObject => GameObject != clickedTower && targetComponent.name == GameObject.name);
+
+                                    if (towerObject != null)
+                                    {
+                                        Tower_Manager.instance.TowerSell(towerObject, false);
+                                        Tower_Manager.instance.TowerSell(clickedTower, false);
+
+                                        Tower_Manager.instance.TowerInstance(towerzone, towerRank + 1);
+                                    }
+                                    else
+                                    {
+                                        print("합성이 가능한 타워가 없습니다.");
+                                    }
+
+                                    /*foreach (GameObject towerObject in towerList)
+                                    {
+                                        if (towerObject != clickedTower && targetComponent.name == towerObject.name)
+                                        {
+                                            Tower_Manager.instance.TowerSell(towerObject, false);
+                                            Tower_Manager.instance.TowerSell(clickedTower, false);
+
+                                            Tower_Manager.instance.TowerInstance(towerzone, towerRank + 1);
+                                        }
+                                        else
+                                        {
+                                            print("합성이 가능한 타워가 없습니다.");
+                                        }
+                                    }*/
+                                }
+                                else
+                                {
+                                    print("합성 할 수 없는 타워 입니다.");
+                                }
+                            }
+                        }
+
+                        break;
+
+
+
+                }               
             }
         }
 

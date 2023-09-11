@@ -36,18 +36,20 @@ public class TowerMixCode : MonoBehaviour
                     clickedTower = hit.collider.gameObject;
                     int towerRank = (int)targetComponent.GetType().GetField("towerRank").GetValue(targetComponent);
 
-                    string componentName = targetComponent.name;
-                    Debug.Log(targetComponent.name);
-
-                    GameObject towerzone = (GameObject)targetComponent.GetType().GetField("TowerZone").GetValue(targetComponent);
-                    //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
-
-                    string listName = "Tower" + towerRank;
-                    List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
-
-                    foreach (GameObject towerObject in towerList)
+                    if (towerRank < 6 && towerRank >= 1)
                     {
-                        if (towerObject != clickedTower && targetComponent.name == towerObject.name)
+                        string componentName = targetComponent.name;
+                        Debug.Log(targetComponent.name);
+
+                        GameObject towerzone = (GameObject)targetComponent.GetType().GetField("TowerZone").GetValue(targetComponent);
+                        //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
+
+                        string listName = "Tower" + towerRank;
+                        List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
+
+                        GameObject towerObject = towerList.Find(GameObject => GameObject != clickedTower && targetComponent.name == GameObject.name);
+
+                        if (towerObject != null)
                         {
                             Tower_Manager.instance.TowerSell(towerObject, false);
                             Tower_Manager.instance.TowerSell(clickedTower, false);
@@ -58,6 +60,25 @@ public class TowerMixCode : MonoBehaviour
                         {
                             print("합성이 가능한 타워가 없습니다.");
                         }
+
+                        /*foreach (GameObject towerObject in towerList)
+                        {
+                            if (towerObject != clickedTower && targetComponent.name == towerObject.name)
+                            {
+                                Tower_Manager.instance.TowerSell(towerObject, false);
+                                Tower_Manager.instance.TowerSell(clickedTower, false);
+
+                                Tower_Manager.instance.TowerInstance(towerzone, towerRank + 1);
+                            }
+                            else
+                            {
+                                print("합성이 가능한 타워가 없습니다.");
+                            }
+                        }*/
+                    }
+                    else
+                    {
+                        print("합성 할 수 없는 타워 입니다.");
                     }
                 }
             }
