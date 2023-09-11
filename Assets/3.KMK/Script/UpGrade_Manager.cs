@@ -10,7 +10,7 @@ public class UpGrade_Manager : MonoBehaviour
     public int upgrade_rank = 0;
     //타워 종족별로 구분해서 리스트 저장.
     //타워의 종족은 추후 작성하는 것으로 한다.
-    public List<GameObject> TowerType1 = new List<GameObject>();
+    //public List<GameObject> TowerType1 = new List<GameObject>();
 
 
     public static UpGrade_Manager Instance
