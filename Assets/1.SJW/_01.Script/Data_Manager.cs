@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Data_Manager : MonoBehaviour
@@ -20,6 +21,7 @@ public class Data_Manager : MonoBehaviour
 
     public bool isPause = false;
 
+    public float playtime;
     public void DataReset()
     {
         curRound = 1;
@@ -59,12 +61,42 @@ public class Data_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(StartTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+
+    IEnumerator StartTimer()
+    {
+        int min=0;
+        int hour=0;
+
+        while(playtime<=10f) 
+        {
+            playtime += Time.deltaTime;
+            Ui_Manager.instance.Timer.text = "0:"+ (10-Mathf.Floor(playtime)).ToString() ;
+            yield return null;
+        }
+
+        playtime = 0;
+        while (true)
+        {
+            playtime += Time.deltaTime;
+            if(playtime>=60)
+            {
+                playtime = 0; min++;
+            }
+            if (min >= 60)
+            {
+                min = 0; hour++;
+            }
+            Ui_Manager.instance.Timer.text = hour.ToString() + ":" + min.ToString()+ ":" + Mathf.Floor(playtime).ToString();
+            yield return null;
+        }
     }
 }

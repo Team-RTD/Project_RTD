@@ -138,4 +138,48 @@ public class Tower_Manager : MonoBehaviour
 
     }
 
+
+
+    public void TowerUp(GameObject towerob)
+    {
+        int targetRank = towerob.GetComponent<Twr_0Base>().towerRank;
+        string twr_name = towerob.GetComponent<Twr_0Base>().towerName;
+        GameObject targetob =null;
+        switch (targetRank + 1)
+        {
+            case 1:
+                targetob = Tower1.Find(ob => ob.GetComponent<Twr_0Base>().towerName == twr_name && ob != towerob);
+                break;
+            case 2:
+                targetob = Tower2.Find(ob => ob.GetComponent<Twr_0Base>().towerName == twr_name && ob != towerob);
+                break;
+            case 3:
+                targetob = Tower3.Find(ob => ob.GetComponent<Twr_0Base>().towerName == twr_name && ob != towerob);
+                break;
+            case 4:
+                targetob = Tower4.Find(ob => ob.GetComponent<Twr_0Base>().towerName == twr_name && ob != towerob);
+                break;
+            case 5:
+                targetob = Tower5.Find(ob => ob.GetComponent<Twr_0Base>().towerName == twr_name && ob != towerob);
+                break;
+            case 6:
+                targetob = Tower6.Find(ob => ob.GetComponent<Twr_0Base>().towerName == twr_name && ob != towerob);
+                break;
+        }
+        
+        if(targetob != null)
+        {
+            GameObject targetzon = towerob.GetComponent<Twr_0Base>().TowerZone;
+            
+            TowerSell(towerob,false);
+            TowerSell(targetob, false);
+
+            TowerInstance(targetzon, targetRank+2);
+            targetzon.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("대상타워 없음");
+        }
+    }
 }
