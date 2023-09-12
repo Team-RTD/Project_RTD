@@ -114,18 +114,21 @@ public class MonsterSpawn : MonoBehaviour
         {
             StartCoroutine(PersonalMission1());
             StageManager.instance.missionNum = 1;
+            StageManager.instance.monsterCount++;
         }
 
         if (Input.GetKeyDown(KeyCode.X) && missionTrigger2 == true)
         {
             StartCoroutine(PersonalMission2());
             StageManager.instance.missionNum = 2;
+            StageManager.instance.monsterCount++;
         }
 
         if (Input.GetKeyDown(KeyCode.C) && missionTrigger3 == true)
         {
             StartCoroutine(PersonalMission3());
             StageManager.instance.missionNum = 3;
+            StageManager.instance.monsterCount++;
         }
         
 
@@ -138,11 +141,11 @@ public class MonsterSpawn : MonoBehaviour
         
         Data_Manager.instance.curRound = StageManager.instance.stageNum;
         Ui_Manager.instance.UiRefresh();
-        StageManager.instance.monsterCount=20;
+        
 
         if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum>1)
         {
-            StageManager.instance.monsterCount = 1;
+            StageManager.instance.monsterCount++;
             GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
 
 
@@ -155,6 +158,7 @@ public class MonsterSpawn : MonoBehaviour
         }
         else
         {
+            StageManager.instance.monsterCount = 20;
             for (int i = 0; i < 20; i++)
             {
 
