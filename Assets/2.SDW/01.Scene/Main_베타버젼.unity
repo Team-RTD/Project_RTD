@@ -9436,7 +9436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 16}
+  m_AnchoredPosition: {x: -10, y: 0}
   m_SizeDelta: {x: 470, y: 320}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &320429541
@@ -12747,7 +12747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -48}
+  m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &430091582 stripped
@@ -39479,7 +39479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 48}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1221604156
@@ -55416,7 +55416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 176}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 920, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692157367
@@ -71762,6 +71762,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: missionMonster1
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: af9ff76e84634d240bf960a82a37d813, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: missionMonster2
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: adf503d0d33e64b408fd40b48815b521, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: missionMonster3
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: 5c958ca050c8ea8479ab1414ffb9e317, type: 3}
     - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
       propertyPath: monsterList.Array.size
       value: 20
