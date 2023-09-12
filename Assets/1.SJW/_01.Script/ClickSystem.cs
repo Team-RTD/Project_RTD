@@ -118,20 +118,17 @@ public class ClickSystem : MonoBehaviour
                                             GameObject towerObject = towerList.Find(GameObject => GameObject != clickedTower && GameObject.name == clickedTower.name);
                                             if (towerRank < 6 && towerRank >= 0)
                                             {
-                                                Debug.Log("지점");
                                                 //GameObject towerzone = (GameObject)targetObject.GetType().GetField("TowerZone").GetValue(targetObject);
                                                 //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
 
                                                 towerRank += 2;
                                                 if (towerObject != null)
                                                 {
-                                                    Debug.Log("여기");
                                                     Tower_Manager.instance.TowerSell(towerObject, false);
                                                     Tower_Manager.instance.TowerSell(clickedTower, false);
-                                                    Debug.Log(towerZone);
-                                                    Debug.Log(towerRank);
+                              
                                                     Tower_Manager.instance.TowerInstance(towerZone, towerRank);
-                                                    Debug.Log("출력확인");
+                                                    towerZone.SetActive(true);
                                                 }
                                                 else
                                                 {
