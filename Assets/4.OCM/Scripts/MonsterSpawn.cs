@@ -51,10 +51,11 @@ public class MonsterSpawn : MonoBehaviour
     public bool missionTrigger2;
     public bool missionTrigger3;
 
+    public int missionNum;
 
-     void Awake()
+    void Awake()
     {
-       
+
         createTime = 0.2f;
         nextStage = true;
         missionTrigger1 = true;
@@ -73,9 +74,9 @@ public class MonsterSpawn : MonoBehaviour
 
 
     // Update is called once per frame
-     void Update()
+    void Update()
     {
-        
+
 
         //목표2: 특정시간이 지나고, 몬스터가 다 생성된 다음이고, 몬스터가 다 죽은다음에 다음스테이지로 넘어간다.
         missionCoolTime1 += Time.deltaTime;
@@ -96,29 +97,37 @@ public class MonsterSpawn : MonoBehaviour
         {
             missionTrigger3 = true;
         }
-        
-        if (StageManager.instance.monsterCount == 0 && nextStage == true&& currentTime > nextStageTime)
+
+        if (StageManager.instance.monsterCount == 0 && nextStage == true && currentTime > nextStageTime)
         {
             nextStage = false;
+            if (StageManager.instance.stageNum > 1)
+            {
+                Data_Manager.instance.money1 += 200;
+            }
+
             StartCoroutine(SpawnEnemy(StageManager.instance.stageNum));
             currentTime = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z)&& missionTrigger1 == true)
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(PersonalMission1());
+            mission1();
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && missionTrigger2 == true)
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            StartCoroutine(PersonalMission2());
+            mission2();
+            
+
         }
 
-        if (Input.GetKeyDown(KeyCode.C) && missionTrigger3 == true)
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            StartCoroutine(PersonalMission3());
+            mission3();
+            
         }
-        
+
 
     }
 
@@ -126,14 +135,14 @@ public class MonsterSpawn : MonoBehaviour
     //목표1: 적을 생성하는 기능 구현
     IEnumerator SpawnEnemy(int stage)
     {
-        
+
         Data_Manager.instance.curRound = StageManager.instance.stageNum;
         Ui_Manager.instance.UiRefresh();
-        StageManager.instance.monsterCount=20;
 
-        if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum>1)
+
+        if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum > 1)
         {
-            StageManager.instance.monsterCount = 1;
+            StageManager.instance.monsterCount++;
             GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
 
 
@@ -146,10 +155,11 @@ public class MonsterSpawn : MonoBehaviour
         }
         else
         {
+            StageManager.instance.monsterCount = 20;
             for (int i = 0; i < 20; i++)
             {
 
-                GameObject enemyGO = Instantiate(monsterList[stage - 1],transform.position, Quaternion.Euler(0, 180, 0));
+                GameObject enemyGO = Instantiate(monsterList[stage - 1], transform.position, Quaternion.Euler(0, 180, 0));
 
 
                 //목표3: 몬스터 소환 시 이펙트 생성
@@ -163,8 +173,8 @@ public class MonsterSpawn : MonoBehaviour
         }
 
 
-        
-        nextStage=true;
+
+        nextStage = true;
         StageManager.instance.stageNum++;
         StageManager.instance.monsterMaxHp = StageManager.instance.SetMonsterHP(StageManager.instance.stageNum);
     }
@@ -174,11 +184,16 @@ public class MonsterSpawn : MonoBehaviour
 
     IEnumerator PersonalMission1()
     {
-        GameObject enemyGO = Instantiate(missionMonster1);
-        enemyGO.transform.position = transform.position;
-        enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //StageManager.instance.missionNum = 1;
+        GameObject enemyGO = Instantiate(missionMonster1, transform.position, Quaternion.Euler(0, 180, 0));
+        enemyGO.GetComponent<MonsterMove>().SetEnum();
+
+
+
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+
+
         missionTrigger1 = false;
         missionCoolTime1 = 0f;
         yield return null;
@@ -186,11 +201,14 @@ public class MonsterSpawn : MonoBehaviour
 
     IEnumerator PersonalMission2()
     {
-        GameObject enemyGO = Instantiate(missionMonster2);
-        enemyGO.transform.position = transform.position;
-        enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //StageManager.instance.missionNum = 2;
+        GameObject enemyGO = Instantiate(missionMonster2, transform.position, Quaternion.Euler(0, 180, 0));
+        enemyGO.GetComponent<MonsterMove>().SetEnum();
+
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+
+
         missionTrigger2 = false;
         missionCoolTime2 = 0f;
         yield return null;
@@ -198,14 +216,46 @@ public class MonsterSpawn : MonoBehaviour
 
     IEnumerator PersonalMission3()
     {
-        GameObject enemyGO = Instantiate(missionMonster3);
-        enemyGO.transform.position = transform.position;
-        enemyGO.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //StageManager.instance.missionNum = 3;
+        GameObject enemyGO = Instantiate(missionMonster3, transform.position, Quaternion.Euler(0, 180, 0));
+        enemyGO.GetComponent<MonsterMove>().SetEnum();
+
+
         GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
         Destroy(spawnEffect, 0.5f);
+
+
         missionTrigger3 = false;
         missionCoolTime3 = 0f;
         yield return null;
     }
+
+    public void mission1()
+        {
+            if (missionTrigger1 == true)
+            {
+                StartCoroutine(PersonalMission1());
+                StageManager.instance.missionNum = 1;
+                StageManager.instance.monsterCount++;
+            }
+        }
+    public void mission2()
+        {
+            if (missionTrigger2 == true)
+            {
+                StartCoroutine(PersonalMission2());
+                StageManager.instance.missionNum = 2;
+                StageManager.instance.monsterCount++;
+            }
+        }
+    public void mission3()
+        {
+            if (missionTrigger3 == true)
+            {
+                StartCoroutine(PersonalMission3());
+                StageManager.instance.missionNum = 3;
+                StageManager.instance.monsterCount++;
+            }
+        }
 }
 

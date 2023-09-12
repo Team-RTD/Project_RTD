@@ -19,7 +19,12 @@ public class Ui_Manager : MonoBehaviour
 
     public TMP_Text killScore;
 
-    public TMP_Text upgrade_plus;
+    public TMP_Text s_upgrade_plus;
+    public TMP_Text m_upgrade_plus;
+    public TMP_Text a_upgrade_plus;
+    public TMP_Text s_upgrade_price;
+    public TMP_Text m_upgrade_price;
+    public TMP_Text a_upgrade_price;
 
     public TMP_Text state;
 
@@ -41,6 +46,8 @@ public class Ui_Manager : MonoBehaviour
 
     public GameObject OptionPannel;
     GameObject lastinfoOb;
+
+    public TMP_Text Timer;
 
     [HideInInspector]
     public bool InfoPannelActive= false;
@@ -69,8 +76,12 @@ public class Ui_Manager : MonoBehaviour
         money2Txt.text = Data_Manager.instance.money2.ToString();
         money3Txt.text = Data_Manager.instance.money3.ToString();
 
-        if(UpGrade_Manager.instance.upgrade_rank != 0)
-        upgrade_plus.text = "+"+ UpGrade_Manager.instance.upgrade_rank;
+        s_upgrade_plus.text = "+" + UpGrade_Manager.instance.warrior_upgrade_rank;
+        a_upgrade_plus.text = "+" + UpGrade_Manager.instance.archer_upgrade_rank;
+        m_upgrade_plus.text = "+" + UpGrade_Manager.instance.mage_upgrade_rank;
+        s_upgrade_price.text = "-" + UpGrade_Manager.instance.warrior_upgrade_price;
+        a_upgrade_price.text = "-" + UpGrade_Manager.instance.archer_upgrade_price;
+        m_upgrade_price.text = "-" + UpGrade_Manager.instance.mage_upgrade_price;
         killScore.text = "킬 스코어 : " + Data_Manager.instance.killcount;
         if (lastinfoOb != null)
         InfoPannelRefresh(lastinfoOb);
@@ -93,7 +104,12 @@ public class Ui_Manager : MonoBehaviour
         moneyrec = moneyZone.GetComponent<RectTransform>().anchoredPosition;
 
         state.text = "";
-        upgrade_plus.text = "";
+        s_upgrade_plus.text = "+0";
+        m_upgrade_plus.text = "+0";
+        a_upgrade_plus.text = "+0";
+        s_upgrade_price.text = "-20";
+        m_upgrade_price.text = "-20";
+        a_upgrade_price.text = "-20";
         killScore.text = "킬 스코어 : " + Data_Manager.instance.killcount;
         tower_portrait.color = Color.clear;
     }
@@ -177,7 +193,8 @@ public class Ui_Manager : MonoBehaviour
 
         lastinfoOb = infoOb;
         Twr_0Base towerinfo = infoOb.gameObject.GetComponent<Twr_0Base>();
-        TowerZone t_zone = towerinfo.TowerZone.GetComponent<TowerZone>();
+
+        float up_per=0;
         string _towerType="";
         string _towerAttackType="";
 
@@ -185,12 +202,15 @@ public class Ui_Manager : MonoBehaviour
         {
             case Twr_0Base.TowerType.Archer:
                 _towerType = "궁수";
+                up_per = UpGrade_Manager.instance.archerUpgrade;
                 break;
             case Twr_0Base.TowerType.Mage:
                 _towerType = "마법사";
+                up_per = UpGrade_Manager.instance.mageUpgrade;
                 break;
             case Twr_0Base.TowerType.Warrior:
                 _towerType = "전사";
+                up_per = UpGrade_Manager.instance.warriorUpgrade;
                 break;
         }
 
@@ -211,7 +231,7 @@ public class Ui_Manager : MonoBehaviour
         tower_Name.text = towerinfo.towerName;
         tower_rank.text = "★" + towerinfo.towerRank+1;
         tower_Info.text = "타입 : " + _towerType + "/"+_towerAttackType+
-          "\n공격력 : " + towerinfo.towerAttackDamage[towerinfo.towerRank] +"(+"+UpGrade_Manager.instance.upgradePercent + "%)"+
+          "\n공격력 : " + towerinfo.towerAttackDamage[towerinfo.towerRank] +"(+"+ up_per.ToString() + "%)"+
           "\n공격속도 : " + towerinfo.towerAttackSpeed[towerinfo.towerRank] +
           "\n사정거리 : " + towerinfo.towerAttackRange[towerinfo.towerRank];
 
