@@ -9,16 +9,27 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     //필요속성1: 몬스터수
-    public int monsterCount = 0;
-    public int monsterMaxHp = 50 ;
-    public int stageNum = 1;
+    public int monsterCount;
+    public int monsterMaxHp;
+    public int stageNum;
+    public int missionMonster1Hp;
+    public int missionMonster2Hp;
+    public int missionMonster3Hp;
+    public int missionNum;
 
     public static StageManager instance { get; private set; }
     // Start is called before the first frame update
 
     private void Awake()
     {
+
         instance = this;
+        monsterCount = 0;
+        monsterMaxHp = 50;
+        stageNum = 1;
+        missionMonster1Hp = 5000;
+        missionMonster2Hp = 15000;
+        missionMonster3Hp = 50000;
     }
 
 
