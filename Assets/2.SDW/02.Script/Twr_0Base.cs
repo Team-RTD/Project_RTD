@@ -64,7 +64,7 @@ public class Twr_0Base : MonoBehaviour
     // DO NOT EDIT THIS LIST *************************************************
     private Animator animator; //0907
     private Vector3 towerPos;
-    private bool isCoolTime = false;
+    protected bool isCoolTime = false;
     private int targetsCount = 0;
 
     List<MonsterMove> enemyTargets = new List<MonsterMove>();
