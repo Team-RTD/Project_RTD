@@ -18,6 +18,10 @@ public class Ui_Manager : MonoBehaviour
     public TMP_Text money3Txt;
 
     public TMP_Text killScore;
+    public TMP_Text mission1CoolTime;
+    public TMP_Text mission2CoolTime;
+    public TMP_Text mission3CoolTime;
+
 
     public TMP_Text s_upgrade_plus;
     public TMP_Text m_upgrade_plus;
@@ -82,9 +86,14 @@ public class Ui_Manager : MonoBehaviour
         s_upgrade_price.text = "-" + UpGrade_Manager.instance.warrior_upgrade_price;
         a_upgrade_price.text = "-" + UpGrade_Manager.instance.archer_upgrade_price;
         m_upgrade_price.text = "-" + UpGrade_Manager.instance.mage_upgrade_price;
+        
+        
         killScore.text = "킬 스코어 : " + Data_Manager.instance.killcount;
+        mission1CoolTime.text = "미션1 쿨타임 : " + (20- StageManager.instance.mission1CoolTime);
+        mission2CoolTime.text = "미션2 쿨타임 : " + (30- StageManager.instance.mission2CoolTime);
+        mission3CoolTime.text = "미션3 쿨타임 : " + (40- StageManager.instance.mission3CoolTime);
         if (lastinfoOb != null)
-        InfoPannelRefresh(lastinfoOb);
+            InfoPannelRefresh(lastinfoOb);
     }
 
 
@@ -111,6 +120,9 @@ public class Ui_Manager : MonoBehaviour
         m_upgrade_price.text = "-20";
         a_upgrade_price.text = "-20";
         killScore.text = "킬 스코어 : " + Data_Manager.instance.killcount;
+        mission1CoolTime.text = "미션1 쿨타임 : 0 ";
+        mission2CoolTime.text = "미션2 쿨타임 : 0 ";
+        mission3CoolTime.text = "미션3 쿨타임 : 0 ";
         tower_portrait.color = Color.clear;
     }
 
