@@ -48,14 +48,15 @@ public class Tower_Manager : MonoBehaviour
 
             // GameObject tower1 = Instantiate(test, hitObject.transform.position, Quaternion.Euler(Vector3.zero));
             GameObject tower1 = Instantiate(Towers[random], towerZone.transform.position, Quaternion.Euler(Vector3.zero));
+            tower1.transform.tag = "Tower"; // 타워 태그 변경
             t_zone.Tower = tower1; //타워존에 타워 오브젝트 할당
             tower1.GetComponent<Twr_0Base>().TowerZone = t_zone.gameObject;
-            tower1.GetComponent<Twr_0Base>().towerRank = towerTier;
+            tower1.GetComponent<Twr_0Base>().towerRank = towerTier-1;
             GameObject summoneffect = Instantiate(SummonEffect, towerZone.transform.position, Quaternion.Euler(Vector3.zero));
             Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
             Sound_Manager.instance.EffectPlay(SummonSound);
 
-            switch(tower1.GetComponent<Twr_0Base>().towerRank)
+            switch(tower1.GetComponent<Twr_0Base>().towerRank+1)
             {
                     case 1:
                     Tower1.Add(tower1);
@@ -75,10 +76,7 @@ public class Tower_Manager : MonoBehaviour
                     case 6:
                     Tower6.Add(tower1);
                     break;
-            }
-            //업그래이드 매니저 호출-------------------
-            UpGrade_Manager.Instance.AddTowerToList(tower1);
-            //-------------------
+            }           
 
 
             Outline charliner = tower1.AddComponent<Outline>(); //만든 타워에 외각선 추가
@@ -108,13 +106,32 @@ public class Tower_Manager : MonoBehaviour
 
         t_zone.gameObject.SetActive(false);
 
-
-        Tower1.Remove(tower);
+        switch (tower.GetComponent<Twr_0Base>().towerRank + 1)
+        {
+            case 1:
+                Tower1.Remove(tower);
+                break;
+            case 2:
+                Tower2.Remove(tower);
+                break;
+            case 3:
+                Tower3.Remove(tower);
+                break;
+            case 4:
+                Tower4.Remove(tower);
+                break;
+            case 5:
+                Tower5.Remove(tower);
+                break;
+            case 6:
+                Tower6.Remove(tower);
+                break;
+        }
         Destroy(t_zone.Tower);
 
         if(issell) //판매면 골드 +
         {
-            Data_Manager.instance.money1 += towerinfo.towerRank*75;
+            Data_Manager.instance.money1 += (towerinfo.towerRank+1)*75;
         }
 
         Ui_Manager.instance.UiRefresh();

@@ -20,13 +20,11 @@ public class TEST : MonoBehaviour
 
     private void OnMouseUp()
     {
-        Twr_0Base towerinfo;
-        TowerZone t_zone;
-
         switch (ClickSystem.instance.playerMode)
         {
 
             case ClickSystem.PlayerMode.Nomal:
+                Ui_Manager.instance.InfoPannelActive = true;
                 Ui_Manager.instance.InfoPannelRefresh(gameObject);
 
                 break;

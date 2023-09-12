@@ -125,7 +125,7 @@ public class MonsterMove : MonoBehaviour
     {
         if (isDead == true) { return; }
 
-        hp = hp - _damage;
+        //hp = hp - _damage;
 
         print(gameObject.name + " has damaged " + _damage + "FinalHP" + hp);
 

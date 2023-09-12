@@ -1,29 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UpGrade_Manager : MonoBehaviour
 {
     public static UpGrade_Manager instance;
 
     public float upgradePercent = 0.0f;
-    public int upgrade_rank = 0;
+    public int warrior_upgrade_rank = 0;
+    public int mage_upgrade_rank = 0;
+    public int archer_upgrade_rank = 0;
+
+    public int warrior_upgrade_price = 20;
+    public int mage_upgrade_price = 20;
+    public int archer_upgrade_price = 20;
     //타워 종족별로 구분해서 리스트 저장.
     //타워의 종족은 추후 작성하는 것으로 한다.
-    public List<GameObject> TowerType1 = new List<GameObject>();
+    public float warriorUpgrade = 0;
+    public float mageUpgrade = 0;
+    public float archerUpgrade = 0;
 
-
-    public static UpGrade_Manager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
+    public  enum UpgradeType
+    {        
+        W,
+        M,
+        A
     }
+
+    public UpgradeType upgradeType = UpgradeType.W;
+
 
     public void Awake()
     {
@@ -33,25 +41,65 @@ public class UpGrade_Manager : MonoBehaviour
             instance = this;
         }
     }
-    public float GetUpgradePercentage()
+    
+
+    public void WarriorUpgrade()
     {
-        return upgradePercent;
-    }
-    public void Upgrade()
-    {
-        Debug.Log("Upgrade!");
-        upgradePercent += 10.0f;
-        upgrade_rank++;
-        foreach (GameObject obj in TowerType1)
+        if(Data_Manager.instance.money2 <= warrior_upgrade_price)
         {
-            obj.GetComponent<Twr_0Base>().TowerInfo();
+            Ui_Manager.instance.state.text = "재화 부족!";
+
+            return;
         }
+        else
+        {
+            Data_Manager.instance.money2 -= warrior_upgrade_price;
+            Debug.Log("Warrior Upgrade!");
+            warrior_upgrade_rank++;
+            warriorUpgrade += +12.5f;
+            warrior_upgrade_price += 4;
+
+        }
+
 
         Ui_Manager.instance.UiRefresh();
     }
 
-    public void AddTowerToList(GameObject tower)
+    public void MageUpgrade()
     {
-        TowerType1.Add(tower);
+        if (Data_Manager.instance.money2 <= mage_upgrade_price)
+        {
+            Ui_Manager.instance.state.text = "재화 부족!";
+
+            return;
+        }
+        else
+        {
+            Data_Manager.instance.money2 -= mage_upgrade_price;
+            Debug.Log("Mage Upgrade!");
+            mage_upgrade_rank++;
+            mageUpgrade += +12.5f;
+            mage_upgrade_price += 4;
+            Ui_Manager.instance.UiRefresh();
+        }
+    }
+
+    public void ArcherUpgrade()
+    {
+            if (Data_Manager.instance.money2 <= archer_upgrade_price)
+            {
+                Ui_Manager.instance.state.text = "재화 부족!";
+
+                return;
+            }
+            else
+            {
+            Data_Manager.instance.money2 -= archer_upgrade_price;
+            Debug.Log("archer Upgrade!");
+                archer_upgrade_rank++;
+                archerUpgrade += +12.5f;
+                archer_upgrade_price += 4;
+                Ui_Manager.instance.UiRefresh();
+            }
     }
 }

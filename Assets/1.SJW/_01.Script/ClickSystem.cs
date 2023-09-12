@@ -52,14 +52,6 @@ public class ClickSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (playerMode == PlayerMode.TowerSell)
-        {
-          
-        }
-
-
-
         if(Input.GetMouseButtonDown(0))
         {
 
@@ -77,7 +69,7 @@ public class ClickSystem : MonoBehaviour
                                      GameObject hitObject = hitob.transform.gameObject;
                                      if (hitObject.tag == "TowerZone")
                                      {
-                                     Tower_Manager.instance.TowerInstance(hitObject, 1);
+                                     Tower_Manager.instance.TowerInstance(hitObject, 1 );
                                      }
                                      else
                                      {
@@ -92,7 +84,23 @@ public class ClickSystem : MonoBehaviour
 
 
                         break;
-                     }
+
+                    case PlayerMode.Nomal:
+
+                        Ray rays = cam.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hitinfo = new RaycastHit();
+                        if (Physics.Raycast(rays,out hitinfo))
+                        {
+                            if (!(hitinfo.transform.tag == "TowerZone" || hitinfo.transform.tag == "Tower"))
+                            {
+                                print(hitinfo.transform.gameObject.name);
+                                Ui_Manager.instance.InfoPannelActive = false;
+                                Ui_Manager.instance.towerInfoPannel.SetActive(false);
+                            }
+                        }
+                       
+                    break;
+                }
 
                
             }
@@ -215,6 +223,7 @@ public class ClickSystem : MonoBehaviour
         {
             imgs[i].color = Input_Manager.instance.SaveColor[i];
         }
+
 
     }
 
