@@ -224,6 +224,7 @@ public class ClickSystem : MonoBehaviour
             imgs[i].color = Input_Manager.instance.SaveColor[i];
         }
 
+
     }
 
     public void BuildBtnDark()
