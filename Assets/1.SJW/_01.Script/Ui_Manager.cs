@@ -234,7 +234,7 @@ public class Ui_Manager : MonoBehaviour
             case Twr_0Base.TowerAttackType.Shooter:
                 _towerAttackType = "즉발형";
                 break;
-            case Twr_0Base.TowerAttackType.Thrower:
+            case Twr_0Base.TowerAttackType.InstanceThorwer:
                 _towerAttackType = "투척형";
                 break;
         }
