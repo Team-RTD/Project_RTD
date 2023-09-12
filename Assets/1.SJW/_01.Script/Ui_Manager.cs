@@ -241,7 +241,8 @@ public class Ui_Manager : MonoBehaviour
         tower_portrait.sprite = towerinfo.portrait;
         tower_portrait.color = Color.white;
         tower_Name.text = towerinfo.towerName;
-        tower_rank.text = "★" + towerinfo.towerRank+1;
+        int rank = towerinfo.towerRank + 1;
+        tower_rank.text = "★" + rank;
         tower_Info.text = "타입 : " + _towerType + "/"+_towerAttackType+
           "\n공격력 : " + towerinfo.towerAttackDamage[towerinfo.towerRank] +"(+"+ up_per.ToString() + "%)"+
           "\n공격속도 : " + towerinfo.towerAttackSpeed[towerinfo.towerRank] +
