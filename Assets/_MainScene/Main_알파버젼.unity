@@ -34438,7 +34438,7 @@ MonoBehaviour:
   test: {fileID: 0}
   towerBuildBtn: {fileID: 71814205}
   towerSellBtn: {fileID: 1241905344}
-  towerMixBtn: {fileID: 0}
+  towerMixBtn: {fileID: 1569095728}
   SaveColor:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
