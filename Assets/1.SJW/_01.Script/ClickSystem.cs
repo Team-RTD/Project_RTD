@@ -166,7 +166,13 @@ public class ClickSystem : MonoBehaviour
         
     }
 
+    public void TowerMixBtn()
+    {
 
+        playerMode = PlayerMode.TowerMix;
+        Ui_Manager.instance.state.text = "조합모드";
+
+    }
     public void TowerSellBtn() 
     {
         if (playerMode != PlayerMode.TowerSell)

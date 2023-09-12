@@ -35,6 +35,9 @@ public class TEST : MonoBehaviour
                 
 
                 break;
+                case ClickSystem.PlayerMode.TowerMix:
+                Tower_Manager.instance.TowerUp(gameObject);
+                break;
         }
 
     }

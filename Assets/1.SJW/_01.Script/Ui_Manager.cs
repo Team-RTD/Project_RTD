@@ -47,6 +47,8 @@ public class Ui_Manager : MonoBehaviour
     public GameObject OptionPannel;
     GameObject lastinfoOb;
 
+    public TMP_Text Timer;
+
     [HideInInspector]
     public bool InfoPannelActive= false;
 
