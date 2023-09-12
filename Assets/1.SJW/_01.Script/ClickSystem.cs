@@ -83,9 +83,71 @@ public class ClickSystem : MonoBehaviour
 
                     case PlayerMode.TowerMix:
 
-                        
+                        RaycastHit hit1;
+                        Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
 
+
+                        if (Physics.Raycast(ray1, out hit1))
+                        {
+                            GameObject clickedTower = hit1.collider.gameObject;
+                            if (clickedTower != null)
+                            {
+                                Component[] components = clickedTower.GetComponents<Component>();
+                                foreach (Component component in components)
+                                {
+                                    if (component is Twr_0Base yourComponent)
+                                    {
+                                        // 컴포넌트 안에 int towerRank 값이 있는지 확인
+                                        if (yourComponent.GetType().GetField("towerRank") != null)
+                                        {
+                                            // int towerRank 값이 있는 경우, 원하는 작업 수행
+                                            int towerRank = (int)yourComponent.GetType().GetField("towerRank").GetValue(yourComponent);
+
+                                            GameObject towerZone = (GameObject)yourComponent.GetType().GetField("TowerZone").GetValue(yourComponent);
+
+
+
+                                            string listName = "Tower" + (towerRank + 1);
+
+                                            List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
+                                            GameObject towerObject = towerList.Find(GameObject => GameObject != clickedTower && GameObject.name == clickedTower.name);
+                                            if (towerRank < 6 && towerRank >= 0)
+                                            {
+                                                Debug.Log("지점");
+                                                //GameObject towerzone = (GameObject)targetObject.GetType().GetField("TowerZone").GetValue(targetObject);
+                                                //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
+
+                                                towerRank += 2;
+                                                Debug.Log(towerObject.name);
+                                                Debug.Log(clickedTower.name);
+                                                if (towerObject != null)
+                                                {
+                                                    Debug.Log("여기");
+                                                    Tower_Manager.instance.TowerSell(towerObject, false);
+                                                    Tower_Manager.instance.TowerSell(clickedTower, false);
+                                                    Debug.Log(towerZone);
+                                                    Debug.Log(towerRank);
+                                                    Tower_Manager.instance.TowerInstance(towerZone, towerRank);
+                                                    towerZone.SetActive(true);
+                                                    Debug.Log("출력확인");
+                                                }
+                                                else
+                                                {
+                                                    print("합성이 가능한 타워가 없습니다.");
+                                                }
+                                            }
+                                            break; // 원하는 컴포넌트를 찾았으면 루프 종료
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                print("합성 할 수 없는 타워 입니다.");
+                            }
+                        }
                         break;
+
 
 
                     case PlayerMode.TowerSell :

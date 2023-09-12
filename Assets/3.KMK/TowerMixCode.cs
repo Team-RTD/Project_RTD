@@ -67,7 +67,7 @@ public class TowerMixCode: MonoBehaviour
                                 Debug.Log(clickedTower.name);
                                 if (towerObject != null)
                                 {
-
+                                    Debug.Log("¿©±â");
                                     Tower_Manager.instance.TowerSell(towerObject, false);
                                     Tower_Manager.instance.TowerSell(clickedTower, false);
                                     Debug.Log(towerZone);

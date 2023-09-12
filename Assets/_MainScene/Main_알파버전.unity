@@ -23613,9 +23613,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 781127073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a853d3ca62596144883278aa436fe79, type: 3}
+  m_Script: {fileID: 11500000, guid: f786b7cc581349e479f3d2afca475357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradePercent: 0
+  upgrade_rank: 0
+  warriorUpgrade: 0
+  mageUpgrade: 0
+  archerUpgrade: 0
+  upgradeType: 0
 --- !u!1001 &781950175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65194,7 +65200,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1964298507}
   - component: {fileID: 1964298508}
-  - component: {fileID: 1964298509}
   m_Layer: 0
   m_Name: Camerabox
   m_TagString: Untagged
@@ -65243,22 +65248,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1964298509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964298506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f180b4d5badf6f4f9805ec43cff49da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  componentName: 
-  towerzone: {fileID: 0}
-  clickedTower: {fileID: 0}
 --- !u!1 &1965436729
 GameObject:
   m_ObjectHideFlags: 0
@@ -68954,7 +68943,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 781127075}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UpGrade_Manager, Assembly-CSharp
         m_MethodName: Upgrade
         m_Mode: 1
