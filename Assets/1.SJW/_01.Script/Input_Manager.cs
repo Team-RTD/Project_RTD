@@ -52,6 +52,24 @@ public class Input_Manager : MonoBehaviour
             Ui_Manager.instance.OptionPannelOpen();
         }
 
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            UpGrade_Manager.instance.WarriorUpgrade();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            UpGrade_Manager.instance.ArcherUpgrade();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            UpGrade_Manager.instance.MageUpgrade();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Data_Manager.instance.ChangeBlueGreen();
+        }
+
     }
 
 }

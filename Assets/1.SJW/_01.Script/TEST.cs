@@ -20,9 +20,6 @@ public class TEST : MonoBehaviour
 
     private void OnMouseUp()
     {
-        Twr_0Base towerinfo;
-        TowerZone t_zone;
-
         switch (ClickSystem.instance.playerMode)
         {
 

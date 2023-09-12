@@ -28,13 +28,27 @@ public class Data_Manager : MonoBehaviour
         curHp = 5;
 
         money1 = 500;
-        money2 = 0;
+        money2 = 50;
         money3 = 0;
     }
 
 
 
+    public void ChangeBlueGreen()
+    {
+        if(money1 >=100)
+        {
+            money1 -= 100;
 
+            money2 += Random.Range(40, 161);
+        }
+        else
+        {
+            Ui_Manager.instance.state.text = "재화 부족!";
+
+        }
+        Ui_Manager.instance.UiRefresh();
+    }
 
     private void Awake()
     {
