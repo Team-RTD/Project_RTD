@@ -24,7 +24,7 @@ public class AxeTower : Twr_0Base
         areaAttDelay = 1f;
         areaToTarget = false;
 
-        towerRank = 0;
+        towerRank = 1;
 
     }
 }
