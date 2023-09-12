@@ -21,7 +21,7 @@ public class BowTower : Twr_0Base
 
         towerMaxTarget = new int[6] { 1, 1, 1, 1, 1, 2 };
 
-        throwObjSpeed = 4f;
+        throwObjSpeed = 25f;
 
         towerRank = 0;
     }

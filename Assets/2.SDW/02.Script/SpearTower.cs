@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpearTower : Twr_0Base
 {
-    SpearThrowFalse spearObj;
+    public SpearThrowFalse spearObj;
     public override void TowerInfo()
     {
         towerAttackType = TowerAttackType.InstanceThorwer;
@@ -21,16 +21,16 @@ public class SpearTower : Twr_0Base
 
         towerMaxTarget = new int[6] { 1, 1, 1, 1, 1, 1 };
 
-        throwObjSpeed = 8f;
+        throwObjSpeed = 35f;
 
         towerRank = 0;
     }
 
-    private void Start()
+    public override void Start()
     {
         spearObj = gameObject.GetComponentInChildren<SpearThrowFalse>();
     }
-    private void Update()
+    public override void Update()
     {
         if (isCoolTime == true)
         {
@@ -39,7 +39,12 @@ public class SpearTower : Twr_0Base
 
         else if (isCoolTime == false)
         {
-            spearObj.gameObject.SetActive (true);
+            spearObj.gameObject.SetActive(true);
+        }
+
+        if (isCoolTime == false)
+        {
+            Detecting();
         }
     }
 }

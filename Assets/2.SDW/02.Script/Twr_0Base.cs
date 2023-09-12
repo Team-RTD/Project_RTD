@@ -31,7 +31,7 @@ public class Twr_0Base : MonoBehaviour
 
     // Throw Input --
     // * if you create Throw Tower [(GameObject : Throw Object) Count == towerMaxTarget]
-    protected float throwObjSpeed;
+    public float throwObjSpeed;
     // Throw Input --
 
 
@@ -62,9 +62,10 @@ public class Twr_0Base : MonoBehaviour
 
 
     // DO NOT EDIT THIS LIST *************************************************
+    private Vector3 enemyDir;
     private Animator animator; //0907
     private Vector3 towerPos;
-    protected bool isCoolTime = false;
+    public bool isCoolTime = false;
     private int targetsCount = 0;
 
     List<MonsterMove> enemyTargets = new List<MonsterMove>();
@@ -111,7 +112,7 @@ public class Twr_0Base : MonoBehaviour
         Mage,
         Archer
     }
-    private void Awake()
+    public virtual void Awake()
     {
         towerAttackDamage = new float[6];
         towerAttackSpeed = new float[6];
@@ -138,7 +139,12 @@ public class Twr_0Base : MonoBehaviour
 
     }
 
-    private void Update()
+    public virtual void Start()
+    {
+
+    }
+
+    public virtual void Update()
     {
         if (isCoolTime == false)
         {
@@ -246,7 +252,7 @@ public class Twr_0Base : MonoBehaviour
         throwObject.transform.position = gameObject.transform.position;
         throwObject.transform.LookAt(collider.transform); //0907
         DamageSetting();
-        throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(collider.transform.position, damage, throwObjSpeed);
+        throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(DirSett(collider.transform.position), damage, throwObjSpeed);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
     }
@@ -259,7 +265,7 @@ public class Twr_0Base : MonoBehaviour
 
         gameObject.transform.LookAt(collider.transform.position);
         DamageSetting();
-        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
+        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(DirSett(collider.transform.position), gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
     }
@@ -269,10 +275,16 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = true;
         animator.SetTrigger("IdleToAttack");
         GameObject _throwObjInstance = Instantiate(thorwObjInstance);
-        _throwObjInstance.GetComponent<ThrowObjectInstans>().GetThrowObjectInfo(collider.transform.position, throwObjSpeed, towerAttackDamage[towerRank]);
+        _throwObjInstance.GetComponent<ThrowObjectInstans>().GetThrowObjectInfo(DirSett(collider.transform.position), throwObjSpeed, towerAttackDamage[towerRank]);
         _throwObjInstance.transform.position = gameObject.transform.position;
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
+    }
+
+    public Vector3 DirSett(Vector3 collider)
+    {
+        enemyDir = (collider - transform.position).normalized;
+        return enemyDir;
     }
 
 
