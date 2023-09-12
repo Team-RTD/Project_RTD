@@ -73695,8 +73695,20 @@ PrefabInstance:
       value: MonsterSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: missionMonster1
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: af9ff76e84634d240bf960a82a37d813, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: missionMonster2
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: adf503d0d33e64b408fd40b48815b521, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: missionMonster3
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: 5c958ca050c8ea8479ab1414ffb9e317, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
       propertyPath: monsterList.Array.size
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
       propertyPath: monsterList.Array.data[0]
@@ -73778,6 +73790,126 @@ PrefabInstance:
       propertyPath: monsterList.Array.data[19]
       value: 
       objectReference: {fileID: 1666678542618180, guid: f20ce2db250825442b752997fe0cf22c, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[20]
+      value: 
+      objectReference: {fileID: 1997296248483302, guid: 94341128749aa144c84981abfd6fdd92, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[21]
+      value: 
+      objectReference: {fileID: 1233347782355984, guid: 92207c4cc3d7d7441b7a8124e7a33b4a, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[22]
+      value: 
+      objectReference: {fileID: 1891674185500050, guid: 6671aa8ec39427c49b6a4b8d719d97d8, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[23]
+      value: 
+      objectReference: {fileID: 1611041093240470, guid: 3cdd56223e51b3942944bc1bd7f0132e, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[24]
+      value: 
+      objectReference: {fileID: 1520184032351820, guid: f8ce791c92097a2469e381bb4eb909a3, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[25]
+      value: 
+      objectReference: {fileID: 1870912557112684, guid: ddc9e4d790c89954ebd493b3b1a7da49, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[26]
+      value: 
+      objectReference: {fileID: 1566049822020886, guid: 94e123ae6ee273a4299b84c22c91495f, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[27]
+      value: 
+      objectReference: {fileID: 1473157611212552, guid: dc433805b07342a428cea50ac8a2e35d, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[28]
+      value: 
+      objectReference: {fileID: 1033247876357254, guid: 19fbbf3e9f666944aba44a45439a33cd, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[29]
+      value: 
+      objectReference: {fileID: 1248874732774416, guid: 78f09bca0849dcd4aab79e894c4b3ff8, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[30]
+      value: 
+      objectReference: {fileID: 1024577810811178, guid: 0bbc2f93f7b96d2429ec0eaa1ebfce83, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[31]
+      value: 
+      objectReference: {fileID: 1544180832531774, guid: efcad02e557c95b4b8f8bff202182aff, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[32]
+      value: 
+      objectReference: {fileID: 1170732337855516, guid: 779497d0b3d5e424d9f45e7d32c0303d, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[33]
+      value: 
+      objectReference: {fileID: 1691206179217438, guid: e0534d9605ea435428acd95958da9dc3, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[34]
+      value: 
+      objectReference: {fileID: 1334977650429898, guid: 07f7b2eb4ae190243ac1d593024ea7a4, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[35]
+      value: 
+      objectReference: {fileID: 1820919466449660, guid: ece2c3fa114aee64a8ec1c579425d6a6, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[36]
+      value: 
+      objectReference: {fileID: 1293356793197548, guid: 12ee30bc99910f1429f0db8083939d54, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[37]
+      value: 
+      objectReference: {fileID: 1652650793432430, guid: 44dc97bcd9b0ec948b9e0381832cf598, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[38]
+      value: 
+      objectReference: {fileID: 1909744818002174, guid: f3ea7903a46a4574fb233c01b321682b, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[39]
+      value: 
+      objectReference: {fileID: 1666678542618180, guid: 6847b72164d29834ab7cba1eb35c04a8, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[40]
+      value: 
+      objectReference: {fileID: 1997296248483302, guid: 0c430a27246612649bdfe6fa69b8faa1, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[41]
+      value: 
+      objectReference: {fileID: 1891674185500050, guid: 9e9eaa01c38fe254ab8f5c5193fe1dc2, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[42]
+      value: 
+      objectReference: {fileID: 1520184032351820, guid: eaf89f9e3b6c50641b1d17711221b5b4, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[43]
+      value: 
+      objectReference: {fileID: 1566049822020886, guid: db2228ff181acbb4da5160911a704f94, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[44]
+      value: 
+      objectReference: {fileID: 1033247876357254, guid: 3bdb288fc61f8d44d92150564cd96689, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[45]
+      value: 
+      objectReference: {fileID: 1024577810811178, guid: 00ee2d1e3deb16045af57a6ad0f0b6e3, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[46]
+      value: 
+      objectReference: {fileID: 1170732337855516, guid: e23fd480a0f40f442a59e2ba40e0f415, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[47]
+      value: 
+      objectReference: {fileID: 1334977650429898, guid: 8c418cf7698c60a49a18df54f578fcae, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[48]
+      value: 
+      objectReference: {fileID: 1293356793197548, guid: 096056260312ceb4d9fd3f285e2ed530, type: 3}
+    - target: {fileID: 2759324975826102680, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
+      propertyPath: monsterList.Array.data[49]
+      value: 
+      objectReference: {fileID: 1909744818002174, guid: 64999fd03fd447044bc6549f0e94c388, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
