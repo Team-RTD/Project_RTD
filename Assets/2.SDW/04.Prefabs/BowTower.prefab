@@ -2019,6 +2019,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6678134435910157750}
   - component: {fileID: 1436519819352068479}
+  - component: {fileID: 4556625337336583367}
+  - component: {fileID: 3439221722183385447}
   m_Layer: 0
   m_Name: BowTower
   m_TagString: Untagged
@@ -2072,6 +2074,41 @@ MonoBehaviour:
   shooterParticle: {fileID: 0}
   isCoolTime: 0
   thorwObjInstance: {fileID: 6319556623561888377, guid: fa5aa09b3101c4b4f977545aa0e28396, type: 3}
+--- !u!114 &4556625337336583367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5412061246733748894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6929552bb9bf08a408c0d687c84d3abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &3439221722183385447
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5412061246733748894}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.54
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5498343318042961372
 GameObject:
   m_ObjectHideFlags: 0
