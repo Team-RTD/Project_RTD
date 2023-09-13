@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
   TowerZone: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: a7039bc6024909841aec6d20a3c67d1d, type: 3}
   towerAttackType: 0
   towerType: 0
   towerName: 
@@ -60,8 +61,11 @@ MonoBehaviour:
   towerMaxTarget: 
   towerUpgradeLevel: 0
   towerUpgradeTier: 0
+  throwObjSpeed: 0
   towerRank: 0
   shooterParticle: {fileID: 4728198263476761539}
+  isCoolTime: 0
+  thorwObjInstance: {fileID: 0}
 --- !u!1 &1338587691946109154
 GameObject:
   m_ObjectHideFlags: 0
