@@ -9907,7 +9907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19942f7f4379574eb5210425076bb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 0b3b5e4f253467a4eb042732a1018bd0, type: 3}
   TowerZone: {fileID: 0}
   fireSound: {fileID: 0}
   towerAttackType: 0

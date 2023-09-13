@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6583992720298027270}
   - component: {fileID: 1917447939701570837}
+  - component: {fileID: 3892263343797797836}
+  - component: {fileID: 3597745035789956271}
   m_Layer: 0
   m_Name: AxeTower
   m_TagString: Untagged
@@ -48,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a73ae340028d7f41a5570d9841709d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: ffbf76560a59b9d4ebe29e41d87150ec, type: 3}
   TowerZone: {fileID: 0}
   fireSound: {fileID: 0}
   towerAttackType: 0
@@ -66,6 +68,41 @@ MonoBehaviour:
   shooterParticle: {fileID: 4728198263476761539}
   isCoolTime: 0
   thorwObjInstance: {fileID: 0}
+--- !u!114 &3892263343797797836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832919442165101662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6929552bb9bf08a408c0d687c84d3abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &3597745035789956271
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832919442165101662}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!1 &1338587691946109154
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,10 +614,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4984645541590178, guid: 0e251e27a24efaa47bfa3dd112bdab22, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8536049351563711448}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1588895830433058, guid: 0e251e27a24efaa47bfa3dd112bdab22, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7449658057724417684}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e251e27a24efaa47bfa3dd112bdab22, type: 3}
 --- !u!4 &4722586955701688899 stripped
 Transform:
@@ -597,29 +631,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1588895830433058, guid: 0e251e27a24efaa47bfa3dd112bdab22, type: 3}
   m_PrefabInstance: {fileID: 4726609527685279457}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &7449658057724417684
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4728198263476761539}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.3019357
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.65096784, z: 0}
 --- !u!1001 &6285614045172361149
 PrefabInstance:
   m_ObjectHideFlags: 0
