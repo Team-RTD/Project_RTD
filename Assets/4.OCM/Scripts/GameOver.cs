@@ -26,7 +26,10 @@ public class GameOver : MonoBehaviour
         Data_Manager.instance.isPause = false;
         Time.timeScale = 1;
         Data_Manager.instance.curHp = 5;
+        Data_Manager.instance.DataReset();
+        Ui_Manager.instance.UiRefresh();
         SceneManager.LoadScene(0);
+
     }
     public void Exit()
     {
