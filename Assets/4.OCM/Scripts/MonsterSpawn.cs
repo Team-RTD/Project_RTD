@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 //목표1: 적을 생성하는 기능 구현
 //필요속성1: 적게임오브젝트,현재시간,특정시간
@@ -52,6 +53,11 @@ public class MonsterSpawn : MonoBehaviour
     public bool missionTrigger3;
 
     public int missionNum;
+
+    public Image mask1;
+    public Image mask2;
+    public Image mask3;
+
 
     void Awake()
     {
@@ -169,6 +175,7 @@ public class MonsterSpawn : MonoBehaviour
 
         missionTrigger1 = false;
         missionCoolTime1 = 0f;
+        mask1.rectTransform.sizeDelta = new Vector2(100, 100);
         while (!missionTrigger1)
         {
             missionCoolTime1 += Time.deltaTime;
@@ -181,10 +188,9 @@ public class MonsterSpawn : MonoBehaviour
                 else
                 {
                     StageManager.instance.mission1CoolTime++;
+                    mask1.rectTransform.sizeDelta = new Vector2(100, 100-StageManager.instance.mission1CoolTime*5);
                     Ui_Manager.instance.UiRefresh();
                 }
-
-
                 missionCoolTime1 = 0;
             }
             yield return null;
@@ -203,6 +209,7 @@ public class MonsterSpawn : MonoBehaviour
 
         missionTrigger2 = false;
         missionCoolTime2 = 0f;
+        mask2.rectTransform.sizeDelta = new Vector2(100, 100);
         while (!missionTrigger2)
         {
             missionCoolTime2 += Time.deltaTime;
@@ -215,10 +222,9 @@ public class MonsterSpawn : MonoBehaviour
                 else
                 {
                     StageManager.instance.mission2CoolTime++;
+                    mask2.rectTransform.sizeDelta = new Vector2(100, 100 - StageManager.instance.mission1CoolTime * (100/30));
                     Ui_Manager.instance.UiRefresh();
                 }
-
-
                 missionCoolTime2 = 0;
             }
             yield return null;
@@ -238,6 +244,7 @@ public class MonsterSpawn : MonoBehaviour
 
             missionTrigger3 = false;
             missionCoolTime3 = 0f;
+            mask3.rectTransform.sizeDelta = new Vector2(100, 100);
         while (!missionTrigger3)
         {
             missionCoolTime3 += Time.deltaTime;
@@ -250,6 +257,7 @@ public class MonsterSpawn : MonoBehaviour
                 else
                 {
                     StageManager.instance.mission3CoolTime++;
+                    mask3.rectTransform.sizeDelta = new Vector2(100, 100 - StageManager.instance.mission1CoolTime * (100 / 40));
                     Ui_Manager.instance.UiRefresh();
                 }
                 missionCoolTime3 = 0;
@@ -273,7 +281,7 @@ public class MonsterSpawn : MonoBehaviour
     public void mission2()
         {
             if (missionTrigger2 == true)
-            {
+            { 
                 StartCoroutine(PersonalMission2());
                 StageManager.instance.missionNum = 2;
                 StageManager.instance.monsterCount++;
