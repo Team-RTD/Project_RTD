@@ -25,7 +25,6 @@ public class OptionMenu : MonoBehaviour
     {
         Data_Manager.instance.isPause = true;
         Time.timeScale = 0;
-
         bgmslider.value = Sound_Manager.instance.bgmPlayer.volume;
         effectSlider.value = Sound_Manager.instance.effectSoundPlayer.volume;
         narSlider.value = Sound_Manager.instance.narSoundPlayer.volume;

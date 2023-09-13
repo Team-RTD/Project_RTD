@@ -19,6 +19,7 @@ public class StageManager : MonoBehaviour
     public int mission1CoolTime;
     public int mission2CoolTime;
     public int mission3CoolTime;
+    public GameObject gameClear;
 
     public static StageManager instance { get; private set; }
     // Start is called before the first frame update
@@ -46,7 +47,12 @@ public class StageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (StageManager.instance.stageNum >= 51 && StageManager.instance.monsterCount == 0)
+        {
+            Data_Manager.instance.isPause = false;
+            Time.timeScale = 1;
+            gameClear.SetActive(true);
+        }
     }
 
     public int SetMonsterHP(int stageNum)
