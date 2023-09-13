@@ -16,13 +16,15 @@ public class StageManager : MonoBehaviour
     public int missionMonster2Hp;
     public int missionMonster3Hp;
     public int missionNum;
+    public int mission1CoolTime;
+    public int mission2CoolTime;
+    public int mission3CoolTime;
 
     public static StageManager instance { get; private set; }
     // Start is called before the first frame update
 
     private void Awake()
-    {
-
+    { 
         instance = this;
         monsterCount = 0;
         monsterMaxHp = 50;
@@ -30,6 +32,9 @@ public class StageManager : MonoBehaviour
         missionMonster1Hp = 5000;
         missionMonster2Hp = 15000;
         missionMonster3Hp = 50000;
+        mission1CoolTime = 20;
+        mission2CoolTime = 30;
+        mission3CoolTime = 40;
     }
 
 

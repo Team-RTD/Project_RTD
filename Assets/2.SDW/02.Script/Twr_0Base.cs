@@ -277,7 +277,7 @@ public class Twr_0Base : MonoBehaviour
 
         gameObject.transform.LookAt(collider.transform.position);
         DamageSetting();
-        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(DirSett(collider.transform.position), gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
+        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
         CoolTimeFalseDetectOn();

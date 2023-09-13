@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 //목표1: 적을 생성하는 기능 구현
 //필요속성1: 적게임오브젝트,현재시간,특정시간
@@ -53,6 +53,11 @@ public class MonsterSpawn : MonoBehaviour
 
     public int missionNum;
 
+    public Image mask1;
+    public Image mask2;
+    public Image mask3;
+
+
     void Awake()
     {
 
@@ -76,27 +81,8 @@ public class MonsterSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        //목표2: 특정시간이 지나고, 몬스터가 다 생성된 다음이고, 몬스터가 다 죽은다음에 다음스테이지로 넘어간다.
-        missionCoolTime1 += Time.deltaTime;
-        missionCoolTime2 += Time.deltaTime;
-        missionCoolTime3 += Time.deltaTime;
         currentTime += Time.deltaTime;
-        if (missionCoolTime1 > 20.0f)
-        {
-            missionTrigger1 = true;
-        }
-
-        if (missionCoolTime2 > 20.0f)
-        {
-            missionTrigger2 = true;
-        }
-
-        if (missionCoolTime3 > 20.0f)
-        {
-            missionTrigger3 = true;
-        }
+        
 
         if (StageManager.instance.monsterCount == 0 && nextStage == true && currentTime > nextStageTime)
         {
@@ -118,17 +104,12 @@ public class MonsterSpawn : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             mission2();
-            
-
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             mission3();
-            
         }
-
-
     }
 
 
@@ -171,9 +152,6 @@ public class MonsterSpawn : MonoBehaviour
 
             }
         }
-
-
-
         nextStage = true;
         StageManager.instance.stageNum++;
         StageManager.instance.monsterMaxHp = StageManager.instance.SetMonsterHP(StageManager.instance.stageNum);
@@ -196,7 +174,26 @@ public class MonsterSpawn : MonoBehaviour
 
         missionTrigger1 = false;
         missionCoolTime1 = 0f;
-        yield return null;
+        mask1.rectTransform.sizeDelta = new Vector2(100, 100);
+        while (!missionTrigger1)
+        {
+            missionCoolTime1 += Time.deltaTime;
+            if (missionCoolTime1 > 1)
+            {
+                if (StageManager.instance.mission1CoolTime >= 20)
+                {
+                    missionTrigger1 = true;
+                }
+                else
+                {
+                    StageManager.instance.mission1CoolTime++;
+                    mask1.rectTransform.sizeDelta = new Vector2(100, 100-StageManager.instance.mission1CoolTime*5);
+                    Ui_Manager.instance.UiRefresh();
+                }
+                missionCoolTime1 = 0;
+            }
+            yield return null;
+        }
     }
 
     IEnumerator PersonalMission2()
@@ -211,23 +208,62 @@ public class MonsterSpawn : MonoBehaviour
 
         missionTrigger2 = false;
         missionCoolTime2 = 0f;
-        yield return null;
+        mask2.rectTransform.sizeDelta = new Vector2(100, 100);
+        while (!missionTrigger2)
+        {
+            missionCoolTime2 += Time.deltaTime;
+            if (missionCoolTime2 > 1)
+            {
+                if (StageManager.instance.mission2CoolTime >= 20)
+                {   
+                    missionTrigger1 = true;
+                }
+                else
+                {
+                    StageManager.instance.mission2CoolTime++;
+                    mask2.rectTransform.sizeDelta = new Vector2(100, 100 - StageManager.instance.mission1CoolTime * (100/30));
+                    Ui_Manager.instance.UiRefresh();
+                }
+                missionCoolTime2 = 0;
+            }
+            yield return null;
+        }
     }
 
     IEnumerator PersonalMission3()
     {
-        //StageManager.instance.missionNum = 3;
-        GameObject enemyGO = Instantiate(missionMonster3, transform.position, Quaternion.Euler(0, 180, 0));
-        enemyGO.GetComponent<MonsterMove>().SetEnum();
+            //StageManager.instance.missionNum = 3;
+            GameObject enemyGO = Instantiate(missionMonster3, transform.position, Quaternion.Euler(0, 180, 0));
+            enemyGO.GetComponent<MonsterMove>().SetEnum();
 
 
-        GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
-        Destroy(spawnEffect, 0.5f);
+            GameObject spawnEffect = Instantiate(spawnEffect0, transform.position, Quaternion.identity);
+            Destroy(spawnEffect, 0.5f);
 
 
-        missionTrigger3 = false;
-        missionCoolTime3 = 0f;
-        yield return null;
+            missionTrigger3 = false;
+            missionCoolTime3 = 0f;
+            mask3.rectTransform.sizeDelta = new Vector2(100, 100);
+        while (!missionTrigger3)
+        {
+            missionCoolTime3 += Time.deltaTime;
+            if (missionCoolTime3 > 1)
+            {
+                if (StageManager.instance.mission3CoolTime >= 20)
+                {
+                    missionTrigger3 = true;
+                }
+                else
+                {
+                    StageManager.instance.mission3CoolTime++;
+                    mask3.rectTransform.sizeDelta = new Vector2(100, 100 - StageManager.instance.mission1CoolTime * (100 / 40));
+                    Ui_Manager.instance.UiRefresh();
+                }
+                missionCoolTime3 = 0;
+            }
+            yield return null;
+        }
+
     }
 
     public void mission1()
@@ -237,15 +273,19 @@ public class MonsterSpawn : MonoBehaviour
                 StartCoroutine(PersonalMission1());
                 StageManager.instance.missionNum = 1;
                 StageManager.instance.monsterCount++;
+                StageManager.instance.mission1CoolTime = 0;
+                Ui_Manager.instance.UiRefresh();
             }
         }
     public void mission2()
         {
             if (missionTrigger2 == true)
-            {
+            { 
                 StartCoroutine(PersonalMission2());
                 StageManager.instance.missionNum = 2;
                 StageManager.instance.monsterCount++;
+                StageManager.instance.mission2CoolTime = 0;
+                Ui_Manager.instance.UiRefresh();
             }
         }
     public void mission3()
@@ -255,6 +295,8 @@ public class MonsterSpawn : MonoBehaviour
                 StartCoroutine(PersonalMission3());
                 StageManager.instance.missionNum = 3;
                 StageManager.instance.monsterCount++;
+                StageManager.instance.mission3CoolTime = 0;
+                Ui_Manager.instance.UiRefresh();
             }
         }
 }

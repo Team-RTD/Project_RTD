@@ -19,7 +19,7 @@ public class Twr_TestTower : Twr_0Base
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
 
-        towerRank = 0;
+        towerRank = 1;
         towerMaxTarget = new int[6] { 1, 2, 3, 4, 5, 8 };
 
     }

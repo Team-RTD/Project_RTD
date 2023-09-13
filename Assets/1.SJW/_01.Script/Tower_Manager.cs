@@ -52,6 +52,7 @@ public class Tower_Manager : MonoBehaviour
             t_zone.Tower = tower1; //타워존에 타워 오브젝트 할당
             tower1.GetComponent<Twr_0Base>().TowerZone = t_zone.gameObject;
             tower1.GetComponent<Twr_0Base>().towerRank = towerTier-1;
+            Debug.Log("문제확인");
             GameObject summoneffect = Instantiate(SummonEffect, towerZone.transform.position, Quaternion.Euler(Vector3.zero));
             Destroy(summoneffect, 3); // 이펙트는 3초뒤 삭제
             Sound_Manager.instance.EffectPlay(SummonSound);

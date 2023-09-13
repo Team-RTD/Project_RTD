@@ -185,8 +185,10 @@ public class MonsterMove : MonoBehaviour
                 else
                     Data_Manager.instance.money1 += 300;
             }
-            Ui_Manager.instance.UiRefresh();
+            
             StageManager.instance.monsterCount--;
+            Data_Manager.instance.killcount++;
+            Ui_Manager.instance.UiRefresh();
             StartCoroutine(DeadAction());
         }
         
