@@ -119,7 +119,7 @@ public class ClickSystem : MonoBehaviour
 
                                             List<GameObject> towerList = (List<GameObject>)typeof(Tower_Manager).GetField(listName).GetValue(Tower_Manager.instance);
                                             GameObject towerObject = towerList.Find(GameObject => GameObject != clickedTower && GameObject.name == clickedTower.name);
-                                            if (towerRank < 6 && towerRank >= 0)
+                                            if (towerRank < 5 && towerRank >= 0)
                                             {
                                                 //GameObject towerzone = (GameObject)targetObject.GetType().GetField("TowerZone").GetValue(targetObject);
                                                 //이제 매니저가 가진 리스트에서 같은 이름을 가진 다른 타워를 찾아야한다.
@@ -138,14 +138,14 @@ public class ClickSystem : MonoBehaviour
                                                     print("합성이 가능한 타워가 없습니다.");
                                                 }
                                             }
-                                            break; // 원하는 컴포넌트를 찾았으면 루프 종료
+                                            else
+                                            {
+                                                print("합성 할 수 없는 타워 입니다.");
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                print("합성 할 수 없는 타워 입니다.");
+                                break; // 원하는 컴포넌트를 찾았으면 루프 종료
                             }
                         }
 
