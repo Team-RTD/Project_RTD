@@ -9942,7 +9942,7 @@ MonoBehaviour:
   towerRank: 0
   shooterParticle: {fileID: 0}
   isCoolTime: 0
-  thorwObjInstance: {fileID: 3650550599115829305, guid: f714efcaa9fb6bf4a93f6041c3cfbf51, type: 3}
+  thorwObjInstance: {fileID: 3650550599115829305, guid: 891c7a25241ce704cb20023bdb9517b1, type: 3}
   beamEffect: {fileID: 0}
   lazerParticle: {fileID: 0}
   stopWaiting: 0

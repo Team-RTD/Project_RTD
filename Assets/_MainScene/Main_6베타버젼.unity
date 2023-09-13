@@ -45842,10 +45842,12 @@ MonoBehaviour:
   Tower5: []
   Tower6: []
   Towers:
-  - {fileID: 6250344466263104177, guid: f04eb290426215c478ec529f5c3aa714, type: 3}
-  - {fileID: 832919442165101662, guid: a1b4b01f66470d34984e9e634f6a4ff0, type: 3}
-  - {fileID: 7720584873945255890, guid: a46cbe3e176b44c4eb659ec43a309026, type: 3}
+  - {fileID: 6250344466263104177, guid: d9ef23241118aa54cb489d09097c3fa5, type: 3}
+  - {fileID: 2224319266852465280, guid: 078d25380878e8c48aac31856f7d27e6, type: 3}
+  - {fileID: 3647570672986508769, guid: d04047a880feeb440b7fe6fca9e2b2ed, type: 3}
   - {fileID: 5938986879708499784, guid: e36e59ce62769bb4fbf06990c415903b, type: 3}
+  - {fileID: 7720584873945255890, guid: a46cbe3e176b44c4eb659ec43a309026, type: 3}
+  - {fileID: 832919442165101662, guid: ecbdc8137418fd24aace80a74c9e2701, type: 3}
   - {fileID: 5412061246733748894, guid: 506caedb859380f4ebef3b1f33601924, type: 3}
 --- !u!4 &1337691032 stripped
 Transform:
