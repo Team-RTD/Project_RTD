@@ -19,6 +19,9 @@ public class ClickSystem : MonoBehaviour
     public GameObject SummonEffect;
     public AudioClip SummonSound;
 
+
+    
+
     public enum PlayerMode
     {
         Nomal,
