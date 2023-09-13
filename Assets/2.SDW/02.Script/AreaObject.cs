@@ -31,6 +31,7 @@ public class AreaObject : MonoBehaviour
         enemyLayer = _enemyLayer;
         isActive = true;
         gameObject.SetActive(true);
+        print(dir + " Area Dir");
     }
     IEnumerator DurationArea()
     {
