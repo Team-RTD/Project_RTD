@@ -57,6 +57,7 @@ public class StageManager : MonoBehaviour
         {
             Data_Manager.instance.isPause = true;
             Time.timeScale = 0;
+            print(1);
             endScene();
             gameClear.SetActive(true);
         }
@@ -72,6 +73,7 @@ public class StageManager : MonoBehaviour
     {
         if(endBool == false)
         {
+            StageManager.instance.stageNum = 1;
             StageManager.instance.clearTimer.text = Ui_Manager.instance.Timer.text;
             StageManager.instance.killCount.text = Data_Manager.instance.killcount.ToString();
             StageManager.instance.curHp.text = Data_Manager.instance.curHp.ToString();

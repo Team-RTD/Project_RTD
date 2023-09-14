@@ -18,6 +18,7 @@ public class GameOver : MonoBehaviour
            gameOver.SetActive(true);
             Data_Manager.instance.isPause = true;
             Time.timeScale = 0;
+            print(2);
         }
     }
 
