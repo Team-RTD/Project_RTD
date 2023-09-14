@@ -166,7 +166,7 @@ public class MonsterMove : MonoBehaviour
         {
             if (monsterType == MonsterType.normal)
             {
-                if (StageManager.instance.stageNum % 10 == 0)
+                if (monsterStageNum % 10 == 0)
                 {
                     Data_Manager.instance.money3++;
                     Data_Manager.instance.curHp++;

@@ -41,7 +41,7 @@ public class DestroyZone : MonoBehaviour
             //목표1: monster만났을 때 해당 몬스터 파괴하고 체력1 감소하고 몬스터 수 감소
             StageManager.instance.monsterCount--;
             Destroy(others.gameObject);
-            if (others.gameObject.name == "Monster9(Clone)" || others.gameObject.name == "Monster19(Clone)")
+            if (others.gameObject.name == "Monster9(Clone)" || others.gameObject.name == "Monster19(Clone)" || others.gameObject.name == "Monster29(Clone)" || others.gameObject.name == "Monster39(Clone)" || others.gameObject.name == "Monster49(Clone)")
             {
                 Data_Manager.instance.curHp-=25;
             }
