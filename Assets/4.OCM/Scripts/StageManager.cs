@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -19,6 +20,8 @@ public class StageManager : MonoBehaviour
     public int mission1CoolTime;
     public int mission2CoolTime;
     public int mission3CoolTime;
+    public TMP_Text clearTimer;
+    public TMP_Text killCount;
     public GameObject gameClear;
 
     public static StageManager instance { get; private set; }
@@ -49,8 +52,10 @@ public class StageManager : MonoBehaviour
     {
         if (StageManager.instance.stageNum >= 51 && StageManager.instance.monsterCount == 0)
         {
-            Data_Manager.instance.isPause = false;
-            Time.timeScale = 1;
+            Data_Manager.instance.isPause = true;
+            Time.timeScale = 0;
+            StageManager.instance.clearTimer.text = Ui_Manager.instance.Timer.text;
+            StageManager.instance.killCount.text = Data_Manager.instance.killcount.ToString() ;
             gameClear.SetActive(true);
         }
     }

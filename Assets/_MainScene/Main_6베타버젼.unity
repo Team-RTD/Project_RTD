@@ -24872,7 +24872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &727132754
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78404,6 +78404,14 @@ PrefabInstance:
       propertyPath: gameClear
       value: 
       objectReference: {fileID: 727132753}
+    - target: {fileID: 5421112226836126234, guid: 12e741339b95e334f88a2675565ef24b, type: 3}
+      propertyPath: killCount
+      value: 
+      objectReference: {fileID: 151356024}
+    - target: {fileID: 5421112226836126234, guid: 12e741339b95e334f88a2675565ef24b, type: 3}
+      propertyPath: clearTimer
+      value: 
+      objectReference: {fileID: 513390685}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
