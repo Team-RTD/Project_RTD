@@ -76,6 +76,10 @@ public class TEST : MonoBehaviour
                 line.OutlineColor = Color.clear;
 
                 break;
+            case ClickSystem.PlayerMode.TowerMix:
+                line.OutlineColor = Color.red;
+
+                break;
         }
     }
 
