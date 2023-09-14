@@ -80,6 +80,7 @@ public class ClickSystem : MonoBehaviour
                                         Data_Manager.instance.money1 -= 100;
                                         Data_Manager.instance.money3 -= 1;
                                         Ui_Manager.instance.UiRefresh();
+                                        isSuperBuild = false;
                                     }
                                     else
                                     {
