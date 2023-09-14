@@ -13,12 +13,12 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Data_Manager.instance.curHp <= 0)
-        //{
-        //    gameOver.SetActive(true);
-        //    Data_Manager.instance.isPause = true;
-        //    Time.timeScale = 0;
-        //}
+        if (Data_Manager.instance.curHp <= 0)
+        {
+           gameOver.SetActive(true);
+            Data_Manager.instance.isPause = true;
+            Time.timeScale = 0;
+        }
     }
 
     public void ReStart()

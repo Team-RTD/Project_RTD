@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 //목표1: monster만났을 때 해당 몬스터 파괴하고 체력1 감소하고 몬스터 수 감소
