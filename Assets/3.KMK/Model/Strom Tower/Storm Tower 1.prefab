@@ -24221,7 +24221,7 @@ GameObject:
   - component: {fileID: -4742404594281986196}
   - component: {fileID: -7043110927267569359}
   m_Layer: 0
-  m_Name: StormTower
+  m_Name: Storm Tower 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
