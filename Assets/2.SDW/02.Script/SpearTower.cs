@@ -14,7 +14,7 @@ public class SpearTower : Twr_0Base
         towerPrice = 100;
         towerAttackDamage = new float[6] { 80f, 200f, 550f, 1200f, 2600f, 6000f };
         towerAttackSpeed = new float[6] { 4f, 4f, 3f, 3f, 3f, 2f };
-        towerAttackRange = new float[6] { 10f, 11f, 13f, 15f, 17f, 20f };
+        towerAttackRange = new float[6] { 10f, 10f, 12f, 12f, 14f, 16f };
 
         towerUpgradeLevel = 1;
         towerUpgradeTier = 1;
@@ -30,21 +30,16 @@ public class SpearTower : Twr_0Base
     {
         spearObj = gameObject.GetComponentInChildren<SpearThrowFalse>();
     }
-    public override void Update()
+
+    public override void CoolTimeFalseDetectOn()
     {
-        if (isCoolTime == true)
-        {
-            spearObj.gameObject.SetActive(false);
-        }
+        base.CoolTimeFalseDetectOn();
+        spearObj.gameObject.SetActive(true);
+    }
 
-        else if (isCoolTime == false)
-        {
-            spearObj.gameObject.SetActive(true);
-        }
-
-        if (isCoolTime == false)
-        {
-            Detecting();
-        }
+    public override void CoolTimeTrueDetectOff()
+    {
+        base.CoolTimeTrueDetectOff();
+        spearObj.gameObject.SetActive(false);
     }
 }
