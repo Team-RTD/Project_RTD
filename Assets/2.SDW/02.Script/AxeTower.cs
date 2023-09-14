@@ -22,6 +22,7 @@ public class AxeTower : Twr_0Base
 
         areaDuration = 0.6f;
         areaAttDelay = 1f;
+        areaToTarget = false;
 
         towerRank = 1;
 

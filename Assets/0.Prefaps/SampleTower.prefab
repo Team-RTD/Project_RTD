@@ -3355,10 +3355,8 @@ MonoBehaviour:
   towerMaxTarget: 000000000000000000000000000000000000000000000000
   towerUpgradeLevel: 0
   towerUpgradeTier: 0
-  throwObjSpeed: 0
   towerRank: 0
-  shooterParticle: {fileID: 1607639662943796, guid: db4cb69a6009a0b4d90dd00e878ffd8d, type: 3}
-  isCoolTime: 0
+  shooterParticle: {fileID: 1352952055292810, guid: 2b7edea1b5126a0488d5790ed0ba2038, type: 3}
   thorwObjInstance: {fileID: 0}
 --- !u!1 &6265182735207160270
 GameObject:

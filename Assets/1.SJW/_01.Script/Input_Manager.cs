@@ -70,12 +70,6 @@ public class Input_Manager : MonoBehaviour
             Data_Manager.instance.ChangeBlueGreen();
         }
 
-        if (Input.GetKeyDown(KeyCode.BackQuote))
-        {
-            Ui_Manager.instance.PmoneyPannelOpen();
-        }
-
-
     }
 
 }

@@ -49,7 +49,6 @@ public class Ui_Manager : MonoBehaviour
     private bool drawerMoney = false;
 
     public GameObject OptionPannel;
-    public GameObject pMoneyPannel;
     GameObject lastinfoOb;
 
     public TMP_Text Timer;
@@ -179,19 +178,6 @@ public class Ui_Manager : MonoBehaviour
             OptionPannel.SetActive(true);
         }
     }
-
-    public void PmoneyPannelOpen()
-    {
-        if (pMoneyPannel.activeSelf)
-        {
-            pMoneyPannel.SetActive(false);
-        }
-        else
-        {
-            pMoneyPannel.SetActive(true);
-        }
-    }
-
 
     IEnumerator LerfUI(RectTransform target,Vector2 start_pos,Vector2 end_pos,float mtime)
     {

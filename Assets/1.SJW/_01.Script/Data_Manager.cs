@@ -52,53 +52,6 @@ public class Data_Manager : MonoBehaviour
         Ui_Manager.instance.UiRefresh();
     }
 
-    public void ChangePGreen()
-    {
-        if (money3 >= 1)
-        {
-            money3 -= 1;
-
-            money2 += 500;
-        }
-        else
-        {
-            Ui_Manager.instance.state.text = "재화 부족!";
-
-        }
-        Ui_Manager.instance.UiRefresh();
-    }
-    public void ChangePBlue()
-    {
-        if (money3 >= 1)
-        {
-            money3 -= 1;
-
-            money1 += 500;
-        }
-        else
-        {
-            Ui_Manager.instance.state.text = "재화 부족!";
-
-        }
-        Ui_Manager.instance.UiRefresh();
-    }
-    public void ChangePHeart()
-    {
-        if (money3 >= 1)
-        {
-            money3 -= 1;
-            maxHp += 10;
-            curHp += 10;
-        }
-        else
-        {
-            Ui_Manager.instance.state.text = "재화 부족!";
-
-        }
-        Ui_Manager.instance.UiRefresh();
-    }
-
-
     private void Awake()
     {
         instance = this;
