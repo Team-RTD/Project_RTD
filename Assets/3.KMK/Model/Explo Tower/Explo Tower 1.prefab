@@ -3255,7 +3255,7 @@ GameObject:
   - component: {fileID: 7566449137188919399}
   - component: {fileID: 7958264280904424573}
   m_Layer: 0
-  m_Name: ExploTower
+  m_Name: Explo Tower 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
