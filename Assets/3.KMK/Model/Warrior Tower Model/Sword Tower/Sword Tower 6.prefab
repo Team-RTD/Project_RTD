@@ -2135,7 +2135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
   TowerZone: {fileID: 0}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 835945d7a0ff5cc4ba92040b3055bef4, type: 3}
   towerAttackType: 0
   towerType: 0
   towerName: 
