@@ -49137,6 +49137,8 @@ MonoBehaviour:
   - {fileID: 7720584873945255890, guid: a46cbe3e176b44c4eb659ec43a309026, type: 3}
   - {fileID: 832919442165101662, guid: ecbdc8137418fd24aace80a74c9e2701, type: 3}
   - {fileID: 5412061246733748894, guid: 506caedb859380f4ebef3b1f33601924, type: 3}
+  - {fileID: 7364353206023888432, guid: 49e08b73afc1f804ca126fd5e6782a32, type: 3}
+  - {fileID: 3692621626819878603, guid: 3cf153f28a403044fa52eb710b9d950c, type: 3}
 --- !u!4 &1337691032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400616, guid: 3095eed88e39bec4bb5a519dac88fed9, type: 3}
