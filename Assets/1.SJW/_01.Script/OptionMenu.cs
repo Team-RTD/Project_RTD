@@ -23,6 +23,7 @@ public class OptionMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        Sound_Manager.instance.NarPlay(11);
         Data_Manager.instance.isPause = true;
         Time.timeScale = 0;
         bgmslider.value = Sound_Manager.instance.bgmPlayer.volume;
@@ -32,6 +33,7 @@ public class OptionMenu : MonoBehaviour
 
     private void OnDisable()
     {
+        Sound_Manager.instance.NarPlay(1);
         Data_Manager.instance.isPause = false;
         Time.timeScale = 1;
     }

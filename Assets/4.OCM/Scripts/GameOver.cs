@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Data_Manager.instance.curHp <= 0)
+        if (Data_Manager.instance.CurHp <= 0)
         {
            gameOver.SetActive(true);
             Data_Manager.instance.isPause = true;
@@ -26,7 +26,7 @@ public class GameOver : MonoBehaviour
     {
         Data_Manager.instance.isPause = false;
         Time.timeScale = 1;
-        Data_Manager.instance.curHp = 5;
+        Data_Manager.instance.CurHp = 5;
         Data_Manager.instance.DataReset();
         Ui_Manager.instance.UiRefresh();
         SceneManager.LoadScene(0);

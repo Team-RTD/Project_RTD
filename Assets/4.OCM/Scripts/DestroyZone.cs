@@ -43,11 +43,11 @@ public class DestroyZone : MonoBehaviour
             Destroy(others.gameObject);
             if (others.gameObject.name == "Monster9(Clone)" || others.gameObject.name == "Monster19(Clone)" || others.gameObject.name == "Monster29(Clone)" || others.gameObject.name == "Monster39(Clone)" || others.gameObject.name == "Monster49(Clone)")
             {
-                Data_Manager.instance.curHp-=25;
+                Data_Manager.instance.CurHp-=25;
             }
             else
             {
-                Data_Manager.instance.curHp--;
+                Data_Manager.instance.CurHp--;
             }
             Ui_Manager.instance.UiRefresh();
         }

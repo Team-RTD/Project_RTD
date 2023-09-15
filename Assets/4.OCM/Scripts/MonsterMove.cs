@@ -143,7 +143,8 @@ public class MonsterMove : MonoBehaviour
 
     public Sprite portrait;
     private void Awake()
-    {
+    { 
+        hp = 100000;
         animator = GetComponent<Animator>();
         monsterSpeed = 15.0f;
         posloc = 0;
@@ -153,9 +154,9 @@ public class MonsterMove : MonoBehaviour
     }
     void Start()
     {
-        HpSett();
 
-        
+
+        HpSett();
         Transform ArrowPosParent = GameObject.Find("ArrowPos").transform;
         Pos = new Transform[ArrowPosParent.childCount];
 
@@ -233,8 +234,9 @@ public class MonsterMove : MonoBehaviour
             {
                 if (monsterStageNum % 10 == 0)
                 {
+                    Sound_Manager.instance.NarPlay(5);
                     Data_Manager.instance.money3++;
-                    Data_Manager.instance.curHp++;
+                    Data_Manager.instance.CurHp++;
                 }
                 else
                 {

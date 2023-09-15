@@ -74,7 +74,7 @@ public class Ui_Manager : MonoBehaviour
     public void UiRefresh()
     {
         roundTxt.text = Data_Manager.instance.curRound + "/" + Data_Manager.instance.maxRound;
-        lifeTxt.text = Data_Manager.instance.curHp.ToString();
+        lifeTxt.text = Data_Manager.instance.CurHp.ToString();
 
 
         money1Txt.text = Data_Manager.instance.money1.ToString();
@@ -103,7 +103,7 @@ public class Ui_Manager : MonoBehaviour
         Data_Manager.instance.DataReset();
 
         roundTxt.text = Data_Manager.instance.curRound + "/" + Data_Manager.instance.maxRound;
-        lifeTxt.text = Data_Manager.instance.curHp.ToString();
+        lifeTxt.text = Data_Manager.instance.CurHp.ToString();
 
 
         money1Txt.text = Data_Manager.instance.money1.ToString();
@@ -170,7 +170,8 @@ public class Ui_Manager : MonoBehaviour
 
     public void OptionPannelOpen()
     {
-        if(OptionPannel.activeSelf) 
+        Sound_Manager.instance.EffectPlay(8);
+        if (OptionPannel.activeSelf) 
         {
             OptionPannel.SetActive(false);
         }
@@ -182,6 +183,7 @@ public class Ui_Manager : MonoBehaviour
 
     public void PmoneyPannelOpen()
     {
+        Sound_Manager.instance.EffectPlay(4);
         if (pMoneyPannel.activeSelf)
         {
             pMoneyPannel.SetActive(false);
