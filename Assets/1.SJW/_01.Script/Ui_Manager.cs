@@ -170,7 +170,8 @@ public class Ui_Manager : MonoBehaviour
 
     public void OptionPannelOpen()
     {
-        if(OptionPannel.activeSelf) 
+        Sound_Manager.instance.EffectPlay(8);
+        if (OptionPannel.activeSelf) 
         {
             OptionPannel.SetActive(false);
         }
@@ -182,6 +183,7 @@ public class Ui_Manager : MonoBehaviour
 
     public void PmoneyPannelOpen()
     {
+        Sound_Manager.instance.EffectPlay(4);
         if (pMoneyPannel.activeSelf)
         {
             pMoneyPannel.SetActive(false);

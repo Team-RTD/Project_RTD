@@ -234,6 +234,7 @@ public class MonsterMove : MonoBehaviour
             {
                 if (monsterStageNum % 10 == 0)
                 {
+                    Sound_Manager.instance.NarPlay(5);
                     Data_Manager.instance.money3++;
                     Data_Manager.instance.CurHp++;
                 }

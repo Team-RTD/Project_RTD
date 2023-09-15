@@ -19,7 +19,12 @@ public class Data_Manager : MonoBehaviour
         {
             int lastHp = curHp;
             curHp = value;
+            if(curHp <= 0)
+            {
+                Sound_Manager.instance.NarPlay(25);
 
+                return;
+            }
             if( curHp < lastHp)
             {
                 int rand = Random.Range(2, 5);
@@ -27,7 +32,6 @@ public class Data_Manager : MonoBehaviour
             }
         }
     }
-
 
 
     public int maxRound = 50;
@@ -63,12 +67,15 @@ public class Data_Manager : MonoBehaviour
     {
         if(money1 >=100)
         {
+            Sound_Manager.instance.EffectPlay(0);
             money1 -= 100;
 
             money2 += Random.Range(40, 161);
         }
         else
         {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
             Ui_Manager.instance.state.text = "재화 부족!";
 
         }
@@ -79,12 +86,15 @@ public class Data_Manager : MonoBehaviour
     {
         if (money3 >= 1)
         {
+            Sound_Manager.instance.EffectPlay(2);
             money3 -= 1;
 
             money2 += 500;
         }
         else
         {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
             Ui_Manager.instance.state.text = "재화 부족!";
 
         }
@@ -94,12 +104,15 @@ public class Data_Manager : MonoBehaviour
     {
         if (money3 >= 1)
         {
+            Sound_Manager.instance.EffectPlay(1);
             money3 -= 1;
 
             money1 += 500;
         }
         else
         {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
             Ui_Manager.instance.state.text = "재화 부족!";
 
         }
@@ -109,12 +122,15 @@ public class Data_Manager : MonoBehaviour
     {
         if (money3 >= 1)
         {
+            Sound_Manager.instance.EffectPlay(3);
             money3 -= 1;
             maxHp += 10;
             CurHp += 10;
         }
         else
         {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
             Ui_Manager.instance.state.text = "재화 부족!";
 
         }

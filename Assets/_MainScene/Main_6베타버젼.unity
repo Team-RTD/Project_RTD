@@ -67609,6 +67609,43 @@ MonoBehaviour:
   bgmPlayer: {fileID: 1793083778}
   effectSoundPlayer: {fileID: 1793083780}
   narSoundPlayer: {fileID: 1793083779}
+  nars:
+  - {fileID: 8300000, guid: 8a9ea5f1b6a7e6c4f9f839ac290a9ee9, type: 3}
+  - {fileID: 8300000, guid: 9ffc834c091fe6046a5f29fd50483fba, type: 3}
+  - {fileID: 8300000, guid: d8dd513d2001d4a4183805c3921ddfca, type: 3}
+  - {fileID: 8300000, guid: c65704eaa99181f4daed91afc8d59e46, type: 3}
+  - {fileID: 8300000, guid: 4550b4e6960dc9a4fa8b0f0ed2f70d46, type: 3}
+  - {fileID: 8300000, guid: a1851012e376bd54eba2ee927a841dae, type: 3}
+  - {fileID: 8300000, guid: 0dc2abe9deb61c8408861c3fe8a3e6d2, type: 3}
+  - {fileID: 8300000, guid: cdeccd4be151dd74ba55b9ec2717d7aa, type: 3}
+  - {fileID: 8300000, guid: 828e6b3683cddfe4e98325ff905be252, type: 3}
+  - {fileID: 8300000, guid: 94fcb4c12c59e204f847675d8d9bb92d, type: 3}
+  - {fileID: 8300000, guid: 643e51e90423ca34ebc35e4a54df79c5, type: 3}
+  - {fileID: 8300000, guid: 2cbbdd7ffb9b8ee4b94cdc596702a33d, type: 3}
+  - {fileID: 8300000, guid: 8523d2bc32f571e458c93728bc0f6f01, type: 3}
+  - {fileID: 8300000, guid: 8430e0a1705170b4787444072a48a6e5, type: 3}
+  - {fileID: 8300000, guid: c7d7b5b155881f74ab5711071fa0e041, type: 3}
+  - {fileID: 8300000, guid: 152c802b1d41f0041bdf68234f2b3bdb, type: 3}
+  - {fileID: 8300000, guid: 405194514a27f4d44988fdfbfc9ed543, type: 3}
+  - {fileID: 8300000, guid: d03f8f451b254dd4aa32a7b4abcc3d60, type: 3}
+  - {fileID: 8300000, guid: 6e245a2e9fbd96442b7c6fdb7543ed57, type: 3}
+  - {fileID: 8300000, guid: a783a99fb8de438469e6a31da8dfed59, type: 3}
+  - {fileID: 8300000, guid: c6400b028d0c57e45a99deaefa75341c, type: 3}
+  - {fileID: 8300000, guid: 1685aa223fadb03468902b3c0c7b3e4b, type: 3}
+  - {fileID: 8300000, guid: d2bf6eeca0ac29d4e903156d06f0e4c5, type: 3}
+  - {fileID: 8300000, guid: 49a097655aeb0c042952391c070aaf8f, type: 3}
+  - {fileID: 8300000, guid: d89139ca4e08d6b43bd174dcfa72b3fb, type: 3}
+  - {fileID: 8300000, guid: 2ad14c4dd7fdcc94a92506e16790e3da, type: 3}
+  EffectiveClip:
+  - {fileID: 8300000, guid: 97b02bef39c76c34db476dd0d305c4f5, type: 3}
+  - {fileID: 8300000, guid: 5470d4e8747748c49998e3d40e911561, type: 3}
+  - {fileID: 8300000, guid: 2ba6f61fb20e8484d9ae20dde410f327, type: 3}
+  - {fileID: 8300000, guid: defbc2501f71cdf48b7e5ccdb042ef1f, type: 3}
+  - {fileID: 8300000, guid: 934d9c3bc9b2bd0489bc7c2e440da6f9, type: 3}
+  - {fileID: 8300000, guid: a00ad555ae6b2ba44816035e95634348, type: 3}
+  - {fileID: 8300000, guid: 4c1ec8e18d2146c449c4eafa84be2246, type: 3}
+  - {fileID: 8300000, guid: c626c0be3b6974e47ac61ef6b3344570, type: 3}
+  - {fileID: 8300000, guid: 4272002e501ea0548a9c2724df301701, type: 3}
 --- !u!4 &1794457061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 467220, guid: e73dff4b52d607f4ca11b85eca8f146b, type: 3}
@@ -78045,7 +78082,6 @@ MonoBehaviour:
   maxRound: 50
   curRound: 0
   maxHp: 5
-  curHp: 0
   money1: 300
   money2: 0
   money3: 0
