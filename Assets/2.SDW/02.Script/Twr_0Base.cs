@@ -286,15 +286,6 @@ public class Twr_0Base : MonoBehaviour
         animator.SetTrigger("IdleToAttack"); //0907
         gameObject.transform.LookAt(collider.transform.position);
         DamageSetting();
-<<<<<<< Updated upstream
-        Debug.LogWarning(collider.transform.position == null);
-        Debug.LogWarning(gameObject.transform.position == null);
-        Debug.LogWarning(areaDuration == null);
-        Debug.LogWarning(damage == null);
-        Debug.LogWarning(areaAttDelay == null);
-        Debug.LogWarning(collider.gameObject.layer == null);
-=======
->>>>>>> Stashed changes
         areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer); //여기서 오류
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
