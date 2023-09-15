@@ -72,6 +72,7 @@ public class StageManager : MonoBehaviour
     {
         if(endBool == false)
         {
+            StageManager.instance.stageNum = 1;
             StageManager.instance.clearTimer.text = Ui_Manager.instance.Timer.text;
             StageManager.instance.killCount.text = Data_Manager.instance.killcount.ToString();
             StageManager.instance.curHp.text = Data_Manager.instance.curHp.ToString();
