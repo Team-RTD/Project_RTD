@@ -12,6 +12,8 @@ public class Sound_Manager : MonoBehaviour
     public AudioSource bgmPlayer;
     public AudioSource effectSoundPlayer;
     public AudioSource narSoundPlayer;
+
+    public AudioClip[] nars;
     private void Awake()
     {
         instance = this;
@@ -42,9 +44,9 @@ public class Sound_Manager : MonoBehaviour
 
     }
 
-    public void NarPlay(AudioClip nar)
+    public void NarPlay(int nar)
     {
-        narSoundPlayer.clip = nar;
+        narSoundPlayer.clip =nars[nar];
         narSoundPlayer.Play();
     }
 
