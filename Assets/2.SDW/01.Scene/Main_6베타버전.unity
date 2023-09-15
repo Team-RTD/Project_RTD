@@ -11923,6 +11923,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 408112, guid: c6cb56b5c70f4f14ebf96689fda29f2c, type: 3}
   m_PrefabInstance: {fileID: 770391095}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &376643140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3692621626819878603, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_Name
+      value: MultiShotTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9240761
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.949298
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327777017711061082, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e8342196bf2f90428f3cbdacabc4808, type: 3}
 --- !u!4 &378346265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 461420, guid: c4c867f83beeae549bdc784dca9b0798, type: 3}
@@ -24503,7 +24564,11 @@ Transform:
   m_Children:
   - {fileID: 1087113817}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
   m_RootOrder: 14
+=======
+  m_RootOrder: 11
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &765600930
 MonoBehaviour:
@@ -27496,7 +27561,11 @@ Transform:
   - {fileID: 1857999036}
   - {fileID: 2037160531}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
   m_RootOrder: 11
+=======
+  m_RootOrder: 9
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &838216436
 PrefabInstance:
@@ -37755,7 +37824,11 @@ Transform:
   - {fileID: 856772478}
   - {fileID: 1108271511}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
   m_RootOrder: 9
+=======
+  m_RootOrder: 8
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1113546915 stripped
 Transform:
@@ -44040,7 +44113,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
   m_RootOrder: 13
+=======
+  m_RootOrder: 10
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1284374552 stripped
 Transform:
@@ -57721,7 +57798,11 @@ Transform:
   - {fileID: 1438701185}
   - {fileID: 2113342862}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
   m_RootOrder: 8
+=======
+  m_RootOrder: 7
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1677257284
 PrefabInstance:
@@ -66690,7 +66771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4489175654884898, guid: 830eb2bdeec3f2748985b1d3847d67ce, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4489175654884898, guid: 830eb2bdeec3f2748985b1d3847d67ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -74359,7 +74440,11 @@ Transform:
   - {fileID: 1845079797}
   - {fileID: 629121461}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
   m_RootOrder: 2
+=======
+  m_RootOrder: 12
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2116526780 stripped
 Transform:
@@ -75413,7 +75498,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 149421915947255013, guid: 0c97b2a1e378c8c48bfe44ebc510d0f6, type: 3}
       propertyPath: m_RootOrder
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
       value: 10
+=======
+      value: 14
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
       objectReference: {fileID: 0}
     - target: {fileID: 149421915947255013, guid: 0c97b2a1e378c8c48bfe44ebc510d0f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75474,7 +75563,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 806579690324219350, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
       propertyPath: m_RootOrder
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
       value: 7
+=======
+      value: 13
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
       objectReference: {fileID: 0}
     - target: {fileID: 806579690324219350, guid: 739d06fe59debc946817f1dfc245efd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75778,7 +75871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2755400421760157206, guid: 12e741339b95e334f88a2675565ef24b, type: 3}
       propertyPath: m_RootOrder
+<<<<<<< Updated upstream:Assets/2.SDW/01.Scene/Main_6베타버전.unity
       value: 12
+=======
+      value: 15
+>>>>>>> Stashed changes:Assets/2.SDW/01.Scene/Main_6베타버젼.unity
       objectReference: {fileID: 0}
     - target: {fileID: 2755400421760157206, guid: 12e741339b95e334f88a2675565ef24b, type: 3}
       propertyPath: m_LocalPosition.x

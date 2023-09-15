@@ -193,6 +193,70 @@ public class MonsterMove : MonoBehaviour
         }
         
     }
+
+    int fireStack = 0;
+    float fireDamage = 0f;
+    float fireDuration = 0f;
+    float fireDamageDelay = 0f;
+    public bool isOnFire = false; // 불이 붙었는가
+    bool isRunFire = false; // 데미지 들어가고 있는가
+    bool endRunning = false; // 종료 코루틴이 실행중인가?
+    bool setFire = false;
+    private Coroutine _FireTimer;
+
+    public void SetFireInfo(float _fireDamage, float _fireDuration, float _fireDamageDelay)
+    {
+        if (setFire == true) { return; }
+        setFire = true;
+
+        fireDamage = _fireDamage;
+        fireDuration = _fireDuration;
+        fireDamageDelay = _fireDamageDelay;
+    }
+    public void FireDamageAction(float _fireDamage, float _fireDuration, float _fireDamageDelay)
+    {
+        if (setFire == false)
+        {
+            SetFireInfo(_fireDamage, _fireDuration, _fireDamageDelay);
+        }
+        
+        fireStack++;
+
+        if (isRunFire == false)
+        {
+            isOnFire = true;
+            StartCoroutine(FireDamage());
+        }
+
+        if (endRunning == true)
+        {
+            StopCoroutine(_FireTimer);
+            _FireTimer = null;
+        }
+        _FireTimer = StartCoroutine(FireTimer());
+    }
+
+    IEnumerator FireTimer()
+    {
+        endRunning = true;
+        yield return new WaitForSeconds(fireDuration);
+        isOnFire = false;
+        endRunning = false;
+    }
+
+    IEnumerator FireDamage()
+    {
+        while (isOnFire)
+        {
+            isRunFire = true;
+            float _damage = fireDamage * fireStack;
+            DamagedAction(_damage);
+            print("Fire Damage = " + _damage);
+
+            yield return new WaitForSeconds(fireDamageDelay);
+        }
+        isRunFire = false;
+    }
     
 IEnumerator DeadAction()    
     {

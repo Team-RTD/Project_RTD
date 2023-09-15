@@ -61,20 +61,20 @@ public class Twr_0Base : MonoBehaviour
 
 
     // DO NOT EDIT THIS LIST *************************************************
-    private Vector3 enemyDir;
-    private Animator animator; //0907
-    private Vector3 towerPos;
+    protected Vector3 enemyDir;
+    protected Animator animator; //0907
+    protected Vector3 towerPos;
     public bool isCoolTime = false;
-    private int targetsCount = 0;
+    protected int targetsCount = 0;
 
-    List<MonsterMove> enemyTargets = new List<MonsterMove>();
-    private LayerMask enemyLayer;
+    protected List<MonsterMove> enemyTargets = new List<MonsterMove>();
+    protected LayerMask enemyLayer;
 
-    List<ThrowObject> throwObjects = new List<ThrowObject>();
-    ThrowObject[] thorwObjArray;
+    protected List<ThrowObject> throwObjects = new List<ThrowObject>();
+    protected ThrowObject[] thorwObjArray;
 
-    List<AreaObject> areaObjects = new List<AreaObject>();
-    AreaObject[] areaObjArray;
+    protected List<AreaObject> areaObjects = new List<AreaObject>();
+    protected AreaObject[] areaObjArray;
 
     public GameObject thorwObjInstance; // 0910
     // DO NOT EDIT THIS LIST *************************************************
@@ -136,6 +136,12 @@ public class Twr_0Base : MonoBehaviour
 
         animator = GetComponentInChildren<Animator>(); //0907
 
+        AfterAwake();
+    }
+
+    protected virtual void AfterAwake()
+    {
+
     }
 
     public virtual void Start()
@@ -152,7 +158,7 @@ public class Twr_0Base : MonoBehaviour
     }
 
 
-    public void Detecting()
+    protected virtual void Detecting()
     {
         Collider[] colliders = Physics.OverlapSphere(towerPos, towerAttackRange[towerRank], enemyLayer);
         enemyTargets.Clear();
@@ -242,11 +248,7 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = true;
         CoolTimeTrueDetectOff();
         animator.SetTrigger("IdleToAttack"); //0907
-        GameObject particleInstance = Instantiate(shooterParticle, _enemy.transform.position, Quaternion.identity); //0907
-        ParticleSystem particleSystem = particleInstance.GetComponent<ParticleSystem>(); //0907
-        float x = particleSystem.main.duration;//0907
-        Destroy(particleInstance, x); //0907
-
+        ShooterHitAction(_enemy);
         targetsCount = targetsCount + 1;
         DamageSetting();
         _enemy.GetComponent<MonsterMove>().DamagedAction(damage);
@@ -254,6 +256,14 @@ public class Twr_0Base : MonoBehaviour
         targetsCount = 0;
         isCoolTime = false;
         CoolTimeFalseDetectOn();
+    }
+
+    protected virtual void ShooterHitAction(MonsterMove _enemy)
+    {
+        GameObject particleInstance = Instantiate(shooterParticle, _enemy.transform.position, Quaternion.identity); //0907
+        ParticleSystem particleSystem = particleInstance.GetComponent<ParticleSystem>(); //0907
+        float x = particleSystem.main.duration;//0907
+        Destroy(particleInstance, x); //0907
     }
 
     IEnumerator ThrowerEnemy(ThrowObject throwObject, Collider collider)
@@ -269,7 +279,7 @@ public class Twr_0Base : MonoBehaviour
         CoolTimeFalseDetectOn();
     }
 
-    IEnumerator AreaEnemy(AreaObject areaObject, Collider collider)
+    protected virtual IEnumerator AreaEnemy(AreaObject areaObject, Collider collider)
     {
         isCoolTime = true;
         CoolTimeTrueDetectOff();
