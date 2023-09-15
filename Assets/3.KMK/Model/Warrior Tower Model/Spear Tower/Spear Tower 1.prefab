@@ -3345,7 +3345,7 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: 642db7110bffb40449196e83743692e6, type: 3}
   TowerZone: {fileID: 0}
   fireSound: {fileID: 8300000, guid: c3afbc799b877f744a9e07dd4c4e83a3, type: 3}
-  towerAttackType: 0
+  towerAttackType: 1
   towerType: 0
   towerName: 
   towerPrice: 0
@@ -3377,7 +3377,7 @@ MonoBehaviour:
   towerRank: 0
   shooterParticle: {fileID: 0}
   isCoolTime: 0
-  thorwObjInstance: {fileID: 8721611937575789115, guid: e3a75a8f205be9148a4bdeca7856428b, type: 3}
+  thorwObjInstance: {fileID: 3382914474708221069, guid: 78bf8a143ec6af3438aedc5ad90ffc98, type: 3}
   spearObj: {fileID: 0}
 --- !u!114 &8004741710691776332
 MonoBehaviour:
