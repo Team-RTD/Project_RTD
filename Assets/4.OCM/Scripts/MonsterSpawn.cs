@@ -1,8 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,17 +80,19 @@ public class MonsterSpawn : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        
-
         if (StageManager.instance.monsterCount == 0 && nextStage == true && currentTime > nextStageTime)
         {
             nextStage = false;
-            if (StageManager.instance.stageNum > 1)
+            if (StageManager.instance.stageNum >= 1&& StageManager.instance.stageNum<51)
             {
-                Data_Manager.instance.money1 += 200;
+                if (StageManager.instance.stageNum > 1)
+                {
+                    Data_Manager.instance.money1 += 200;
+                    
+                }
+                StageManager.instance.monsterMaxHp = StageManager.instance.SetMonsterHP(StageManager.instance.stageNum);
+                StartCoroutine(SpawnEnemy(StageManager.instance.stageNum));
             }
-
-            StartCoroutine(SpawnEnemy(StageManager.instance.stageNum));
             currentTime = 0;
         }
 
@@ -118,8 +118,9 @@ public class MonsterSpawn : MonoBehaviour
     {
 
         Data_Manager.instance.curRound = StageManager.instance.stageNum;
+        
         Ui_Manager.instance.UiRefresh();
-
+        
 
         if (StageManager.instance.stageNum % 10 == 0 && StageManager.instance.stageNum > 1)
         {
@@ -151,10 +152,10 @@ public class MonsterSpawn : MonoBehaviour
                 currentTime = 0f;
 
             }
+
         }
         nextStage = true;
         StageManager.instance.stageNum++;
-        StageManager.instance.monsterMaxHp = StageManager.instance.SetMonsterHP(StageManager.instance.stageNum);
     }
 
 
@@ -270,7 +271,8 @@ public class MonsterSpawn : MonoBehaviour
         {
             if (missionTrigger1 == true)
             {
-                StartCoroutine(PersonalMission1());
+            Sound_Manager.instance.EffectPlay(5);
+            StartCoroutine(PersonalMission1());
                 StageManager.instance.missionNum = 1;
                 StageManager.instance.monsterCount++;
                 StageManager.instance.mission1CoolTime = 0;
@@ -280,7 +282,8 @@ public class MonsterSpawn : MonoBehaviour
     public void mission2()
         {
             if (missionTrigger2 == true)
-            { 
+        {
+                Sound_Manager.instance.EffectPlay(6);
                 StartCoroutine(PersonalMission2());
                 StageManager.instance.missionNum = 2;
                 StageManager.instance.monsterCount++;
@@ -291,7 +294,8 @@ public class MonsterSpawn : MonoBehaviour
     public void mission3()
         {
             if (missionTrigger3 == true)
-            {
+        {
+                Sound_Manager.instance.EffectPlay(7);
                 StartCoroutine(PersonalMission3());
                 StageManager.instance.missionNum = 3;
                 StageManager.instance.monsterCount++;

@@ -43,14 +43,17 @@ public class GuideLine : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, setpos.transform.position, speed);
             //transform.Translate(loc,Space.World);
             dir = setpos.transform.position - transform.position;
-
+            
 
 
             yield return null;
         }
+
         posloc++;
-        if(posloc <= 11)
-        { StartCoroutine(GoToPos(Pos[posloc])); }
+        
+        if (posloc <= 11)
+        {
+            StartCoroutine(GoToPos(Pos[posloc])); }
         else
         {
             yield return new WaitForSeconds(3f);
@@ -58,7 +61,7 @@ public class GuideLine : MonoBehaviour
             transform.position = startpos.position;
             StartCoroutine(GoToPos(Pos[posloc]));
         }
-       
+        
     }
 
 }

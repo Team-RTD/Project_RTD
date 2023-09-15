@@ -11,8 +11,14 @@ public class AreaObject : MonoBehaviour
     float duration;
     float damageDelay;
     LayerMask enemyLayer;
+    Collider[] areaObjColliders;
 
     private bool isActive = false;
+
+    private void Start()
+    {
+        areaObjColliders = GetComponents<Collider>();
+    }
     private void OnEnable()
     {
         gameObject.GetComponent<Collider>().enabled = false;
@@ -42,9 +48,17 @@ public class AreaObject : MonoBehaviour
 
     IEnumerator AttackArea()
     {
-        gameObject.GetComponent<Collider>().enabled = true;
+        for (int i = 0; i >= areaObjColliders.Length; i++)
+        {
+            areaObjColliders[i].enabled = true;
+        }
+
         yield return new WaitForSeconds(damageDelay);
-        gameObject.GetComponent<Collider>().enabled = false;
+
+        for (int i = 0; i >= areaObjColliders.Length; i++)
+        {
+            areaObjColliders[i].enabled = false;
+        }
         StartCoroutine(AttackArea());
     }
 

@@ -19,7 +19,7 @@ public class ClickSystem : MonoBehaviour
     public GameObject SummonEffect;
     public AudioClip SummonSound;
 
-
+    public bool isSuperBuild=false;
     
 
     public enum PlayerMode
@@ -63,7 +63,7 @@ public class ClickSystem : MonoBehaviour
                 switch (playerMode)
                 {
                     case PlayerMode.TowerBuild://타워건설모드에서 클릭 시
-
+                        bool canbuild=false;
                         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                         hit = Physics.RaycastAll(ray, 100f);
                         if (hit != null)
@@ -73,13 +73,37 @@ public class ClickSystem : MonoBehaviour
                                 GameObject hitObject = hitob.transform.gameObject;
                                 if (hitObject.tag == "TowerZone")
                                 {
-                                    Tower_Manager.instance.TowerInstance(hitObject, 1);
+                                    if(isSuperBuild)
+                                    {
+                                        int rand = Random.Range(22, 25);
+                                        Sound_Manager.instance.NarPlay(rand);
+                                        Tower_Manager.instance.TowerInstance(hitObject, Random.Range(1,7));
+                                        TowerSuperBuildBtn();
+                                        Data_Manager.instance.money1 -= 100;
+                                        Data_Manager.instance.money3 -= 1;
+                                        Ui_Manager.instance.UiRefresh();
+                                        isSuperBuild = false;
+                                        canbuild = true;
+
+                                    }
+                                    else
+                                    {
+                                        int rand = Random.Range(22, 25);
+                                        Sound_Manager.instance.NarPlay(rand);
+                                        Tower_Manager.instance.TowerInstance(hitObject, 1);
+                                        canbuild = true;
+                                    }
+                                   
                                 }
                                 else
                                 {
                                     print("렌더러 없음");
                                 }
-
+                            }
+                            if (!canbuild)
+                            {
+                                int rand = Random.Range(19, 22);
+                                Sound_Manager.instance.NarPlay(rand);
                             }
                         }
                         break;
@@ -127,6 +151,9 @@ public class ClickSystem : MonoBehaviour
                                                 towerRank += 2;
                                                 if (towerObject != null)
                                                 {
+                                                    int rand = Random.Range(9, 11);
+                                                    Sound_Manager.instance.NarPlay(rand);
+
                                                     Tower_Manager.instance.TowerSell(towerObject, false);
                                                     Tower_Manager.instance.TowerSell(clickedTower, false);
                               
@@ -231,6 +258,59 @@ public class ClickSystem : MonoBehaviour
 
         }
         
+    }
+
+    public void TowerSuperBuildBtn()
+    {
+        if (Data_Manager.instance.money3 < 1)
+        {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
+            Ui_Manager.instance.state.text = "재화 부족!";
+            return;
+        }
+
+
+        if (playerMode != PlayerMode.TowerBuild)
+        {
+
+            playerMode = PlayerMode.TowerBuild;
+            Ui_Manager.instance.state.text = "강화건설 모드";
+            isSuperBuild = true;
+            BtnColorReset();
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(true);
+                }
+                else
+                {
+                    zone.SetActive(false);
+                }
+
+            }
+        }
+        else
+        {
+            playerMode = PlayerMode.Nomal;
+            BtnColorReset();
+            Ui_Manager.instance.state.text = "";
+ 
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+
+        }
+
     }
 
     public void TowerMixBtn()

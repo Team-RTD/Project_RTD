@@ -29,6 +29,7 @@ public class TEST : MonoBehaviour
 
                 break;
             case ClickSystem.PlayerMode.TowerSell: //타워 판매 구현
+                Sound_Manager.instance.NarPlay(16);
                 Tower_Manager.instance.TowerSell(gameObject,true);
                 break;
             case ClickSystem.PlayerMode.TowerBuild:
@@ -74,6 +75,10 @@ public class TEST : MonoBehaviour
                 break;
             case ClickSystem.PlayerMode.TowerBuild:
                 line.OutlineColor = Color.clear;
+
+                break;
+            case ClickSystem.PlayerMode.TowerMix:
+                line.OutlineColor = Color.red;
 
                 break;
         }
