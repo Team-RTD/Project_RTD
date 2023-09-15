@@ -7,11 +7,34 @@ public class Data_Manager : MonoBehaviour
 {
     public static Data_Manager instance { get; private set; }
 
+
+
+    public int CurHp
+    {
+        get
+        { 
+            return curHp;
+        }
+        set 
+        {
+            int lastHp = curHp;
+            curHp = value;
+
+            if( curHp < lastHp)
+            {
+                int rand = Random.Range(2, 5);
+                Sound_Manager.instance.NarPlay(rand);
+            }
+        }
+    }
+
+
+
     public int maxRound = 50;
     public int curRound;
 
     public int maxHp = 5;
-    public int curHp;
+    private int curHp;
 
     public int money1 = 0;
     public int money2 = 0;
@@ -27,7 +50,7 @@ public class Data_Manager : MonoBehaviour
         curRound = 1;
 
         maxHp = 5;
-        curHp = 5;
+        CurHp = 5;
 
         money1 = 500;
         money2 = 50;
@@ -88,7 +111,7 @@ public class Data_Manager : MonoBehaviour
         {
             money3 -= 1;
             maxHp += 10;
-            curHp += 10;
+            CurHp += 10;
         }
         else
         {
@@ -127,9 +150,14 @@ public class Data_Manager : MonoBehaviour
         {
             playtime += Time.deltaTime;
             Ui_Manager.instance.Timer.text = "0:"+ (10-Mathf.Floor(playtime)).ToString() ;
+            print(playtime);
+            if(playtime > 4.9f && playtime < 5.1f)
+            {
+                Sound_Manager.instance.NarPlay(17);
+            }
             yield return null;
         }
-
+        Sound_Manager.instance.NarPlay(0);
         playtime = 0;
         while (true)
         {

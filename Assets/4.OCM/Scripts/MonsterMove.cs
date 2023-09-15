@@ -234,7 +234,7 @@ public class MonsterMove : MonoBehaviour
                 if (monsterStageNum % 10 == 0)
                 {
                     Data_Manager.instance.money3++;
-                    Data_Manager.instance.curHp++;
+                    Data_Manager.instance.CurHp++;
                 }
                 else
                 {
