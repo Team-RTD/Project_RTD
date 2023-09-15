@@ -18,6 +18,7 @@ public class AreaObject : MonoBehaviour
     private void Start()
     {
         areaObjColliders = GetComponents<Collider>();
+        gameObject.SetActive(false);
     }
     private void OnEnable()
     {
@@ -36,8 +37,9 @@ public class AreaObject : MonoBehaviour
         damageDelay = _damageDelay;
         enemyLayer = _enemyLayer;
         isActive = true;
+        Debug.LogWarning("11");
         gameObject.SetActive(true);
-        print(dir + " Area Dir");
+        Debug.LogWarning("22");
     }
     IEnumerator DurationArea()
     {

@@ -28,10 +28,10 @@ public class MonsterMove : MonoBehaviour
     public Transform[] Pos;
     int posloc;
     public Transform startpos;
-    
+
 
     //필요속성2: EnemyHp
-    public float hp ;
+    public float hp;
     public int monsterStageNum;
 
 
@@ -104,7 +104,7 @@ public class MonsterMove : MonoBehaviour
         isRunFire = false;
     }
 
-    public MonsterType monsterType = MonsterType.normal ;
+    public MonsterType monsterType = MonsterType.normal;
 
     public enum MonsterType
     {
@@ -114,7 +114,7 @@ public class MonsterMove : MonoBehaviour
 
     public void SetEnum()
     {
-        monsterType = MonsterType.mission ;
+        monsterType = MonsterType.mission;
     }
     public void HpSett()
     {
@@ -129,7 +129,7 @@ public class MonsterMove : MonoBehaviour
                 hp = StageManager.instance.monsterMaxHp;
             }
         }
-        else 
+        else
         {
             if (StageManager.instance.missionNum == 1)
                 hp = StageManager.instance.missionMonster1Hp;
@@ -138,12 +138,12 @@ public class MonsterMove : MonoBehaviour
             else
                 hp = StageManager.instance.missionMonster3Hp;
         }
-        
+
     }
 
     public Sprite portrait;
     private void Awake()
-    { 
+    {
         hp = 100000;
         animator = GetComponent<Animator>();
         monsterSpeed = 15.0f;
@@ -169,16 +169,16 @@ public class MonsterMove : MonoBehaviour
         //angle = 1;
         StartCoroutine(GoToPos(Pos[posloc]));
         startpos = transform;
-        
-        
+
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+
     }
-    
+
 
     IEnumerator GoToPos(Transform setpos)
     {
@@ -199,7 +199,7 @@ public class MonsterMove : MonoBehaviour
 
             transform.LookAt(setpos.transform);
             //transform.position = Vector3.Lerp(transform.position,setpos.transform.position,0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed*Time.deltaTime) ;
+            transform.position = Vector3.MoveTowards(transform.position, nextPoint, speed * Time.deltaTime);
             //transform.Translate(loc,Space.World);
             dir = nextPoint - transform.position;
             yield return null;
@@ -234,7 +234,6 @@ public class MonsterMove : MonoBehaviour
             {
                 if (monsterStageNum % 10 == 0)
                 {
-                    Sound_Manager.instance.NarPlay(5);
                     Data_Manager.instance.money3++;
                     Data_Manager.instance.CurHp++;
                 }
@@ -252,80 +251,16 @@ public class MonsterMove : MonoBehaviour
                 else
                     Data_Manager.instance.money1 += 300;
             }
-            
+
             StageManager.instance.monsterCount--;
             Data_Manager.instance.killcount++;
             Ui_Manager.instance.UiRefresh();
             StartCoroutine(DeadAction());
         }
-        
+
     }
 
-    int fireStack = 0;
-    float fireDamage = 0f;
-    float fireDuration = 0f;
-    float fireDamageDelay = 0f;
-    public bool isOnFire = false; // 불이 붙었는가
-    bool isRunFire = false; // 데미지 들어가고 있는가
-    bool endRunning = false; // 종료 코루틴이 실행중인가?
-    bool setFire = false;
-    private Coroutine _FireTimer;
-
-    public void SetFireInfo(float _fireDamage, float _fireDuration, float _fireDamageDelay)
-    {
-        if (setFire == true) { return; }
-        setFire = true;
-
-        fireDamage = _fireDamage;
-        fireDuration = _fireDuration;
-        fireDamageDelay = _fireDamageDelay;
-    }
-    public void FireDamageAction(float _fireDamage, float _fireDuration, float _fireDamageDelay)
-    {
-        if (setFire == false)
-        {
-            SetFireInfo(_fireDamage, _fireDuration, _fireDamageDelay);
-        }
-        
-        fireStack++;
-
-        if (isRunFire == false)
-        {
-            isOnFire = true;
-            StartCoroutine(FireDamage());
-        }
-
-        if (endRunning == true)
-        {
-            StopCoroutine(_FireTimer);
-            _FireTimer = null;
-        }
-        _FireTimer = StartCoroutine(FireTimer());
-    }
-
-    IEnumerator FireTimer()
-    {
-        endRunning = true;
-        yield return new WaitForSeconds(fireDuration);
-        isOnFire = false;
-        endRunning = false;
-    }
-
-    IEnumerator FireDamage()
-    {
-        while (isOnFire)
-        {
-            isRunFire = true;
-            float _damage = fireDamage * fireStack;
-            DamagedAction(_damage);
-            print("Fire Damage = " + _damage);
-
-            yield return new WaitForSeconds(fireDamageDelay);
-        }
-        isRunFire = false;
-    }
-    
-IEnumerator DeadAction()    
+    IEnumerator DeadAction()
     {
         isDead = true;
         gameObject.GetComponent<Collider>().enabled = false;

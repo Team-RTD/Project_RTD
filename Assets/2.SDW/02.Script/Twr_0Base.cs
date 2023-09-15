@@ -212,7 +212,7 @@ public class Twr_0Base : MonoBehaviour
                         if (_enemy != null)
                         {
                             enemyTargets.Add(_enemy);
-                            StartCoroutine(AreaEnemy(areaObjArray[targetsCount], collider));
+                            StartCoroutine(AreaEnemy(areaObjArray[targetsCount], collider)); // 여기서 오류
                             targetsCount++;
                         }
                         break;
@@ -284,10 +284,15 @@ public class Twr_0Base : MonoBehaviour
         isCoolTime = true;
         CoolTimeTrueDetectOff();
         animator.SetTrigger("IdleToAttack"); //0907
-
         gameObject.transform.LookAt(collider.transform.position);
         DamageSetting();
-        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
+        Debug.LogWarning(collider.transform.position == null);
+        Debug.LogWarning(gameObject.transform.position == null);
+        Debug.LogWarning(areaDuration == null);
+        Debug.LogWarning(damage == null);
+        Debug.LogWarning(areaAttDelay == null);
+        Debug.LogWarning(collider.gameObject.layer == null);
+        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer); //여기서 오류
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
         CoolTimeFalseDetectOn();
