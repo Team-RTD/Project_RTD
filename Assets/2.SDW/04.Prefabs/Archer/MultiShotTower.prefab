@@ -30762,9 +30762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa39549bcd9f8744fb31069bc5f6fa4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: f796969bcb93b404f963406f0ae3c4c5, type: 3}
   TowerZone: {fileID: 0}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 47f0504d9a044b24ead75516eb19140b, type: 3}
   towerAttackType: 0
   towerType: 0
   towerName: 

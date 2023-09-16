@@ -55,11 +55,17 @@ public class StageManager : MonoBehaviour
     {
         if (StageManager.instance.stageNum >= 51 && StageManager.instance.monsterCount == 0)
         {
+            if (!Data_Manager.instance.isPause)
+            { Sound_Manager.instance.BgmPlay(1);
+                Sound_Manager.instance.NarPlay(6);
+            }
             Data_Manager.instance.isPause = true;
             Time.timeScale = 0;
             print(1);
             endScene();
             gameClear.SetActive(true);
+
+
         }
     }
 
@@ -80,5 +86,27 @@ public class StageManager : MonoBehaviour
             endBool = true;
         }
         
+    }
+
+
+
+    public void TestClear()
+    {
+        if (!Data_Manager.instance.isPause)
+        { Sound_Manager.instance.BgmPlay(1); Sound_Manager.instance.NarPlay(6); }
+        Data_Manager.instance.isPause = true;
+        Time.timeScale = 0;
+        print(1);
+        endScene();
+        gameClear.SetActive(true);
+    }
+
+
+    public void TestMoney()
+     {
+        Data_Manager.instance.money1 = 5000;
+        Data_Manager.instance.money2 = 5000;
+        Data_Manager.instance.money3 = 5000;
+        Ui_Manager.instance.UiRefresh();
     }
 }

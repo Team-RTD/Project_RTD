@@ -20,7 +20,8 @@ public class ClickSystem : MonoBehaviour
     public AudioClip SummonSound;
 
     public bool isSuperBuild=false;
-    
+
+    public int towercode = 500;
 
     public enum PlayerMode
     {
@@ -88,10 +89,32 @@ public class ClickSystem : MonoBehaviour
                                     }
                                     else
                                     {
-                                        int rand = Random.Range(22, 25);
-                                        Sound_Manager.instance.NarPlay(rand);
-                                        Tower_Manager.instance.TowerInstance(hitObject, 1);
-                                        canbuild = true;
+                                        if(Data_Manager.instance.money1 < 100)
+                                        {
+                                            int rands = Random.Range(12, 16);
+                                            Sound_Manager.instance.NarPlay(rands);
+                                            Ui_Manager.instance.state.text = "재화 부족!";
+                                            return;
+                                        }
+
+                                        if(towercode <10)
+                                        {
+                                            int rand = Random.Range(22, 25);
+                                            Sound_Manager.instance.NarPlay(rand);
+                                            Tower_Manager.instance.TowerInstance(hitObject, 6 , towercode);
+                                            Data_Manager.instance.money1 -= 100;
+                                            Ui_Manager.instance.UiRefresh();
+                                            canbuild = true;
+                                        }
+                                        else
+                                        {
+                                            int rand = Random.Range(22, 25);
+                                            Sound_Manager.instance.NarPlay(rand);
+                                            Tower_Manager.instance.TowerInstance(hitObject, 1);
+                                            Data_Manager.instance.money1 -= 100;
+                                            Ui_Manager.instance.UiRefresh();
+                                            canbuild = true;
+                                        }    
                                     }
                                    
                                 }
@@ -219,6 +242,7 @@ public class ClickSystem : MonoBehaviour
     {
         if(playerMode!=PlayerMode.TowerBuild)
         {
+            towercode = 500;
             playerMode = PlayerMode.TowerBuild;
             Ui_Manager.instance.state.text = "건설 모드";
             BtnColorReset();
@@ -238,7 +262,7 @@ public class ClickSystem : MonoBehaviour
             }
         }
         else
-        {
+        {    towercode = 500;
             playerMode = PlayerMode.Nomal;
             BtnColorReset();
             Ui_Manager.instance.state.text = "";
@@ -258,6 +282,54 @@ public class ClickSystem : MonoBehaviour
 
         }
         
+    }
+
+
+    public void TestTowerBuildBtn(int code)
+    {
+        if (playerMode != PlayerMode.TowerBuild)
+        {
+            towercode = code;
+            playerMode = PlayerMode.TowerBuild;
+            Ui_Manager.instance.state.text = "치트 모드";
+            BtnColorReset();
+            BuildBtnDark();
+
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(true);
+                }
+                else
+                {
+                    zone.SetActive(false);
+                }
+
+            }
+        }
+        else
+        {
+            towercode = 500;
+            playerMode = PlayerMode.Nomal;
+            BtnColorReset();
+            Ui_Manager.instance.state.text = "";
+            Image[] imgs = Input_Manager.instance.towerBuildBtn.GetComponentsInChildren<Image>();
+
+            foreach (GameObject zone in towerZone)
+            {
+                if (!zone.GetComponent<TowerZone>().towerOn)
+                {
+                    zone.SetActive(false);
+                }
+                else
+                {
+                    zone.SetActive(true);
+                }
+            }
+
+        }
+
     }
 
     public void TowerSuperBuildBtn()

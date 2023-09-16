@@ -82,9 +82,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a81ef4e41598a45a03f470679522dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 2eff1b63c4aa4714181d3f09b1d0b543, type: 3}
   TowerZone: {fileID: 0}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 4f8eccad34be2724ca63c476cb86a6c7, type: 3}
   towerAttackType: 0
   towerType: 0
   towerName: 

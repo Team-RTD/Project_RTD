@@ -14,7 +14,7 @@ public class Sound_Manager : MonoBehaviour
     public AudioSource narSoundPlayer;
 
     public AudioClip[] nars;
-
+    public AudioClip[] BGMS;
     public AudioClip[] EffectiveClip;
     private void Awake()
     {
@@ -37,6 +37,13 @@ public class Sound_Manager : MonoBehaviour
     {
         bgmPlayer.Stop();
         bgmPlayer.clip = bgm;
+        bgmPlayer.Play();
+    }
+
+      public void BgmPlay(int bgm)
+    {
+        bgmPlayer.Stop();
+        bgmPlayer.clip = BGMS[bgm];
         bgmPlayer.Play();
     }
 
