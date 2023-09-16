@@ -12,11 +12,6 @@ public class ThrowObject : MonoBehaviour
     public float objSpeed;
     public bool isFollowing = false;
 
-    private void OnEnable()
-    {
-        print("Enable ThrowObject");
-        
-    }
     void Update()
     {
         gameObject.transform.position = gameObject.transform.position + (dir * objSpeed * Time.deltaTime);

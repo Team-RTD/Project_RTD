@@ -11,14 +11,14 @@ public class AreaObject : MonoBehaviour
     float duration;
     float damageDelay;
     LayerMask enemyLayer;
-    Collider[] areaObjColliders;
+
+    Collider areaObjectCollider;
 
     private bool isActive = false;
 
-    private void Start()
+    private void Awake()
     {
-        areaObjColliders = GetComponents<Collider>();
-        gameObject.SetActive(false);
+        areaObjectCollider = gameObject.GetComponent<Collider>();
     }
     private void OnEnable()
     {
@@ -28,7 +28,14 @@ public class AreaObject : MonoBehaviour
         StartCoroutine(AttackArea());
         StartCoroutine(DurationArea());
     }
-    public void GetAreaObjectInfo(Vector3 _dir, Vector3 _towerDir, float _damage, float _duration, float _damageDelay,LayerMask _enemyLayer)
+
+    public void SetDamage(float _damage, float _duration, float _damageDelay)
+    {
+        damage = _damage;
+        duration = _duration;
+        damageDelay = _damageDelay;
+    }
+    public void GetAreaObjectInfo(Vector3 _dir, Vector3 _towerDir, float _damage, float _duration, float _damageDelay, LayerMask _enemyLayer)
     {
         dir = _dir;
         towerDir = _towerDir;
@@ -37,9 +44,7 @@ public class AreaObject : MonoBehaviour
         damageDelay = _damageDelay;
         enemyLayer = _enemyLayer;
         isActive = true;
-        Debug.LogWarning("11");
         gameObject.SetActive(true);
-        Debug.LogWarning("22");
     }
     IEnumerator DurationArea()
     {
@@ -50,17 +55,11 @@ public class AreaObject : MonoBehaviour
 
     IEnumerator AttackArea()
     {
-        for (int i = 0; i >= areaObjColliders.Length; i++)
-        {
-            areaObjColliders[i].enabled = true;
-        }
+        areaObjectCollider.enabled = true;
 
         yield return new WaitForSeconds(damageDelay);
 
-        for (int i = 0; i >= areaObjColliders.Length; i++)
-        {
-            areaObjColliders[i].enabled = false;
-        }
+        areaObjectCollider.enabled = false;
         StartCoroutine(AttackArea());
     }
 

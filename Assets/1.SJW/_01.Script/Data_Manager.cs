@@ -166,7 +166,7 @@ public class Data_Manager : MonoBehaviour
         {
             playtime += Time.deltaTime;
             Ui_Manager.instance.Timer.text = "0:"+ (10-Mathf.Floor(playtime)).ToString() ;
-            print(playtime);
+            //print(playtime);
             if(playtime > 4.9f && playtime < 5.1f)
             {
                 Sound_Manager.instance.NarPlay(17);
