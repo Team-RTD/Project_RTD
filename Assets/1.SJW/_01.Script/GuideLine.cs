@@ -14,14 +14,6 @@ public class GuideLine : MonoBehaviour
         startpos = transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
     IEnumerator GoToPos(GameObject setpos)
     {
         Vector3 dir =setpos.transform.position - transform.position;

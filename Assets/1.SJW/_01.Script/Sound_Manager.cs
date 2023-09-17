@@ -24,13 +24,7 @@ public class Sound_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StartVolumeUp());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartCoroutine(StartVolumeUp()); //시작 브금 키기
     }
 
     public void BgmPlay(AudioClip bgm)
