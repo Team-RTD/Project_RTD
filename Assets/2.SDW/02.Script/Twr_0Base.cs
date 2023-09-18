@@ -61,26 +61,23 @@ public class Twr_0Base : MonoBehaviour
 
 
     // DO NOT EDIT THIS LIST *************************************************
-    private Vector3 enemyDir;
-    private Animator animator; //0907
-    private Vector3 towerPos;
+    protected Vector3 enemyDir;
+    protected Animator animator; //0907
+    protected Vector3 towerPos;
     public bool isCoolTime = false;
-    private int targetsCount = 0;
+    protected int targetsCount = 0;
 
-    List<MonsterMove> enemyTargets = new List<MonsterMove>();
-    private LayerMask enemyLayer;
+    protected List<MonsterMove> enemyTargets = new List<MonsterMove>();
+    protected LayerMask enemyLayer;
 
-    List<ThrowObject> throwObjects = new List<ThrowObject>();
-    ThrowObject[] thorwObjArray;
+    protected List<ThrowObject> throwObjects = new List<ThrowObject>();
+    protected ThrowObject[] thorwObjArray;
 
-    List<AreaObject> areaObjects = new List<AreaObject>();
-    AreaObject[] areaObjArray;
+    protected List<AreaObject> areaObjects = new List<AreaObject>();
+    protected AreaObject[] areaObjArray;
 
     public GameObject thorwObjInstance; // 0910
     // DO NOT EDIT THIS LIST *************************************************
-
-
-
 
 
 
@@ -111,6 +108,8 @@ public class Twr_0Base : MonoBehaviour
         Mage,
         Archer
     }
+
+    
     public virtual void Awake()
     {
         towerAttackDamage = new float[6];
@@ -119,7 +118,7 @@ public class Twr_0Base : MonoBehaviour
         towerMaxTarget = new int[6];
 
         TowerInfo();
-        enemyLayer = 1 << 6; // Enemy Layer
+        enemyLayer = 1 << 6;
         towerPos = gameObject.transform.position;
 
         if (towerAttackType == TowerAttackType.Thrower)
@@ -134,14 +133,22 @@ public class Twr_0Base : MonoBehaviour
             areaObjects.AddRange(areaObjArray);
         }
 
-        animator = GetComponentInChildren<Animator>(); //0907
+        animator = GetComponentInChildren<Animator>();
+
+        AfterAwake();
+    }
+
+    protected virtual void AfterAwake()
+    {
 
     }
 
     public virtual void Start()
     {
-
+        
     }
+
+    
 
     public virtual void Update()
     {
@@ -152,7 +159,7 @@ public class Twr_0Base : MonoBehaviour
     }
 
 
-    public void Detecting()
+    protected virtual void Detecting()
     {
         Collider[] colliders = Physics.OverlapSphere(towerPos, towerAttackRange[towerRank], enemyLayer);
         enemyTargets.Clear();
@@ -175,7 +182,7 @@ public class Twr_0Base : MonoBehaviour
                         if (_enemy != null)
                         {
                             enemyTargets.Add(_enemy);
-                            gameObject.transform.LookAt(collider.transform.position); //0907
+                            gameObject.transform.LookAt(collider.transform.position);
                             StartCoroutine(AttackEnemy(_enemy));
                         }
                         break;
@@ -190,7 +197,7 @@ public class Twr_0Base : MonoBehaviour
                         if (_enemy != null)
                         {
                             enemyTargets.Add(_enemy);
-                            gameObject.transform.LookAt(collider.transform.position); //0907
+                            gameObject.transform.LookAt(collider.transform.position);
                             StartCoroutine(ThrowerEnemy(thorwObjArray[targetsCount], collider));
                             targetsCount++;
                         }
@@ -241,12 +248,8 @@ public class Twr_0Base : MonoBehaviour
     {
         isCoolTime = true;
         CoolTimeTrueDetectOff();
-        animator.SetTrigger("IdleToAttack"); //0907
-        GameObject particleInstance = Instantiate(shooterParticle, _enemy.transform.position, Quaternion.identity); //0907
-        ParticleSystem particleSystem = particleInstance.GetComponent<ParticleSystem>(); //0907
-        float x = particleSystem.main.duration;//0907
-        Destroy(particleInstance, x); //0907
-
+        animator.SetTrigger("IdleToAttack");
+        ShooterHitAction(_enemy);
         targetsCount = targetsCount + 1;
         DamageSetting();
         _enemy.GetComponent<MonsterMove>().DamagedAction(damage);
@@ -256,12 +259,20 @@ public class Twr_0Base : MonoBehaviour
         CoolTimeFalseDetectOn();
     }
 
+    protected virtual void ShooterHitAction(MonsterMove _enemy)
+    {
+        GameObject particleInstance = Instantiate(shooterParticle, _enemy.transform.position, Quaternion.identity);
+        ParticleSystem particleSystem = particleInstance.GetComponent<ParticleSystem>();
+        float x = particleSystem.main.duration;
+        Destroy(particleInstance, x);
+    }
+
     IEnumerator ThrowerEnemy(ThrowObject throwObject, Collider collider)
     {
         isCoolTime = true;
         CoolTimeTrueDetectOff();
         throwObject.transform.position = gameObject.transform.position;
-        throwObject.transform.LookAt(collider.transform); //0907
+        throwObject.transform.LookAt(collider.transform);
         DamageSetting();
         throwObject.GetComponent<ThrowObject>().GetThrowObjectInfo(DirSett(collider.transform.position), damage, throwObjSpeed);
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
@@ -269,15 +280,15 @@ public class Twr_0Base : MonoBehaviour
         CoolTimeFalseDetectOn();
     }
 
-    IEnumerator AreaEnemy(AreaObject areaObject, Collider collider)
+    protected virtual IEnumerator AreaEnemy(AreaObject areaObject, Collider collider)
     {
         isCoolTime = true;
         CoolTimeTrueDetectOff();
-        animator.SetTrigger("IdleToAttack"); //0907
-
+        animator.SetTrigger("IdleToAttack");
         gameObject.transform.LookAt(collider.transform.position);
         DamageSetting();
-        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer);
+        areaObject.gameObject.SetActive(true);
+        areaObject.GetComponent<AreaObject>().GetAreaObjectInfo(collider.transform.position, gameObject.transform.position, damage, areaDuration, areaAttDelay, collider.gameObject.layer); //여기서 오류
         yield return new WaitForSeconds(towerAttackSpeed[towerRank]);
         isCoolTime = false;
         CoolTimeFalseDetectOn();

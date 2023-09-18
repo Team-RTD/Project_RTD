@@ -271,7 +271,8 @@ public class MonsterSpawn : MonoBehaviour
         {
             if (missionTrigger1 == true)
             {
-                StartCoroutine(PersonalMission1());
+            Sound_Manager.instance.EffectPlay(5);
+            StartCoroutine(PersonalMission1());
                 StageManager.instance.missionNum = 1;
                 StageManager.instance.monsterCount++;
                 StageManager.instance.mission1CoolTime = 0;
@@ -281,7 +282,8 @@ public class MonsterSpawn : MonoBehaviour
     public void mission2()
         {
             if (missionTrigger2 == true)
-            { 
+        {
+                Sound_Manager.instance.EffectPlay(6);
                 StartCoroutine(PersonalMission2());
                 StageManager.instance.missionNum = 2;
                 StageManager.instance.monsterCount++;
@@ -292,7 +294,8 @@ public class MonsterSpawn : MonoBehaviour
     public void mission3()
         {
             if (missionTrigger3 == true)
-            {
+        {
+                Sound_Manager.instance.EffectPlay(7);
                 StartCoroutine(PersonalMission3());
                 StageManager.instance.missionNum = 3;
                 StageManager.instance.monsterCount++;

@@ -14,8 +14,10 @@ public class GameOver : MonoBehaviour
     void Update()
     {
         if (Data_Manager.instance.CurHp <= 0)
-        {
-           gameOver.SetActive(true);
+        { if (!Data_Manager.instance.isPause)
+            { Sound_Manager.instance.BgmPlay(0); }
+            
+            gameOver.SetActive(true);
             Data_Manager.instance.isPause = true;
             Time.timeScale = 0;
             print(2);

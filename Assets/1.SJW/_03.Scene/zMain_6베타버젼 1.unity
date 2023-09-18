@@ -67624,9 +67624,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2cbbdd7ffb9b8ee4b94cdc596702a33d, type: 3}
   - {fileID: 8300000, guid: 8523d2bc32f571e458c93728bc0f6f01, type: 3}
   - {fileID: 8300000, guid: 8430e0a1705170b4787444072a48a6e5, type: 3}
-  - {fileID: 8300000, guid: 405194514a27f4d44988fdfbfc9ed543, type: 3}
   - {fileID: 8300000, guid: c7d7b5b155881f74ab5711071fa0e041, type: 3}
   - {fileID: 8300000, guid: 152c802b1d41f0041bdf68234f2b3bdb, type: 3}
+  - {fileID: 8300000, guid: 405194514a27f4d44988fdfbfc9ed543, type: 3}
   - {fileID: 8300000, guid: d03f8f451b254dd4aa32a7b4abcc3d60, type: 3}
   - {fileID: 8300000, guid: 6e245a2e9fbd96442b7c6fdb7543ed57, type: 3}
   - {fileID: 8300000, guid: a783a99fb8de438469e6a31da8dfed59, type: 3}
@@ -67636,6 +67636,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 49a097655aeb0c042952391c070aaf8f, type: 3}
   - {fileID: 8300000, guid: d89139ca4e08d6b43bd174dcfa72b3fb, type: 3}
   - {fileID: 8300000, guid: 2ad14c4dd7fdcc94a92506e16790e3da, type: 3}
+  EffectiveClip:
+  - {fileID: 8300000, guid: 97b02bef39c76c34db476dd0d305c4f5, type: 3}
+  - {fileID: 8300000, guid: 5470d4e8747748c49998e3d40e911561, type: 3}
+  - {fileID: 8300000, guid: 2ba6f61fb20e8484d9ae20dde410f327, type: 3}
+  - {fileID: 8300000, guid: defbc2501f71cdf48b7e5ccdb042ef1f, type: 3}
+  - {fileID: 8300000, guid: 934d9c3bc9b2bd0489bc7c2e440da6f9, type: 3}
+  - {fileID: 8300000, guid: a00ad555ae6b2ba44816035e95634348, type: 3}
+  - {fileID: 8300000, guid: 4c1ec8e18d2146c449c4eafa84be2246, type: 3}
+  - {fileID: 8300000, guid: c626c0be3b6974e47ac61ef6b3344570, type: 3}
+  - {fileID: 8300000, guid: 4272002e501ea0548a9c2724df301701, type: 3}
 --- !u!4 &1794457061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 467220, guid: e73dff4b52d607f4ca11b85eca8f146b, type: 3}

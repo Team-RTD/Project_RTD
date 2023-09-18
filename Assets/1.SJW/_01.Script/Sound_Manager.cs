@@ -14,6 +14,8 @@ public class Sound_Manager : MonoBehaviour
     public AudioSource narSoundPlayer;
 
     public AudioClip[] nars;
+    public AudioClip[] BGMS;
+    public AudioClip[] EffectiveClip;
     private void Awake()
     {
         instance = this;
@@ -22,13 +24,7 @@ public class Sound_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StartVolumeUp());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartCoroutine(StartVolumeUp()); //시작 브금 키기
     }
 
     public void BgmPlay(AudioClip bgm)
@@ -38,16 +34,32 @@ public class Sound_Manager : MonoBehaviour
         bgmPlayer.Play();
     }
 
+      public void BgmPlay(int bgm)
+    {
+        bgmPlayer.Stop();
+        bgmPlayer.clip = BGMS[bgm];
+        bgmPlayer.Play();
+    }
+
     public void EffectPlay(AudioClip esm)
     {
         effectSoundPlayer.PlayOneShot(esm);
 
     }
 
+    public void EffectPlay(int num)
+    {
+        effectSoundPlayer.PlayOneShot(EffectiveClip[num]);
+
+    }
+
     public void NarPlay(int nar)
     {
-        narSoundPlayer.clip =nars[nar];
-        narSoundPlayer.Play();
+        //if (!narSoundPlayer.isPlaying)
+        {
+            narSoundPlayer.clip = nars[nar];
+            narSoundPlayer.Play();
+        }
     }
 
     

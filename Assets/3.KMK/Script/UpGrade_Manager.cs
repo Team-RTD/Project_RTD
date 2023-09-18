@@ -47,12 +47,16 @@ public class UpGrade_Manager : MonoBehaviour
     {
         if(Data_Manager.instance.money2 <= warrior_upgrade_price)
         {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
             Ui_Manager.instance.state.text = "재화 부족!";
 
             return;
         }
         else
         {
+            int rand = Random.Range(7, 9);
+            Sound_Manager.instance.NarPlay(rand);
             Data_Manager.instance.money2 -= warrior_upgrade_price;
             Debug.Log("Warrior Upgrade!");
             warrior_upgrade_rank++;
@@ -69,12 +73,16 @@ public class UpGrade_Manager : MonoBehaviour
     {
         if (Data_Manager.instance.money2 <= mage_upgrade_price)
         {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
             Ui_Manager.instance.state.text = "재화 부족!";
 
             return;
         }
         else
         {
+            int rand = Random.Range(7, 9);
+            Sound_Manager.instance.NarPlay(rand);
             Data_Manager.instance.money2 -= mage_upgrade_price;
             Debug.Log("Mage Upgrade!");
             mage_upgrade_rank++;
@@ -87,13 +95,17 @@ public class UpGrade_Manager : MonoBehaviour
     public void ArcherUpgrade()
     {
             if (Data_Manager.instance.money2 <= archer_upgrade_price)
-            {
-                Ui_Manager.instance.state.text = "재화 부족!";
+        {
+            int rand = Random.Range(12, 16);
+            Sound_Manager.instance.NarPlay(rand);
+            Ui_Manager.instance.state.text = "재화 부족!";
 
                 return;
             }
             else
             {
+            int rand = Random.Range(7, 9);
+            Sound_Manager.instance.NarPlay(rand);
             Data_Manager.instance.money2 -= archer_upgrade_price;
             Debug.Log("archer Upgrade!");
                 archer_upgrade_rank++;

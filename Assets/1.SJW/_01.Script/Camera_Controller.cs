@@ -187,24 +187,6 @@ public class Camera_Controller : MonoBehaviour
         _camera.fieldOfView = fow;
   
     }
-
-    bool hitcol( Vector3 pos )
-    {
-        Ray ray = new Ray(moveob.transform.position,pos);
-        RaycastHit hitdata;
-
-       
-
-        if (Physics.Raycast(ray, out hitdata, 5f, mask))
-        {
-            print(hitdata.transform.gameObject.name);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
 
 

@@ -45,7 +45,6 @@ public class BeamTower : Twr_0Base
         {
             StopCoroutine(_stopParticle);
             _stopParticle = null;
-            _stopParticle = StartCoroutine(StopParticle());
         }
         _stopParticle = StartCoroutine(StopParticle());    
     }
