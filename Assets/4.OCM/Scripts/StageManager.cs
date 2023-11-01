@@ -33,7 +33,7 @@ public class StageManager : MonoBehaviour
     { 
         instance = this;
         monsterCount = 0;
-        monsterMaxHp = 50;
+        monsterMaxHp = 25;
         stageNum = 1;
         missionMonster1Hp = 5000;
         missionMonster2Hp = 15000;
@@ -71,8 +71,8 @@ public class StageManager : MonoBehaviour
 
     public int SetMonsterHP(int stageNum)
     {
-        monsterMaxHp = stageNum *50 ;
-        return monsterMaxHp = stageNum * 50;
+        monsterMaxHp = stageNum *25 ;
+        return monsterMaxHp = stageNum * 25;
     }
 
     public void endScene()
